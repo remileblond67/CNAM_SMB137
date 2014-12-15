@@ -1,0 +1,9 @@
+$> mkfifo mon_tube
+$> ls -l
+prw-r----- ... mon_tube
+$> cat fichier > mon_tube &
+[50] cat
+$> cat mon_tube
+contenu de « fichier »
+...
+Fin de [50]

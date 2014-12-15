@@ -1,0 +1,22 @@
+Bonjour tout le monde !!!!!!!!!!
+Bonjour tout le monde !!!!!!!!!
+Bonjour tout le monde !!!!!!!!
+Bonjour tout le monde !!!!!!!
+Bonjour tout le monde !!!!!!
+Bonjour tout le monde !!!!!
+Bonjour tout le monde !!!!
+Bonjour tout le monde !!!
+Bonjour tout le monde !!
+Bonjour tout le monde !
+Bonjour tout le monde
+(retour : 0)
+(retour : 1)
+(retour : 2)
+(retour : 3)
+(retour : 4)
+(retour : 5)
+(retour : 6)
+(retour : 7)
+(retour : 8)
+(retour : 9)
+(Retour final : 10)

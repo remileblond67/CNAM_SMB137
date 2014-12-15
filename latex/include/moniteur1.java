@@ -1,0 +1,3 @@
+synchronized(unObjet) {
+    //section critique
+}

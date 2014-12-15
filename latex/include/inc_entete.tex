@@ -1,0 +1,59 @@
+%\documentclass[handout,ignorenonframetext,red]{beamer}
+\documentclass[ignorenonframetext,red]{beamer}
+%\documentclass[class=article, a4paper]{beamer}
+%\documentclass[handout]{beamer} %pour sortie papier
+
+
+\usepackage[french]{babel}
+\usepackage{pgf,pgfarrows,pgfn odes,pgfautomata,pgfheaps,pgfs hade}
+\usepackage{amsmath,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{stmaryrd}
+\usepackage{url}
+
+
+%\documentclass[svgnames,ignorenonframetext]{beamer}
+%\usepackage{times}
+\usepackage{listings}
+\usepackage{amsmath,multicol}
+\usepackage{verbatim}
+%\usepackage{beamerarticle}
+\usepackage{longtable}
+%\usepackage{ucs}
+%\usepackage[utf8]{inputenc}
+\usepackage{pdfpages}
+
+\setcounter{tocdepth}{1}
+
+\mode<presentation>
+{
+  \usetheme{Warsaw}
+  \setbeamercovered{transparent}
+  \AtBeginSection[]
+  {
+    \begin{frame}<beamer>
+       \setcounter{tocdepth}{2}
+       \tableofcontents[currentsection,currentsubsection,hideothersubsections]
+    \end{frame}
+  }
+
+  \AtBeginSubsection[]
+  {
+    \begin{frame}<beamer>
+    \frametitle{\thesection. \insertsectionhead}
+       \tableofcontents[sectionstyle=hide/hide,subsectionstyle=show/shaded/hide ]
+    \end{frame}
+  }
+  
+  \addtobeamertemplate{footline}{\insertframenumber/\inserttotalframenumber}
+
+}
+
+%\mode<handout>{  \setbeamercolor{background canvas}{bg=black!5}} }
+
+
+\logo{\vspace{-.10cm} \includegraphics[scale=0.1]{../illustration/logo_cnam.png}}
+\date{\today}
+\author{Rémi LEBLOND\\ \url{http://remileblond.fr/SMB137}}
+\institute{Conservatoire National des Arts et Métiers - Centre de Strasbourg}
+

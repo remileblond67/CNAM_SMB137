@@ -1,0 +1,4 @@
+USER	PID	STAT	TIME	COMMAND
+toto	5015	R	0:00	ps -aux
+toto 5000	S	0:00	-csh (csh)
+root	1	SW	15:04	init
