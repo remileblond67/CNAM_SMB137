@@ -1,5 +1,5 @@
 void methode() {
     synchronized(this) { //section critique }
 }
-void synchronized() { //section critique
+void synchronized methode() { //section critique
 }

@@ -126,7 +126,7 @@
 
 \item <3>Support d'applications :
 \begin{itemize}
-\item Java, CLR .Net
+\item JVM Java, CLR .Net
 \end{itemize}
 
 \end{itemize}
@@ -185,7 +185,7 @@
 \begin{itemize}
 \item réplication
 \item points de reprise
-\item plan de reprise facilité (PRA)
+\item plan de reprise/continuité facilités (PRA/PCA)
 \end{itemize}
 \item <3->Optimisation de la consommation énergétique
 \end{itemize}
@@ -408,13 +408,23 @@
 \frametitle{Émulation d'un système hôte}
 \begin{exampleblock}{Wine} 
 \begin{itemize}
-\item Implémentation de l'API Win32 pour Linux, MacOsX et autres Unix
+\item Implémentation de l'API Win32
+\begin{itemize}
+\item Linux, MacOsX et autres Unix
+\end{itemize}
+
 \item Deux possibilités :
 \begin{itemize}
 \item Utilisation des DLL Windows 
 \item Ré-écriture à partir des spécifications externes (logiciel libre)
 \end{itemize}
-\item Excellentes performances (parfois meilleures que sous Windows)
+\item Excellentes performances
+\begin{itemize}
+\item parfois meilleures que sous Windows
+\item émulation de haut niveau
+\item API système et non instructions processeur
+\end{itemize}
+
 \end{itemize}
 \end{exampleblock}
 \end{frame}
@@ -454,7 +464,7 @@
 
 \begin{frame}
 \frametitle{Support matériel}
-Exemples de support matériel :
+\begin{exampleblock}{Exemples de support matériel}
 \begin{itemize}
 \item Hyperviseur IBM Power6 et Micro-partitionnement AIX
 \item Mainframes : VM/CMS
@@ -464,6 +474,7 @@ Exemples de support matériel :
 \item AMD-V (anciennement Pacifica)
 \item Intel VT (anciennement Vanderpool)
 \end{itemize}
+\end{exampleblock}
 \end{frame}
 
 \begin{frame}

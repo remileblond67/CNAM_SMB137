@@ -2503,6 +2503,9 @@ Unix, Windows NT
 \begin{frame}
 \frametitle{Résolution du problème du tampon borné}
 \begin{scriptsize}\verbatiminput{include/tb_synchro.java}\end{scriptsize}
+\begin{center}
+{\LARGE Mène à l'interblocage}
+\end{center}
 \end{frame}
 
 \begin{frame}
@@ -2511,7 +2514,8 @@ Unix, Windows NT
 \begin{itemize}
 \item \texttt{thread.yield()} :
 \begin{itemize}
-\item Le thread reste exécutable mais autorise la JVM à choisir un autre Thread de priorité égale
+\item Le thread reste exécutable (état "prêt")
+\item autorise la JVM à choisir un autre thread de priorité égale
 \end{itemize}
 \item Méthodes \texttt{synchronized} et \texttt{yield()} :
 \begin{itemize}
@@ -2520,6 +2524,10 @@ Unix, Windows NT
 \item Verrouillage de l’ensemble de l’objet pendant l’attente active
 \end{itemize}
 \item Solution menant à un interblocage
+\begin{itemize}
+\item Détention et attente sur le verrou d'objet
+\end{itemize}
+
 \end{itemize}
 \begin{flushright}
 \includegraphics[width=1cm]{../illustration/java.png}
@@ -2562,7 +2570,9 @@ Unix, Windows NT
 \begin{scriptsize}
 \verbatiminput{include/java_locks.java}
 \end{scriptsize}
-Méthode plus souple que les fonctions \texttt{synchronized}.
+\begin{center}
+Méthode plus souple que les fonctions \texttt{synchronized}
+\end{center}
 \end{frame}
 
 \begin{frame}
@@ -2574,9 +2584,12 @@ Sémaphores apparues dans Java 1.5
 \item P $\rightarrow$ \texttt{acquire()}
 \item V $\rightarrow$ \texttt{release()}
 \end{itemize}
+\begin{exampleblock}{Exemple d'utilisation}
 \begin{scriptsize}
-\verbatiminput{include/semaphore.java}
+ \verbatiminput{include/semaphore.java}
 \end{scriptsize}
+\end{exampleblock}
+
 \end{frame}
 
 \begin{frame}
@@ -2606,17 +2619,18 @@ Sémaphores apparues dans Java 1.5
 \frametitle{Outils de synchronisation Java}
 \framesubtitle{Outils de synchronisation de plus haut niveau : \texttt{executor}}
 \begin{itemize}
-\item Inclus dans le paquet \texttt{java.util.concurrent}
-\item \texttt{Executor}
+\item \texttt{Executor} inclus dans le paquet \texttt{java.util.concurrent}
 \begin{itemize}
 \item liste d'attente d'actions à effectuer
 \item traitée de façon asynchrone, mais dans l'ordre d'appel
 \item un seul thread à la fois
 \end{itemize}
+\end{itemize}
+\begin{exampleblock}{Exemple d'utilisation}
 \begin{scriptsize}
 \verbatiminput{include/executor.java}
 \end{scriptsize}
-\end{itemize}
+\end{exampleblock}
 \end{frame}
 
 
