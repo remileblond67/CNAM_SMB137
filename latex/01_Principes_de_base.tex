@@ -780,11 +780,12 @@ Middleware pour la synchronisation et la communication.
 \item 1985 $\rightarrow$ gigaFLOPS : Cray-2
 \item 1997 $\rightarrow$ téraFLOPS : ASCI Red
 \item 2008 $\rightarrow$ pétaFLOPS : Roadrunner
-\item ...éxaFLOPS pour 2019 ?
+\item ...éxaFLOPS pour les supercalculateurs de 2020 ?
 \end{itemize}
-\item <3->Record actuel\footnote{2013} : 54,9 pfps - Tianhe 2 (défense chinoise)
+\item <3->Record actuel\footnote{2015} : 
 \begin{itemize}
-\item 32 000 Xeon Ivy Bridge + 48 000 Xeon Phi
+\item Réseau de minage Bitcoin = 3 750 éxaFLOPS
+\item Tianhe 2 (défense chinoise) : 32 000 Xeon Ivy Bridge + 48 000 Xeon Phi = 33,86 petaflops
 \end{itemize}
 
 \item <4->Un PC de 2013 :
@@ -1327,16 +1328,19 @@ Prise en charge par le programme d’amorçage :
 \begin{itemize}
 \item Prise en charge par le programme d'amorçage
 \item BIOS : Basic Input Output System \cite{wp-bios}
-\item UEFI : Unified Extensible Firmware Interface \cite{wp-uefi}
 \begin{itemize}
-\item Interface micrologicielle extensible unifiée
+\item Mis en place pour les premiers PC
+\item Limité (accès mémoire, partiellement 16 bits, pas d'accès réseau...) et difficilement portable
+\item Inadapté aux architectures 64 bits et aux besoins de télégestion
+\end{itemize}
+
+\item UEFI : Unified Extensible Firmware Interface \cite{wp-uefi} - Intel
+\begin{itemize}
+\item Interface micrologicielle extensible unifiée (modulaire et interaction possible avec l'OS)
 \item fonctionnalités réseau intégrées en standard
 \item écrit en C, plus portable et maintenable :  Itanium (IA-64), x86 (32bits et 64bits) et ARM
 \end{itemize}
-
 \end{itemize}
-
-
 \end{frame}
 
 
