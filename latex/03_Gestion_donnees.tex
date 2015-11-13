@@ -2468,7 +2468,12 @@ Non & Non & RW & \\
 \item Remarques :
 \begin{itemize}
 \item OPT non réalisable en pratique
-\item FIFO : Mauvais résultats (page chargée tôt et accédée souvent - variables globales)
+\item FIFO : Mauvais résultats 
+\begin{itemize}
+\item page chargée tôt et accédée souvent
+\item variables globales
+\end{itemize}
+
 \item Bon résultats en se basant sur la date de dernier accès, et/ou la fréquence d'accès :
 \begin{itemize}
 \item LRU, LFU
@@ -3019,6 +3024,10 @@ Deux types de mémoire NAND :
 \frametitle{Performances des différentes mémoire NAND}
 \begin{itemize}
 \item MLC et TLC moins coûteux à produire
+\begin{itemize}
+\item SSD bas de gamme
+\end{itemize}
+
 \item Mais dégrade les performances, surtout en écriture
 \item Réduit grandement la durée de vie des cellules.
 \end{itemize}
@@ -3036,7 +3045,34 @@ TLC & 1 000 cycles par cellule \\
 \end{center}
 \label{default}
 \end{table}
-\textit{Les disques SSD du production utilisent pratiquement tous de la mémoire SLC. MLC pour bas de gamme.}
+\textit{Disques SSD de production $\rightarrow$ mémoire SLC.}
+\end{frame}
+
+\begin{frame}
+\frametitle{À venir... technologie 3D XPoint ("CrossPoint") \cite{XPoint}}
+\begin{itemize}
+\item Collaboration entre Intel et Micron Technology
+\item Amélioration des performances de la SSD (annoncée)
+\begin{itemize}
+\item Vitesse : 
+\begin{itemize}
+\item 1000 fois plus rapide\footnote{Que la mémoire NAND}
+\item Latence de l'ordre de la nanoseconde\footnote{Microseconde pour les SSD, milliseconde pour un HDD}
+\end{itemize}
+
+\item Durée de vie : 1000 fois plus endurante
+\item Capacité : 10 fois plus dense
+\end{itemize}
+\item Remplacement transistors $\rightarrow$  points de croisement (empilement)
+\end{itemize}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[height=2.5cm]{../illustration/XPoint.jpg}
+\label{default}
+\end{center}
+\end{figure}
+
 \end{frame}
 
 \begin{frame}
@@ -3050,13 +3086,17 @@ TLC & 1 000 cycles par cellule \\
 \item Amplification d’écriture (\textit{write amplification})
 \begin{itemize}
 \item Manipulation de blocs de 4ko
-\item Nécessité d'effacer préalablement les blocs plus larges (128 ou 512 ko)
-\item Obligation de réaliser un cycle lecture-effacement-modification-écriture
+\item Effacement préalablement de blocs plus larges (128 ou 512 ko)
+\item Cycle lecture-effacement-modification-écriture
 \end{itemize}
 
 \item Mise à niveau de l’usure (\textit{wear levelling})
 \begin{itemize}
-\item Réarrangement des données pour répartir les écritures sur les différentes cellules
+\item Réarrangement des données
+\begin{itemize}
+\item répartition des écritures sur les différentes cellules
+\end{itemize}
+
 \item Déplacement des données 
 \item Nécessite de connaître les blocs utilisés ou non
 \end{itemize}
