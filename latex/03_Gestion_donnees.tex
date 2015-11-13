@@ -3063,7 +3063,7 @@ TLC & 1 000 cycles par cellule \\
 \item Durée de vie : 1000 fois plus endurante
 \item Capacité : 10 fois plus dense
 \end{itemize}
-\item Remplacement transistors $\rightarrow$  points de croisement (empilement)
+\item Transistors $\rightarrow$  points de croisement (empilement)
 \end{itemize}
 
 \begin{figure}[htbp]
@@ -3078,16 +3078,18 @@ TLC & 1 000 cycles par cellule \\
 \begin{frame}
 \frametitle{Mémoire SSD - la commande TRIM}
 \begin{itemize}
-\item Optimisation du fonctionnement des SSD par le système
-\begin{itemize}
-\item Informe le contrôleur des blocs contenant des données
-\end{itemize}
 
 \item Amplification d’écriture (\textit{write amplification})
 \begin{itemize}
 \item Manipulation de blocs de 4ko
 \item Effacement préalablement de blocs plus larges (128 ou 512 ko)
 \item Cycle lecture-effacement-modification-écriture
+\end{itemize}
+
+\item TRIM : optimisation SSD par le système
+\begin{itemize}
+\item Informe le contrôleur des blocs contenant des données
+\item Identification des blocs effacés
 \end{itemize}
 
 \item Mise à niveau de l’usure (\textit{wear levelling})
