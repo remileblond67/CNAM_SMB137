@@ -51,7 +51,7 @@
 \end{itemize}
 \item Modification du programme ou des données
 \begin{itemize}
-\item D’un autre travail
+\item D’un autre processus
 \item Du système d’exploitation lui même
 \end{itemize}
 \item Risque pour la stabilité du système
@@ -113,7 +113,7 @@
 \end{itemize}
 \item Instructions accessibles uniquement au mode moniteur
 \begin{itemize}
-\item Instructions privilégiées
+\item \textbf{Instructions privilégiées}
 \end{itemize}
  \end{itemize}
 \end{frame}
@@ -163,8 +163,8 @@
  \item MS-DOS sans gestion du mode double 
 \begin{itemize}
 \item Écrit pour le 8088 d’Intel $\rightarrow$ pas de bit de mode
-\item Impossible de restreindre les programmes
-\item Possibilité pour chaque programme d’anéantir le système
+\item Impossible de restreindre les processus utilisateur
+\item Possibilité pour chaque processus d’anéantir le système
 \end{itemize}
 \end{itemize}
 
@@ -205,9 +205,10 @@ Windows NT, OS/2, Linux : écrits pour le 80386 d’Intel (avec bit de mode)
 \begin{itemize}
 \item Appel système
 \item Interruption
+\item Traitement par un processus en mode moniteur
 \end{itemize}
 \end{itemize}
-\item Éviter qu’une tâche utilisateur puisse s’exécuter en mode moniteur
+\item Éviter qu’un processus utilisateur puisse s’exécuter en mode moniteur
  \end{itemize}
 \end{frame}
 
@@ -224,13 +225,17 @@ Windows NT, OS/2, Linux : écrits pour le 80386 d’Intel (avec bit de mode)
   \frametitle{Protection de la mémoire}
   \begin{itemize}
 \item Cloisement des processus
-  \item Protection des données du système d’exploitation :
+  \item Protection des données :
+\begin{itemize}
+\item du système d’exploitation :
 \begin{itemize}
 \item Vecteur d’interruption
 \item Routines de traitement des interruptions
 \item ...
 \end{itemize}
-\item Risque de prise de contrôle en mode moniteur par un programme utilisateur
+\item des autres processus
+\end{itemize}
+\item Risque de prise de contrôle en mode moniteur par un processus utilisateur
   \end{itemize}
  \end{frame}
 
@@ -240,12 +245,13 @@ Windows NT, OS/2, Linux : écrits pour le 80386 d’Intel (avec bit de mode)
  \item Nécessaire pour assurer la fiabilité : 
 \begin{itemize}
 \item Du système
-\item Des programmes utilisateur (entre eux)
+\item Des processus utilisateur (entre eux)
 \end{itemize}
-\item Délimitation des espaces mémoire de chaque tâche
+\item Délimitation des espaces mémoire de chaque processus
 \begin{itemize}
 \item Espace d’adressage propre à chaque travail
 \item Fourchette d’adresses mémoire légales
+\item Table de transcodage propre à chaque processus
 \end{itemize}
 \item Masquage du reste de la mémoire
 \end{itemize}
@@ -267,12 +273,17 @@ Windows NT, OS/2, Linux : écrits pour le 80386 d’Intel (avec bit de mode)
 \begin{frame}
  \frametitle{Mise en oeuvre de la protection de la mémoire}
  \begin{itemize}
- \item Chargement des registres de base et limite en mode privilégié
+ \item Chargement des registres définissant l'espace d'adressage en mode privilégié
+ \begin{itemize}
+\item Base et limite
+\item Table de transcodage
+\end{itemize}
+
  \item Intégration des ces données dans le PSW
  \item Mode moniteur peut accéder à toute la mémoire
  \begin{itemize}
  \item Chargement des programmes utilisateurs
- \item Suppression de travaux
+ \item Suppression de processus
  \item Modification des espaces d’adressage
  \end{itemize}
  \end{itemize}
@@ -306,6 +317,7 @@ Windows NT, OS/2, Linux : écrits pour le 80386 d’Intel (avec bit de mode)
  \begin{itemize}
  \item La protection forme un tout :
 \begin{itemize}
+\item Mode double
 \item Protection des E/S
 \item Protection mémoire
 \item Protection de l’unité centrale
@@ -485,25 +497,13 @@ Producteur 1 & Producteur 2 \\
 \end{frame}
 
 \begin{frame}
-\frametitle{Mise à jour concurrente de count}
-\begin{tabular}{lll}
-&count $\Leftarrow$ 1 & count=1 \\ 
-Producteur & \texttt{reg1} $\Leftarrow$ \texttt{count} & \texttt{reg1}=1 \\ 
-Producteur & \texttt{reg2} $\Leftarrow$ \texttt{reg1} + 1 & \texttt{reg2}=2 \\ 
-Consommateur & \texttt{reg3} $\Leftarrow$ \texttt{count} & \texttt{reg3}=1 \\ 
-Consommateur & \texttt{reg4} $\Leftarrow$ \texttt{reg2} - 1 & \texttt{reg4}=0 \\ 
-Producteur & \texttt{count} $\Leftarrow$ \texttt{reg2} & \texttt{count}=\begin{Huge}2\end{Huge} \\ 
-Consommateur & \texttt{count} $\Leftarrow$ \texttt{reg4} & \texttt{count}=\begin{Huge}0\end{Huge} \\ 
-\end{tabular} 
-\end{frame}
-
-\begin{frame}
 \frametitle{Problème de la section critique}
 \begin{itemize}
-\item Producteur et consommateur n’auraient pas dû mettre à jour \texttt{count} de manière concurrente
+\item Les données perdent leur cohérence si plusieurs producteurs et/ou consommateur mettent à jour les variables \texttt{in}, \texttt{out}, \texttt{count} et le tableau \texttt{tampon} de manière concurrente
 \item Besoin : 
 \begin{itemize}
-\item Mettre en place des mécanismes permettant d’assurer qu’un seul processus à la fois ne peut manipuler la variable \texttt{count}
+\item Mettre en place des mécanismes permettant d’assurer qu’un seul processus à la fois ne peut manipuler ces variables
+\item Mise à jour atomique de cet ensemble de données
 \item Synchronisation des processus
 \end{itemize}
 \end{itemize}
@@ -512,8 +512,8 @@ Consommateur & \texttt{count} $\Leftarrow$ \texttt{reg4} & \texttt{count}=\begin
 \begin{frame}
 \frametitle{Problème de la section critique}
 \begin{itemize}
-\item La mise à jour de \texttt{count} doit se faire en \textbf{exclusion mutuelle}
-\item Un seul thread à la fois modifie \texttt{count} 
+\item La mise à jour des variables \texttt{in}, \texttt{out}, \texttt{count} et le tableau \texttt{tampon} doit se faire en \textbf{exclusion mutuelle}
+\item Un seul thread à la fois modifie ces variables
 \item L'autre doit attendre que le thread en cours ait fini
 \end{itemize}
 \begin{flushright}
@@ -527,7 +527,7 @@ Consommateur & \texttt{count} $\Leftarrow$ \texttt{reg4} & \texttt{count}=\begin
 \begin{frame}
 \frametitle{Qu'est-ce qu'une section critique ?}
 \begin{block}{Définition d'une section critique}
-Ensemble d'instructions pouvant produire des résultats imprévisibles lorsqu’il est exécuté simultanément par des processus différents
+Ensemble d'instructions pouvant produire des résultats imprévisibles lorsqu’il est exécuté simultanément par des processus/threads différents
 \end{block}
 \begin{itemize}
 \item Partie délimitée du code
@@ -561,10 +561,11 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \begin{frame}
 \frametitle{Utilisation d’une section critique}
 \begin{itemize}
-\item Début \\ \textit{Section non critique}
-\item Protocole d'entrée en section critique \\ \textit{Section critique}
-\item Protocole de sortie de section critique \\ \textit{Section non critique}
-\item Fin
+\item \colorbox{green}{\textit{Section non critique}}
+\item Protocole d'entrée en section critique
+\item \colorbox{red}{\textit{Section critique}}
+\item Protocole de sortie de section critique
+\item \colorbox{green}{\textit{Section non critique}}
 \end{itemize}
 \end{frame}
 
@@ -738,6 +739,10 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \begin{block}{Avantages}
 \begin{itemize}
 \item Satisfait la condition d’exclusion mutuelle
+\begin{itemize}
+\item Attention de ne pas créer une section critique sur le test / set du verrou
+\end{itemize}
+
 \end{itemize}
 \end{block}
 \column{0.5\textwidth}

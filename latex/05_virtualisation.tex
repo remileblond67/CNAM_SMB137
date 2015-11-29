@@ -723,7 +723,7 @@ VDI : Virtual Desktop Infrastructure :
    \label{fig:example}
 \end{figure}
 \begin{itemize}
-\item Conteneurs applicatifs
+\item Conteneurs applicatifs \cite{docker}
 \item Abstraction de l'OS $\rightarrow$ gestion des ressources nécessaires
 \end{itemize}
 \includegraphics[height=3cm]{../illustration/docker-vm.png}
@@ -735,12 +735,20 @@ $\rightarrow$
 \frametitle{Conteneur d'application : Docker}
 \begin{figure}[htbp]
    \centering
-   \includegraphics[height=6cm]{../illustration/docker-hub.jpg} % requires the graphicx package
+   \includegraphics[height=6cm]{../illustration/docker-hub.jpg}
    \caption{L'écosystème Docker}
    \label{fig:example}
 \end{figure}
 \end{frame}
 
+\begin{frame}
+\frametitle{Conteneur d'application : Docker}
+\begin{itemize}
+\item Lancer un système Debian, avec redirection du port 80 sur 8080, dossier et terminal
+
+\texttt{docker run -ti -p 8080:80 -v /Users/remi/debian/:/root debian}
+\end{itemize}
+\end{frame}
 
 \subsection{Virtualisation et Cloud Computing}
 
