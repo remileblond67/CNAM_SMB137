@@ -1,6 +1,6 @@
 P(S) {
   S--;
-  if (S < 0) {
+  while (S < 0) {
     // Ajouter ce processus
        à la liste
     block;
