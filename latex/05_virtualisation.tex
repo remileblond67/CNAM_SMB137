@@ -121,7 +121,7 @@
 
 \item <2>Outil d'infrastructure :
 \begin{itemize}
-\item VmWare ESX, Microsoft Hyper-V Server, Citrix Xen
+\item VmWare ESX, Microsoft Hyper-V Server, Citrix XenServer
 \end{itemize}
 
 \item <3>Support d'applications :
@@ -397,11 +397,12 @@
 \begin{itemize}
 \item Niveau d'abstraction nettement plus élevé
 \end{itemize}
-\item Exemples : 
+\end{itemize}
+\begin{exampleblock}{Exemples} 
 \begin{itemize}
 \item Prise en charge de programmes Windows sur MacOsX ou Linux sur PC x86
 \end{itemize}
-\end{itemize}
+\end{exampleblock}
 \end{frame}
 
 \begin{frame}
@@ -639,9 +640,29 @@
 \end{itemize}
 \end{frame}
 
+\section{Application de la virtualisation}
+
+\subsection{Virtualisation de serveurs}
+
 \begin{frame}
-\frametitle{Illustration}
-\framesubtitle{Exemple de Proxmox Virtual Environment}
+\frametitle{Virtualisation de serveurs}
+\begin{itemize}
+\item Utilisation traditionnelle de la virtualisation
+\begin{exampleblock}{Exemples de solutions}
+\begin{itemize}
+\item Microsoft Hyper-V Server
+\item VMWare vSphere Hypervisor (anciennement ESXi)
+\item Citrix XenServer
+\item Oracle VM Server
+\item Proxmox VE
+\end{itemize}
+\end{exampleblock}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Exemple}
+\framesubtitle{Proxmox Virtual Environment}
 \includegraphics[width=3cm]{../illustration/proxmox_logo.png}
 \begin{itemize}
 \item Solution libre de virtualisation
@@ -660,18 +681,6 @@
 \item outil Web d'administration et de surveillance
 \end{itemize}
 \end{itemize}
-\end{frame}
-
-\section{Application de la virtualisation}
-
-\subsection{Virtualisation de serveurs}
-
-\begin{frame}
-\frametitle{Virtualisation de serveurs}
-\begin{itemize}
-\item Utilisation traditionnelle de la virtualisation
-\end{itemize}
-
 \end{frame}
 
 \subsection{Virtualisation du poste client (VDI)}
@@ -742,12 +751,47 @@ $\rightarrow$
 \end{frame}
 
 \begin{frame}
+\frametitle{AuFS : union de systèmes de fichiers\cite{AuFS}}
+\begin{itemize}
+\item AuFS : Another Union File System
+\includegraphics[height=2cm]{../illustration/AuFS.png}
+\item implémenté sur la base d’UnionFS (Union File System)
+\item rendre accessible au travers d’un montage la superposition, l’union, de plusieurs répertoires
+
+\includegraphics[height=2cm]{../illustration/AuFS-Exemples.png}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Le Hub Docker}
+\includegraphics[height=6cm]{../illustration/DockerHub.png}
+\end{frame}
+
+\begin{frame}
 \frametitle{Conteneur d'application : Docker}
 \begin{itemize}
-\item Lancer un système Debian, avec redirection du port 80 sur 8080, dossier et terminal
+\item Lancer un système Debian avec une commande interactive (shell) :
+
+\texttt{docker run -ti debian}
+\item Lancer un système Debian avec redirection du répertoire \texttt{/root} : 
+
+\texttt{docker run -ti -v /Users/remi/debian/:/root debian}
+\item Lancer un système Debian en service, avec redirection du port 80 sur 8080 :
 
 \texttt{docker run -ti -p 8080:80 -v /Users/remi/debian/:/root debian}
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Infrastructure as code : le Dockerfile}
+\verbatiminput{../illustration/docker/Dockerfile}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Docker compose}
+\verbatiminput{../illustration/docker/docker-compose.yml}
 \end{frame}
 
 \subsection{Virtualisation et Cloud Computing}
