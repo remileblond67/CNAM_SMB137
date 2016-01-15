@@ -1,5 +1,18 @@
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+\usetheme{CambridgeUS}
+\setbeamercolor{title}{bg=red!65!black,fg=white}
+\definecolor{beamer@blendedred}{rgb}{0.7,0.2,0.2}
+\setbeamercolor{structure}{fg=beamer@blendedred}
+\setbeamertemplate{sidebar right}
+{
+  \vfill%
+  \llap{\insertlogo\hskip0.1cm}%
+  \vskip7pt%
+}
+
 %\documentclass[handout,ignorenonframetext,red]{beamer}
-\documentclass[ignorenonframetext,red]{beamer}
+%\documentclass[ignorenonframetext,red]{beamer}
 %\documentclass[class=article, a4paper]{beamer}
 %\documentclass[handout, red]{beamer} %pour sortie papier
 
@@ -15,15 +28,10 @@
 \usepackage{color}
 
 
-%\documentclass[svgnames,ignorenonframetext]{beamer}
-%\usepackage{times}
 \usepackage{listings}
 \usepackage{amsmath,multicol}
 \usepackage{verbatim}
-%\usepackage{beamerarticle}
 \usepackage{longtable}
-%\usepackage{ucs}
-%\usepackage[utf8]{inputenc}
 \usepackage{pdfpages}
 
 \setcounter{tocdepth}{1}
@@ -52,12 +60,9 @@
 
 }
 
-%\mode<handout>{  \setbeamercovered{background canvas}{bg=black!5}} }
-
-
 \logo{\vspace{-.10cm} \includegraphics[scale=0.1]{../illustration/logo_cnam.png}}
 \date{\today}
-\author{Rémi LEBLOND\\ \url{http://remileblond.fr}}
+\author{Rémi LEBLOND\\ \url{http://remileblond.fr/category/cnam/smb137/}}
 \institute{Conservatoire National des Arts et Métiers - Centre de Strasbourg 
 
 {\tiny \url{https://github.com/remileblond67/CNAM_SMB137}}}
