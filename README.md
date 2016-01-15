@@ -6,4 +6,4 @@ Assuré dans le cadre du centre régionnal Alsace du CNAM par Rémi LEBLOND
 
 Sources LaTex / Beamer des slides utilisées pendant les cours.
 
-Fichiers PDF compilés disponibles sur http://remileblond.fr/SMB137
+Fichiers PDF compilés disponibles sur http://remileblond.fr/category/cnam/smb137/
