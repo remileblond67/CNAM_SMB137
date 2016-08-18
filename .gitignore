@@ -17,3 +17,4 @@ exam/*
 *.blg
 *.dvi
 *.tex~
+.latex
