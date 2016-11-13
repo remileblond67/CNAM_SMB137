@@ -821,6 +821,21 @@ Recherche le plus grand bloc d ’espace mémoire disponible
 
 
 \begin{frame}
+\frametitle{Récupération de mémoire}
+Libération manuelle :
+\begin{itemize}
+\item Appel système (free)
+\item Source d’erreurs
+\item Risque de fuite de mémoire (memory leak)
+\begin{itemize}
+\item Oubli de libération de segments alloués
+\item Segments inutilisables pour les autres processus
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
 \frametitle{Libération de mémoire}
 \begin{itemize}
 \item Évacuation d'un processus de la mémoire
@@ -855,37 +870,6 @@ Recherche le plus grand bloc d ’espace mémoire disponible
 
 \begin{frame}
 \frametitle{Récupération de mémoire}
-Libération manuelle :
-\begin{itemize}
-\item Appel système (free)
-\item Source d’erreurs
-\item Risque de fuite de mémoire (memory leak)
-\begin{itemize}
-\item Oubli de libération de segments alloués
-\item Segments inutilisables pour les autres processus
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Récupération de mémoire}
-Libération automatique :
-\begin{itemize}
-\item Ramasse miettes (garbage collector)
-\item Coûteux
-\item Controverse :
-\begin{itemize}
-\item Gestion de la mémoire trop important pour être confiée au système (optimisation des programmes)
-\item Gestion de la mémoire trop sensible pour être laissée aux programmeurs
-\end{itemize}
-\item Utilisé par Java (et langages « modernes »)
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Récupération de mémoire}
 \begin{itemize}
 \item Ramasse miettes (garbage collector)
 \item Stop and copy :
@@ -901,7 +885,9 @@ Libération automatique :
 \end{itemize}
 \item Récupération de mémoire synchrone possible
 \end{itemize}
+\item Coûteux
 \end{itemize}
+\includegraphics[width=2cm]{../illustration/wall-e.jpg}
 \end{frame}
 
 %-----------------------------------------------
@@ -911,7 +897,7 @@ Libération automatique :
 \frametitle{La segmentation}
 Programme généralement constitué de plusieurs entités logiques:
 \begin{itemize}
-\item programme principal
+\item Programme principal
 \begin{itemize}
 \item procédures
 \item fonctions bibliothèques
@@ -2915,6 +2901,11 @@ Périphérique « mécanique »
 \begin{frame}
 \frametitle{Disques magnétiques}
 \includegraphics[height=6cm]{../illustration/decomp_hd.pdf}
+\end{frame}
+
+\begin{frame}
+\frametitle{Disques magnétiques}
+\includegraphics[height=6cm]{../illustration/disque_dur.jpg}
 \end{frame}
 
 \begin{frame}

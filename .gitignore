@@ -7,14 +7,11 @@
 *.toc
 *.bbl
 *.vrb
-latex/01_Principes_de_base.pdf
-latex/02_SE_et_processus.pdf
-latex/03_Gestion_donnees.pdf
-latex/04_Paral_et_synchro.pdf
-latex/05_virtualisation.pdf
+latex/*.pdf
 exam/*
 .syncdb
 *.blg
 *.dvi
 *.tex~
 .latex
+.DS_Store
