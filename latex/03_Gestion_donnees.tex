@@ -3930,11 +3930,11 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \frametitle{Sémantique cohérente}
 \begin{itemize}
 \item Caractéristique importante des systèmes de partage de fichier
-\item Précise à \textbf{quel moment} les \textbf{modifications} apportées aux fichiers sont \textbf{visibles} pour les autre processus
+\item Précise à quel moment les modifications apportées aux fichiers sont visibles pour les autre processus
 \end{itemize}
 \begin{exampleblock}{Sémantique cohérente : Exemple d'UNIX}
 \begin{itemize}
-\item Les \textbf{modifications} apportées à un fichier ouvert sont \textbf{visibles immédiatement} par tous les processus ayant également ouvert ce fichier
+\item Les modifications apportées à un fichier ouvert sont \textbf{visibles immédiatement} par tous les processus ayant également ouvert ce fichier
 \item Possibilité de partage du pointeur d'emplacement dans le fichier
 \item Un processus ayant ouvert un fichier conserve cet accès, même en cas de suppression de ce fichier par un autre processus
 \end{itemize}
@@ -3955,10 +3955,12 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \frametitle{Méthode d'accès séquentiel}
 \begin{itemize}
 \item Méthode la \textbf{plus simple} d'accès à un fichier
-\item Informations du fichier \textbf{traitées dans l'ordre}, l'une après l'autre
-\item Avancement du pointeur en cours de lecture / écriture
-\item Possibilité de revenir en début de fichier
-\item Possibilité éventuelle d'avancer / reculer de n enregistrements
+\begin{itemize}
+  \item Informations du fichier traitées dans l'ordre, l'une après l'autre
+  \item Avancement du pointeur en cours de lecture / écriture
+  \item Possibilité de revenir en début de fichier
+  \item Possibilité éventuelle d'avancer / reculer de n enregistrements
+\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -3994,7 +3996,10 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \begin{frame}
 \frametitle{Méthode d'accès direct (ou accès relatif)}
 \begin{itemize}
-\item Numéro de bloc relatif au début du fichier
+\item Accès direct à tout emplacement du fichier
+\begin{itemize}
+  \item Numéro de bloc relatif au début du fichier
+\end{itemize}
 \item Commandes de l'accès direct :
 \end{itemize}
 \begin{tabular}{c|l}
@@ -4004,12 +4009,11 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \texttt{write next}	&	l'accès séquentiel \\
 \end{tabular}
 \begin{itemize}
-\item Ajout de la commande
+\item Ajout des commandes suivantes :
 \begin{itemize}
 \item \texttt{position file to n}
 \item \texttt{seek n}
 \end{itemize}
-
 \end{itemize}
 \end{frame}
 
@@ -4024,9 +4028,10 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \end{itemize}
 
 \item Accès direct à l'enregistrement depuis l’index
-\item Diminution des E/S
+\item Diminution du nombre d'E/S
 \begin{itemize}
 \item Accès rapides
+\item Ne nécessite pas de connaître préalablement le contenu du fichier
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -4062,31 +4067,25 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \frametitle{Représentation d'un fichier en mémoire}
 \begin{itemize}
 \item Représentation de parties de fichiers ouverts en mémoire virtuelle
-\item Association logique de parties de l'espace d'adresses virtuelles à des parties du fichier
+\begin{itemize}
+  \item Découpage du fichier en page de la mémoire virtuelle
+  \item Fonction cartographique de correspondance fichier-mémoire virtuelle
+  \item Utilisation des mécanismes de la mémoire virtuelle
+\end{itemize}
 \item Lecture / écriture dans ces espaces mémoire $\Longrightarrow$ modifications du fichier
 \begin{itemize}
 \item Simplification de l'utilisation des fichiers
 \item Optimisation des chargements en mémoire
 \item Mécanisme de cache
 \end{itemize}
+\item Fermeture du fichier :
+\begin{itemize}
+  \item Écriture sur disque des pages modifiées de la mémoire virtuelle
+  \item Suppression de l'image du fichier en mémoire virtuelle
+\end{itemize}
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{Représentation d'un fichier en mémoire}
-\begin{itemize}
-\item Fermeture du fichier :
-\begin{itemize}
-\item Écriture sur disque des pages modifiées de la mémoire virtuelle
-\item Suppression de l'image du fichier en mémoire virtuelle
-\end{itemize}
-\item Partage de parties de fichier :
-\begin{itemize}
-\item Partage des cadres de mémoire entre les processus
-\item Utilisation mécanismes d'exclusion mutuelle
-\end{itemize}
-\end{itemize}
-\end{frame}
 
 \begin{frame}
 \frametitle{Représentation d'un fichier en mémoire}
@@ -4202,57 +4201,54 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{Actions réalisables sur la structure du répertoire}
-\begin{itemize}
-\item \textbf{Création} d'un fichier
-\begin{itemize}
-\item Allocation d'espace disque
-\item Ajout d'un nouveau fichier dans le répertoire
-\end{itemize}
-\item \textbf{Recherche} d'un fichier
-\begin{itemize}
-\item Parcourir le répertoire pour trouver un fichier particulier
-\item Recherche basée sur le nom symbolique du fichier
-\begin{itemize}
-\item Recherche exacte
-\item Recherche symbolique
-\end{itemize}
-\end{itemize}
-\end{itemize}
-\end{frame}
+% \begin{frame}
+% \frametitle{Actions réalisables sur la structure du répertoire}
+% \begin{itemize}
+% \item \textbf{Création} d'un fichier
+% \begin{itemize}
+% \item Allocation d'espace disque
+% \item Ajout d'un nouveau fichier dans le répertoire
+% \end{itemize}
+% \item \textbf{Recherche} d'un fichier
+% \begin{itemize}
+% \item Parcourir le répertoire pour trouver un fichier particulier
+% \item Recherche basée sur le nom symbolique du fichier
+% \begin{itemize}
+% \item Recherche exacte
+% \item Recherche symbolique
+% \end{itemize}
+% \end{itemize}
+% \end{itemize}
+% \end{frame}
+%
+% \begin{frame}
+% \frametitle{Actions sur un répertoire}
+% \begin{itemize}
+% \item \textbf{Suppression} d'un fichier
+% \begin{itemize}
+% \item Suppression de l'entrée correspondante du répertoire
+% \item Libération de l'entrée correspondante dans le répertoire
+% \end{itemize}
+% \item \textbf{Listage} d'un répertoire
+% \begin{itemize}
+% \item Affichage de la liste de tous les fichiers du répertoire
+% \end{itemize}
+% \item \textbf{Renommage} d'un fichier
+% \begin{itemize}
+% \item Changement du nom de fichier dans le répertoire
+% \item Les fichiers doivent posséder des noms unique au sein de chaque répertoire
+% \item Peut changer l'emplacement de l'entrée dans le répertoire
+% \end{itemize}
+% \end{itemize}
+% \end{frame}
 
 \begin{frame}
-\frametitle{Actions sur un répertoire}
-\begin{itemize}
-\item \textbf{Suppression} d'un fichier
-\begin{itemize}
-\item Suppression de l'entrée correspondante du répertoire
-\item Libération de l'entrée correspondante dans le répertoire
-\end{itemize}
-\item \textbf{Listage} d'un répertoire
-\begin{itemize}
-\item Affichage de la liste de tous les fichiers du répertoire
-\end{itemize}
-\item \textbf{Renommage} d'un fichier
-\begin{itemize}
-\item Changement du nom de fichier dans le répertoire
-\item Les fichiers doivent posséder des noms unique au sein de chaque répertoire
-\item Peut changer l'emplacement de l'entrée dans le répertoire
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Actions sur un répertoire}
-\begin{itemize}
-\item \textbf{Parcours} du système de fichiers
+\frametitle{Parcours du système de fichiers}
 \begin{itemize}
 \item Parcours de tous les répertoires
 \item Accès exhaustif à tous les fichiers de chaque répertoire
 \item Souvent utilisé pour les sauvegardes
-\item  Ne doit parcourir qu'une seule fois chaque entité du système de fichiers
-\end{itemize}
+\item Ne doit parcourir qu'une seule fois chaque entité du système de fichiers
 \end{itemize}
 \end{frame}
 
@@ -4301,7 +4297,10 @@ Structure la plus \textbf{simple}, tous les fichiers résident dans le même ré
 \item Un sous répertoire par utilisateur
 \begin{itemize}
 \item Répertoire de fichiers utilisateur (UFD)
-\item Permet de distinguer les fichiers de chaque utilisateur (unicité des noms locale à l'UFD)
+\item Permet de distinguer les fichiers de chaque utilisateur
+\begin{itemize}
+  \item unicité des noms locale à l'UFD
+\end{itemize}
 \item Tous les UFD ont la même structure
 \item Unique point d'accès pour chaque utilisateur
 \end{itemize}
@@ -4319,11 +4318,15 @@ Structure la plus \textbf{simple}, tous les fichiers résident dans le même ré
 \item UFD créés par le système
 \item Isolement des UFD entre eux
 \begin{itemize}
-\item Problème de partage d'informations entre utilisateur (programmes, par exemple)
+\item Problème de partage d'informations entre utilisateur
+\begin{itemize}
+  \item programmes, par exemple...
+\end{itemize}
 \item Solutions possibles :
 \begin{itemize}
 \item Possibilité de référencer un fichier en le préfixant par le nom de son UFD (chemin)
-\item Fichiers système stockés dans un UFD particulier, parcouru d'abord (avant l'UFD courant) lorsque l'on demande l'exécution d'un programme
+\item Fichiers système stockés dans un UFD particulier
+\item Parcouru d'abord (avant l'UFD courant) lorsque l'on demande l'exécution d'un programme
 \end{itemize}
 \end{itemize}
 \end{itemize}
@@ -4410,7 +4413,10 @@ Structure la plus \textbf{simple}, tous les fichiers résident dans le même ré
 \begin{itemize}
 \item Comment distinguer la source des informations
 \item Pas de relation maître-esclave
-\item Plusieurs noms/chemins pour un même fichier (parcours de répertoire)
+\item Plusieurs noms/chemins pour un même fichier
+\begin{itemize}
+  \item parcours de répertoire...
+\end{itemize}
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -4635,7 +4641,10 @@ Structure la plus \textbf{simple}, tous les fichiers résident dans le même ré
 \begin{itemize}
 \item 4 registres sur le contrôleur :
 \begin{itemize}
-\item \texttt{Etat} : utilisé pour les communications entre processeur et contrôleur (commande prête, occupé, disponible... )
+\item \texttt{Etat} : utilisé pour les communications entre processeur et contrôleur
+\begin{itemize}
+  \item commande prête, occupé, disponible...
+\end{itemize}
 \item \texttt{Contrôle} : définition du type de communication
 \begin{itemize}
 \item (half ou full duplex, contrôle de parité, longueur des mots, vitesse... )
@@ -4795,7 +4804,6 @@ Structure la plus \textbf{simple}, tous les fichiers résident dans le même ré
 \end{frame}
 
 
-\section{Optimisation des performances}
 
 \subsection{Implémentation des systèmes de fichiers}
 
@@ -5209,6 +5217,7 @@ Chaque inode contient 15 pointeurs :
 \includegraphics[width=.8\textwidth]{../illustration/b-tree.pdf}
 \end{frame}
 
+\section{Optimisation des performances}
 
 \subsection{Hiérarchie de stockage}
 
