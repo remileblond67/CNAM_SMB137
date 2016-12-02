@@ -1578,7 +1578,7 @@ Conséquences du chargement de la totalité des programmes en mémoire centrale 
 \end{itemize}
 \item Programmes ré-entrants ou partage de données :
 \begin{itemize}
-\item Code réentrant, non variant ou «code pur» n'est pas modifié au cours de l'exécution : il peut être partagé
+\item Code réentrant, non variant ou "pur" n'est pas modifié au cours de l'exécution : il peut être partagé
 \item Partage de pages entre plusieurs processus
 \end{itemize}
 \end{itemize}
@@ -1687,9 +1687,11 @@ Non & Non & RW & \\
 
 \begin{frame}
 \frametitle{Pagination à deux niveaux}
+La table des pages externes et les tables de pages secondaires sont gérées comme les autres pages :
 \begin{itemize}
-\item La table des pages externes réside \textbf{toujours en mémoire principale}
-\item Les tables de pages secondaires stockées dans des pages pouvant être \textbf{déplacées en mémoire secondaire}
+\item Seules les pages effectivement utilisées sont chargées en mémoire principale
+\item De ce fait, la table des pages externes réside toujours en mémoire principale
+\item Seules les tables de pages secondaires effectivement utilisées sont chargées en mémoire principale
 \end{itemize}
 \end{frame}
 
@@ -1747,7 +1749,7 @@ Non & Non & RW & \\
 \begin{frame}
 \frametitle{Le défaut de page}
 \begin{itemize}
-\item Interruption levée lors de l'accès à une \textbf{page virtuelle non présente} en mémoire principale
+\item Interruption \textbf{levée par la MMU} lors de l'accès à une page virtuelle non présente en mémoire principale
 \item Nécessite un traitement particulier
 \begin{itemize}
 \item Traitement du défaut de page
@@ -1790,16 +1792,16 @@ Non & Non & RW & \\
 \begin{frame}
 \frametitle{Le défaut de page}
 \begin{itemize}
-\item Si la mémoire physique est pleine (\textbf{remplacement}) :
+\item Si la mémoire physique est pleine : \textbf{remplacement}
 \begin{itemize}
-\item Supprimer page m de la mémoire physique
-\item Si la page m a été modifiée, la réécrire sur disque  
-\item Modifier indicateur de présence en TPV de m
+\item Supprimer page victime de la mémoire physique
+\item Si la page victime a été modifiée, la réécrire sur disque  
+\item Modifier indicateur de présence en TPV de la page victime
 \end{itemize}
-\item Puis, dans tous les cas :
+\item Puis, dans tous les cas : \textbf{placement}
 \begin{itemize}
-\item Charger la page référencée dans une case libre de la mémoire physique (\textbf{placement})
-\item Modifier les indicateurs de présence en TPV
+\item Charger la page référencée dans une case libre de la mémoire physique
+\item Modifier les indicateurs de présence de la page référencée en TPV
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -2212,6 +2214,7 @@ Non & Non & RW & \\
 \item Car on a toujours :
 \begin{itemize}
 \item L'ensemble des pages en mémoire de n cadres est toujours un sous-ensemble des pages qui se trouveraient en mémoire avec n+1 cadres de page.
+\item ...du fait de l'utilisation d'une pile, dont la base reste la même quel que soit le nombre de cases disponibles
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -2220,10 +2223,6 @@ Non & Non & RW & \\
 \begin{frame}
 \frametitle{Algorithme LRU}
 \begin{itemize}
-\item Pas réalisable sans assistance matérielle avancée
-\begin{itemize}
-\item Traitement par interruptions système possible avec fortes pertes (facteur 10 au minimum)
-\end{itemize}
 \item Pour le compteur :
 \begin{itemize}
 \item Mise à jour du compteur d'horloge
@@ -2232,6 +2231,12 @@ Non & Non & RW & \\
 \item Pour la pile :
 \begin{itemize}
 \item Mise à jour de la pile
+\end{itemize}
+\item Pas réalisable sans assistance matérielle avancée
+\begin{itemize}
+\item Support matériel très complexe, donc coûteuse
+\item Implémentation spécifique
+\item Dégradation des temps d'accès mémoire $\rightarrow$ contre-productif
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -2389,24 +2394,6 @@ Non & Non & RW & \\
 \item Choix page dont le compteur est le plus élevé
 \item Compteur faible : Chargement mémoire récent $\rightarrow$ probabilité accès futur
 \end{itemize}
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Algorithmes à base de comptage}
-\begin{itemize}
-\item Implémentation exigeante
-\begin{itemize}
-\item Mise à jour de la TPV à chaque accès
-\item Parcours de l'ensemble de la TPV pour recherche de la victime
-\item Fonction de comparaison complexe
-\end{itemize}
-\item Peu efficace :
-\begin{itemize}
-\item Se rapproche rarement de l’algorithme optimal
-\end{itemize}
-\item Rarement utilisé
 \end{itemize}
 \end{frame}
 
@@ -2985,7 +2972,7 @@ Deux principales technologies :
 \item Développée par Toshiba en 1989
 \item Plus rapide à l'effacement et à l'écriture
 \item Densité importante et faible coût
-\item Peu fiable (vérification et répartition des écritures - mise en place d'EEC -\begin{tiny} Error Code Correction\end{tiny})
+\item Peu fiable (vérification et répartition des écritures - mise en place d'ECC -\begin{tiny} Error Code Correction\end{tiny})
 \item Limite la vitesse de lecture
 \end{itemize}
 \end{itemize}
@@ -3133,6 +3120,10 @@ TLC & 1 000 cycles par cellule \\
 \frametitle{La technologie RAID}
 \begin{itemize}
 \item Redundant Array of Inexpensive Disks
+\begin{itemize}
+\item Renommé "Redundant Array of Independant Disks"
+\end{itemize}
+
 \item Constituer une \textbf{unité de stockage} à partir de \textbf{plusieurs disques} (grappe)
 \item Une \textbf{grappe} peut offrir :
 \begin{itemize}
