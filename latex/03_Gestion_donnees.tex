@@ -3718,64 +3718,68 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \end{frame}
 
 
-\begin{frame}
-\frametitle{Opération de création d'un fichier}
-\begin{itemize}
-\item Allocation de l'espace nécessaire sur le périphérique de stockage (dans le système de fichier)
-\item Création d'une nouvelle entrée dans le répertoire
-\begin{itemize}
-\item Nom du fichier
-\item Emplacement dans le système de fichier
-\item Autres attributs...
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Opération d'écriture dans un fichier }
-\begin{itemize}
-\item Indication du nom du fichier et des informations à y écrire
-\item Recherche du fichier dans le répertoire
-\item Ouverture du fichier
-\item Attribution par le système d'un pointeur d'écriture (emplacement dans le fichier de la prochaine écriture)
-\item Écriture des données
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Opération de lecture du contenu d'un fichier}
-\begin{itemize}
-\item Indication du nom de fichier et de l'emplacement à lire
-\item Recherche du fichier dans le répertoire
-\item Ouverture du fichier
-\item Attribution par le système d'un pointeur de lecture :
-\begin{itemize}
-\item Emplacement dans le fichier de la prochaine lecture : position courante
-\item Souvent un seul pointeur lecture/écriture
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Opération de repositionnement dans un fichier}
-\begin{itemize}
-\item Positionnement dans un fichier
-\item Ne nécessite pas d 'E/S réelle
-\item Modification du pointeur de fichier
-\end{itemize}
-\end{frame}
+% \begin{frame}
+% \frametitle{Opération de création d'un fichier}
+% \begin{itemize}
+% \item Allocation de l'espace nécessaire sur le périphérique de stockage (dans le système de fichier)
+% \item Création d'une nouvelle entrée dans le répertoire
+% \begin{itemize}
+% \item Nom du fichier
+% \item Emplacement dans le système de fichier
+% \item Autres attributs...
+% \end{itemize}
+% \end{itemize}
+% \end{frame}
+%
+%
+% \begin{frame}
+% \frametitle{Opération d'écriture dans un fichier }
+% \begin{itemize}
+% \item Indication du nom du fichier et des informations à y écrire
+% \item Recherche du fichier dans le répertoire
+% \item Ouverture du fichier
+% \item Attribution par le système d'un pointeur d'écriture (emplacement dans le fichier de la prochaine écriture)
+% \item Écriture des données
+% \end{itemize}
+% \end{frame}
+%
+% \begin{frame}
+% \frametitle{Opération de lecture du contenu d'un fichier}
+% \begin{itemize}
+% \item Indication du nom de fichier et de l'emplacement à lire
+% \item Recherche du fichier dans le répertoire
+% \item Ouverture du fichier
+% \item Attribution par le système d'un pointeur de lecture :
+% \begin{itemize}
+% \item Emplacement dans le fichier de la prochaine lecture : position courante
+% \item Souvent un seul pointeur lecture/écriture
+% \end{itemize}
+% \end{itemize}
+% \end{frame}
+%
+% \begin{frame}
+% \frametitle{Opération de repositionnement dans un fichier}
+% \begin{itemize}
+% \item Positionnement dans un fichier
+% \item Ne nécessite pas d 'E/S réelle
+% \item Modification du pointeur de fichier
+% \end{itemize}
+% \end{frame}
 
 \begin{frame}
 \frametitle{Localisation des fichiers}
 \begin{itemize}
 \item Fichiers identifiés par leur nom
 \begin{itemize}
-\item La localisation du fichier nécessite une recherche dans le répertoire
-\item Nécessite une E/S sur disque (pour lire les informations du répertoire)
-\item Pénalisante en performance
+\item Localisation du fichier $\rightarrow$ recherche dans le répertoire
+\item Nécessite une E/S sur disque pour localiser le fichier (lecture informations du répertoire)
+\item En plus des E/S d'accès au fichier
 \end{itemize}
-\item Pour éviter cette recherche, de nombreux systèmes utilisent un mécanisme d'ouverture de fichier
+\item Pénalisante en performance
+\item Eviter de répéter ce surcoût à chaque accès fichier :
+\begin{itemize}
+  \item $\rightarrow$ mécanisme d'\textbf{ouverture de fichier}
+\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -3786,10 +3790,17 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \begin{itemize}
 \item Une entrée par fichier ouvert
 \item Pointeur vers chaque fichier ouvert
-\item Fermeture : suppression entrée
-\end{itemize}
-\item Chaque fichier ouvert par le système est ajouté à cette table
 \item Lors des accès suivants, il n'est pas nécessaire de le localiser à nouveau dans le système de fichier
+\end{itemize}
+\item Pour chaque fichier ouvert par le système
+\begin{itemize}
+  \item ajout d'une ligne dans la table des fichiers ouverts
+\end{itemize}
+\item Lorsqu'un fichier n'est plus utilisé
+\begin{itemize}
+  \item Fermeture du fichier
+  \item Suppression de la ligne correspondante dans la table des fichiers ouverts
+\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -3899,6 +3910,7 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \end{itemize}
 \end{frame}
 
+
 \begin{frame}
 \frametitle{Autres opérations possibles sur les fichiers}
 \begin{itemize}
@@ -3920,15 +3932,13 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \item Caractéristique importante des systèmes de partage de fichier
 \item Précise à \textbf{quel moment} les \textbf{modifications} apportées aux fichiers sont \textbf{visibles} pour les autre processus
 \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Sémantique cohérente : Exemple d'UNIX}
+\begin{exampleblock}{Sémantique cohérente : Exemple d'UNIX}
 \begin{itemize}
 \item Les \textbf{modifications} apportées à un fichier ouvert sont \textbf{visibles immédiatement} par tous les processus ayant également ouvert ce fichier
 \item Possibilité de partage du pointeur d'emplacement dans le fichier
 \item Un processus ayant ouvert un fichier conserve cet accès, même en cas de suppression de ce fichier par un autre processus
 \end{itemize}
+\end{exampleblock}
 \end{frame}
 
 
