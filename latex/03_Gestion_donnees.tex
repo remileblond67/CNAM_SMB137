@@ -10,7 +10,7 @@
 \begin{frame}
  \frametitle{Plan}
  \tableofcontents
-\end{frame} 
+\end{frame}
 
 \section{Mémoire principale}
 
@@ -20,7 +20,7 @@
  \frametitle{Von Neumann et mémoire principale}
 2 idées de l’architecture Von Neumann :
 \begin{itemize}
-	\item Programme enregistré : 
+	\item Programme enregistré :
 	\begin{itemize}
 	\item Toute instruction doit se trouver en mémoire pour pouvoir être exécutée
 	\end{itemize}
@@ -176,7 +176,7 @@ Au sein d'un mot, les octets sont numérotés :
 \frametitle{Ordonnancement des octets}
 \begin{exampleblock}{Ex. : 192.168.0.1}
 \begin{itemize}
-\item Big endian : octet de poids fort à gauche 
+\item Big endian : octet de poids fort à gauche
 
 192.168.0.1
 \item Little endian : octet de poids fort à droite
@@ -238,7 +238,7 @@ Problème de compatibilité :
 \begin{itemize}
 \item comparaison de mots binaires par OU exclusif
 \item exemple : \texttt{11100101} et \texttt{00100100} sont distants de 3 bits
-\item qualification des algorithmes : 
+\item qualification des algorithmes :
 \begin{itemize}
 \item 1 bit de parité $\rightarrow$ DH2
 \end{itemize}
@@ -310,7 +310,7 @@ Regroupement des données par zones
 \begin{frame}
 \frametitle{Liaison d’adresses}
 \begin{itemize}
-\item Programme réside sur disque 
+\item Programme réside sur disque
 \begin{itemize}
 \item Fichier exécutable $\rightarrow$ adressage logique
 \end{itemize}
@@ -321,7 +321,7 @@ Regroupement des données par zones
 \item Peut résider dans une partie quelconque de la mémoire
 \begin{itemize}
 \item Programmes translatables
-\item Exceptions : 
+\item Exceptions :
 \begin{itemize}
 \item \texttt{.com} de MS/DOS (compilation statique)
 \item Chargement paramètré (\texttt{himem.sys})
@@ -340,7 +340,7 @@ Regroupement des données par zones
 \item <2>L’unité mémoire manipule des \textbf{adresses physiques} (emplacement physique de la mémoire)
 \begin{itemize}
 \item Les adresses physiques ne sont jamais vues par les programmes utilisateurs
-\item Ils ne peuvent pas connaître l'emplacement mémoire physique 
+\item Ils ne peuvent pas connaître l'emplacement mémoire physique
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -505,7 +505,7 @@ La gestion de la mémoire a trois objets :
 \begin{itemize}
 \item Contient l'adresse de la limite entre la zone système et la zone utilisateur
 \end{itemize}
-\item Calcul d'adresse effectué à la volée, pendant l'exécution 
+\item Calcul d'adresse effectué à la volée, pendant l'exécution
 \end{itemize}
 \end{frame}
 
@@ -1152,7 +1152,7 @@ Principe :
 \begin{tabular}{c|c}
 Etendue & Déplacement \\
 \hline
-21ko & 0 \\ 
+21ko & 0 \\
 47ko & 0 \\
 84ko & 0 \\
 \end{tabular}
@@ -1171,7 +1171,7 @@ Etendue & Déplacement \\
 \begin{tabular}{c|c}
 Etendue & Déplacement \\
 \hline
-21ko & 0 \\ 
+21ko & 0 \\
 47ko & 1 \\
 84ko & 0 \\
 \end{tabular}
@@ -1305,7 +1305,7 @@ Double problématique :
 \begin{frame}
 \frametitle{Liaison dynamique et bibliothèques partagées}
 \begin{itemize}
-\item Édition de liens statique : 
+\item Édition de liens statique :
 \begin{itemize}
 \item Liaison de toutes les bibliothèques dans le fichier exécutable $\rightarrow$ exécutable monolithique
 \end{itemize}
@@ -1437,7 +1437,7 @@ Conséquences du chargement de la totalité des programmes en mémoire centrale 
 \end{itemize}
 \item Impossibilité d'exécuter certains programmes :
 \begin{itemize}
-\item Programmes plus volumineux que la mémoire centrale. 
+\item Programmes plus volumineux que la mémoire centrale.
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -1572,7 +1572,7 @@ Conséquences du chargement de la totalité des programmes en mémoire centrale 
 \begin{frame}
 \frametitle{Corres. adr. virtuelle  $\Leftrightarrow$  physique}
 \begin{itemize}
-\item Utilisation d'une fonction topographique associant une page virtuelle à une page physique 
+\item Utilisation d'une fonction topographique associant une page virtuelle à une page physique
 \begin{itemize}
 \item Table des pages virtuelles
 \end{itemize}
@@ -1795,7 +1795,7 @@ La table des pages externes et les tables de pages secondaires sont gérées com
 \item Si la mémoire physique est pleine : \textbf{remplacement}
 \begin{itemize}
 \item Supprimer page victime de la mémoire physique
-\item Si la page victime a été modifiée, la réécrire sur disque  
+\item Si la page victime a été modifiée, la réécrire sur disque
 \item Modifier indicateur de présence en TPV de la page victime
 \end{itemize}
 \item Puis, dans tous les cas : \textbf{placement}
@@ -1838,7 +1838,7 @@ La table des pages externes et les tables de pages secondaires sont gérées com
 \begin{itemize}
 \item 100 nanosecondes
 \end{itemize}
-\item Traitement d'un défaut de page : 
+\item Traitement d'un défaut de page :
 \begin{itemize}
 \item Qualification, changements contexte : $<$ 1 ms
 \item 8 ms latence + 15 ms posit. + 1 ms transfert
@@ -1987,7 +1987,7 @@ La table des pages externes et les tables de pages secondaires sont gérées com
 \end{itemize}
 \item Chaîne de référence :
 \begin{itemize}
-\item Générée aléatoirement 
+\item Générée aléatoirement
 \item Observation système
 \end{itemize}
 \end{itemize}
@@ -2163,7 +2163,7 @@ La table des pages externes et les tables de pages secondaires sont gérées com
 \begin{itemize}
 \item Date associée à chaque entrée de la TPV
 \item Horloge incrémentée à chaque référence mémoire
-\item Remplacement page dont le compteur est le plus faible 
+\item Remplacement page dont le compteur est le plus faible
 \end{itemize}
 \item Pile :
 \begin{itemize}
@@ -2256,7 +2256,7 @@ La table des pages externes et les tables de pages secondaires sont gérées com
 \begin{itemize}
 \item par le matériel (MMU)
 \end{itemize}
-\item Permet de distinguer les pages non utilisées 
+\item Permet de distinguer les pages non utilisées
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -2444,7 +2444,7 @@ La table des pages externes et les tables de pages secondaires sont gérées com
 \item Remarques :
 \begin{itemize}
 \item OPT non réalisable en pratique
-\item FIFO : Mauvais résultats 
+\item FIFO : Mauvais résultats
 \begin{itemize}
 \item page chargée tôt et accédée souvent
 \item variables globales
@@ -2549,7 +2549,7 @@ Système multi-programmé :
 \item Fonction de l'allocation des autres processus
 \item Variation importante des temps de réponse pour des raisons extérieures au processus
 \end{itemize}
-\item Utilisation efficace de la mémoire 
+\item Utilisation efficace de la mémoire
 \item Adapté aux processus ayant des besoins mémoire pouvant varier dans le temps
 \end{itemize}
 \end{frame}
@@ -2672,7 +2672,7 @@ Système multi-programmé :
 \begin{frame}
 \frametitle{Nombre minimal de pages allouées}
 \begin{itemize}
-\item Exemple : Instruction de recopie mémoire 
+\item Exemple : Instruction de recopie mémoire
 \begin{itemize}
 \item Recopie de la valeur située à une adresse vers un autre emplacement mémoire
 \item Peut utiliser jusqu'à trois pages :
@@ -2818,9 +2818,9 @@ Allocation \textbf{proportionnelle}
 
 
 
-%------------------------------------------------------------------- 
+%-------------------------------------------------------------------
 \section{Système de fichiers}
-%------------------------------------------------------------------- 
+%-------------------------------------------------------------------
 
 \begin{frame}
 \frametitle{Système de fichiers}
@@ -2837,6 +2837,8 @@ Allocation \textbf{proportionnelle}
 \end{itemize}
 \end{itemize}
 \end{frame}
+
+
 
 %---------------------------------------------------
 \subsection{Les périphériques de stockage secondaire}
@@ -2855,6 +2857,7 @@ Allocation \textbf{proportionnelle}
 \end{itemize}
 \end{frame}
 
+
 \begin{frame}
 \frametitle{Disques magnétiques}
 \begin{itemize}
@@ -2866,6 +2869,7 @@ Allocation \textbf{proportionnelle}
 \end{itemize}
 \end{itemize}
 \end{frame}
+
 
 \begin{frame}
 \frametitle{Disques magnétiques}
@@ -2885,15 +2889,18 @@ Périphérique « mécanique »
 \end{itemize}
 \end{frame}
 
+
 \begin{frame}
 \frametitle{Disques magnétiques}
 \includegraphics[height=6cm]{../illustration/decomp_hd.pdf}
 \end{frame}
 
+
 \begin{frame}
 \frametitle{Disques magnétiques}
 \includegraphics[height=6cm]{../illustration/disque_dur.jpg}
 \end{frame}
+
 
 \begin{frame}
 \frametitle{Performances des disques magnétiques}
@@ -2909,7 +2916,8 @@ Périphérique « mécanique »
 \item Variable en fonction de la position courante du disque
 \end{itemize}
 
-\item Temps de recherche : 
+
+\item Temps de recherche :
 \begin{itemize}
 \item Positionnement du bras sur le cylindre recherché
 \end{itemize}
@@ -2920,6 +2928,7 @@ Périphérique « mécanique »
 \end{itemize}
 \end{itemize}
 \end{frame}
+
 
 \begin{frame}
 \frametitle{Disques magnétiques amovibles}
@@ -2947,6 +2956,7 @@ Périphérique « mécanique »
 \item lecteur à l'état solide
 \item aucune pièce en mouvement
 \end{itemize}
+
 
 \item Mémoire flash
 \begin{itemize}
@@ -2978,12 +2988,14 @@ Deux principales technologies :
 \end{itemize}
 \end{frame}
 
+
 \begin{frame}
 \frametitle{La mémoire NAND}
 \begin{center}
 \includegraphics[width=10cm]{../illustration/NAND_modif.pdf}
 \end{center}
 \end{frame}
+
 
 \begin{frame}
 \frametitle{La mémoire NAND}
@@ -3039,7 +3051,7 @@ TLC & 1 000 cycles par cellule \\
 \item Collaboration entre Intel et Micron Technology
 \item Amélioration des performances de la SSD (annoncée)
 \begin{itemize}
-\item Vitesse : 
+\item Vitesse :
 \begin{itemize}
 \item 1000 fois plus rapide\footnote{Que la mémoire NAND}
 \item Latence de l'ordre de la nanoseconde\footnote{Microseconde pour les SSD, milliseconde pour un HDD}
@@ -3084,7 +3096,7 @@ TLC & 1 000 cycles par cellule \\
 \item répartition des écritures sur les différentes cellules
 \end{itemize}
 
-\item Déplacement des données 
+\item Déplacement des données
 \item Nécessite de connaître les blocs utilisés ou non
 \end{itemize}
 
@@ -3274,7 +3286,7 @@ Deux parties distinctes :
 \item \textbf{Stockage} de l'information
 \item Sur le dispositif de stockage
 \end{itemize}
-\item \textbf{Structure} de répertoire : 
+\item \textbf{Structure} de répertoire :
 \begin{itemize}
 \item \textbf{Organisation} des informations stockées
 \item Permet de retrouver les données stockées
@@ -3312,7 +3324,7 @@ Deux parties distinctes :
 \item Entité manipulée par l'utilisateur d'un système de fichier
 \end{itemize}
 \end{itemize}
-\includegraphics[scale=.5]{../illustration/fichier.png} 
+\includegraphics[scale=.5]{../illustration/fichier.png}
 \end{frame}
 
 \begin{frame}
@@ -3354,7 +3366,7 @@ Deux parties distinctes :
 \frametitle{Structure du contenu des fichiers}
 Un fichier possède une \textbf{structure} définie par son \textbf{type}
 \begin{itemize}
-\item Fichier \textbf{texte} : 
+\item Fichier \textbf{texte} :
 \begin{itemize}
 \item Succession de caractères organisée en lignes
 \end{itemize}
@@ -3477,12 +3489,14 @@ Métadonnées les plus courantes :
 \end{itemize}
 \item Rigidification de l'OS
 \begin{itemize}
-\item nouveaux types de fichiers 
+\item nouveaux types de fichiers problématique
+\item maintenance de types de fichiers obsolètes
 \end{itemize}
 \end{itemize}
 \end{block}
 \end{columns}
 \end{frame}
+
 
 \begin{frame}
 \frametitle{Gestion d'un minimum de types de fichier}
@@ -3519,7 +3533,7 @@ Métadonnées les plus courantes :
 \end{itemize}
 \end{itemize}
 \item Facilite la vie du programmeur
-\item Facilite la maintenance 
+\item Facilite la maintenance
 \end{itemize}
 \includegraphics[width=1cm]{../illustration/logo_macos.png}
 \end{frame}
@@ -3658,12 +3672,12 @@ Fichier séquentiel indexé :
 \begin{itemize}
 \item Un champ pour chaque classe d'utilisateurs
 \begin{tabular}{c|c|c|c|c}
-& \textit{Lecture} & \textit{Ecriture} & \textit{Exécution} &  \\ 
+& \textit{Lecture} & \textit{Ecriture} & \textit{Exécution} &  \\
 \hline
-Propriétaire & 1 & 1 & 1 & \textit{7} \\ 
-Groupe & 1 & 0 & 1 & \textit{5} \\ 
-Autres & 0 & 0 & 0 & \textit{0} \\  
-\end{tabular} 
+Propriétaire & 1 & 1 & 1 & \textit{7} \\
+Groupe & 1 & 0 & 1 & \textit{5} \\
+Autres & 0 & 0 & 0 & \textit{0} \\
+\end{tabular}
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -3723,7 +3737,7 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \begin{itemize}
 \item Indication du nom du fichier et des informations à y écrire
 \item Recherche du fichier dans le répertoire
-\item Ouverture du fichier 
+\item Ouverture du fichier
 \item Attribution par le système d'un pointeur d'écriture (emplacement dans le fichier de la prochaine écriture)
 \item Écriture des données
 \end{itemize}
@@ -3734,7 +3748,7 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \begin{itemize}
 \item Indication du nom de fichier et de l'emplacement à lire
 \item Recherche du fichier dans le répertoire
-\item Ouverture du fichier 
+\item Ouverture du fichier
 \item Attribution par le système d'un pointeur de lecture :
 \begin{itemize}
 \item Emplacement dans le fichier de la prochaine lecture : position courante
@@ -3944,7 +3958,7 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \item Mode le plus courant
 \item Utilisable avec tous les périphériques (bandes)
 \end{itemize}
-\includegraphics[width=\textwidth]{../illustration/acces_sequentiel.pdf} 
+\includegraphics[width=\textwidth]{../illustration/acces_sequentiel.pdf}
 \end{frame}
 
 \begin{frame}
@@ -4029,7 +4043,7 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 
 \begin{frame}
 \frametitle{Fichiers indexés : exemple}
-\includegraphics[width=\textwidth]{../illustration/fichier_indexe_exemple.pdf} 
+\includegraphics[width=\textwidth]{../illustration/fichier_indexe_exemple.pdf}
 \end{frame}
 
 
@@ -4556,7 +4570,7 @@ Structure la plus \textbf{simple}, tous les fichiers résident dans le même ré
 \item Souplesse limitée
 \begin{itemize}
 \item Exemple : port série
-\end{itemize} 
+\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -4666,7 +4680,7 @@ Structure la plus \textbf{simple}, tous les fichiers résident dans le même ré
 \begin{frame}
 \frametitle{Interfaces d'E/S des applications}
 \begin{itemize}
-\item Objectifs : 
+\item Objectifs :
 \begin{itemize}
 \item Gestion uniforme et standard des E/S
 \item Abstraction du type de matériel utilisé pour l'E/S
@@ -4714,7 +4728,7 @@ Structure la plus \textbf{simple}, tous les fichiers résident dans le même ré
 \begin{itemize}
 \item Porte d'échappement ou porte de service
 \item Envoi direct d'une commande au pilote de périphérique
-\item \texttt{ioctl} dans l'API Unix, \texttt{DeviceIoControl} dans Win32 : 
+\item \texttt{ioctl} dans l'API Unix, \texttt{DeviceIoControl} dans Win32 :
 \begin{itemize}
 \item Opérations non conformes au modèle des E/S par flux
 \item Communication avec modules du noyau
@@ -4811,7 +4825,7 @@ Structure la plus \textbf{simple}, tous les fichiers résident dans le même ré
 \begin{itemize}
 \item Traduction des numéros de blocs logiques $\Longrightarrow$ physiques
 \item Gestion espace libre
-\item Fourniture sur demande 
+\item Fourniture sur demande
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -4904,7 +4918,7 @@ Structure la plus \textbf{simple}, tous les fichiers résident dans le même ré
 \begin{frame}
 \frametitle{Lutte contre fragmentation externe}
 \begin{itemize}
-\item But : 
+\item But :
 \begin{itemize}
 \item Rassembler les données de chaque fichier dans des espaces contigus
 \end{itemize}
@@ -4951,7 +4965,7 @@ Structure la plus \textbf{simple}, tous les fichiers résident dans le même ré
 \item Moins bonnes performances :
 \begin{itemize}
 \item Déplacement importants du bras lors du parcours séquentiel de fichier
-\item Accès direct peut performant 
+\item Accès direct peut performant
 \begin{itemize}
 \item Nécessite le parcours des blocs jusqu'à la position demandée (accès disque)
 \item Stockage du pointeur ($\frac{4 octets}{512 octets} = 0.78\%$)
@@ -4985,7 +4999,7 @@ Structure la plus \textbf{simple}, tous les fichiers résident dans le même ré
 \end{itemize}
 \item Si la mise à jour du fichier est interrompue
 \begin{itemize}
-\item la suite du fichier risque d'être perdue 
+\item la suite du fichier risque d'être perdue
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -5130,7 +5144,7 @@ Chaque inode contient 15 pointeurs :
 \textbf{Liste linéaire} :
 \begin{itemize}
 \item Méthode la plus simple à programmer
-\item Solutions possibles 
+\item Solutions possibles
 \begin{itemize}
 \item Tableau des entrées (triée ou non)
 \item Liste chaînée (suppression d'entrées plus facile)
@@ -5186,7 +5200,7 @@ Chaque inode contient 15 pointeurs :
 \end{frame}
 
 
-\subsection{Hiérarchie de stockage} 
+\subsection{Hiérarchie de stockage}
 
 \begin{frame}
 \frametitle{Système de stockage}
@@ -5243,7 +5257,7 @@ Chaque inode contient 15 pointeurs :
 \item Même fréquence de fonctionnement
 \item Souvent séparation données/instructions
 \end{itemize}
-\item Cache L2 
+\item Cache L2
 \begin{itemize}
 \item Extérieur au processeur
 \item Souvent implanté dans le même boîtier
@@ -5364,7 +5378,7 @@ Chaque inode contient 15 pointeurs :
 
 \begin{frame}
 \frametitle{La journalisation}
-Un système de fichier \textbf{journalisé} fonctionne par \textbf{transaction} 
+Un système de fichier \textbf{journalisé} fonctionne par \textbf{transaction}
 \begin{itemize}
 \item Écriture d'un fichier faite à un \textbf{emplacement temporaire} (le \textbf{journal})
 \item L'écriture n'est pas validée tant que le fichier n'est pas écrit complètement
@@ -5619,7 +5633,7 @@ Trois raisons pour utiliser des tampons :
 \begin{itemize}
 \item double tamponnage
 \end{itemize}
-\item \textbf{Amortissement} des différences 
+\item \textbf{Amortissement} des différences
 \begin{itemize}
 \item volume de stockage
 \item fragmentation des blocs
@@ -5638,7 +5652,7 @@ Trois raisons pour utiliser des tampons :
 \begin{itemize}
 \item différents niveaux
 \end{itemize}
-\item Différences avec un tampon 
+\item Différences avec un tampon
 \begin{itemize}
 \item un \textbf{tampon} ne peut contenir que la \textbf{seule copie existante} de la donnée
 \item le \textbf{cache} contient une \textbf{simple copie} de la donnée entre deux niveaux
@@ -5674,7 +5688,7 @@ Trois raisons pour utiliser des tampons :
 \item Correction de la donnée si possible
 \item Nouvel essai (disque, réseau... )
 \end{itemize}
-\item En cas d'erreur irrécupérable 
+\item En cas d'erreur irrécupérable
 \begin{itemize}
 \item Code retour de l'appel système (état)
 \item Variable \texttt{errno} sur Unix (100 valeurs possibles)
