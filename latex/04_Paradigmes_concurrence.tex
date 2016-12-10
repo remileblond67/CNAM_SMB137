@@ -9,11 +9,11 @@
 \begin{frame}
  \frametitle{Plan}
  \tableofcontents
-\end{frame} 
+\end{frame}
 
-%------------------------------------------------------------------- 
+%-------------------------------------------------------------------
 \section{Protection matérielle}
-%------------------------------------------------------------------- 
+%-------------------------------------------------------------------
 
 \subsection{Accès au matériel}
 
@@ -160,7 +160,7 @@
  \frametitle{Exemples d’utilisation}
  \begin{itemize}
  \item L'OS doit s'appuyer sur un support matériel
- \item MS-DOS sans gestion du mode double 
+ \item MS-DOS sans gestion du mode double
 \begin{itemize}
 \item Écrit pour le 8088 d’Intel $\rightarrow$ pas de bit de mode
 \item Impossible de restreindre les processus utilisateur
@@ -242,52 +242,60 @@ Windows NT, OS/2, Linux : écrits pour le 80386 d’Intel (avec bit de mode)
 \begin{frame}
  \frametitle{Protection de la mémoire}
  \begin{itemize}
- \item Nécessaire pour assurer la fiabilité : 
+ \item Nécessaire pour assurer la fiabilité :
 \begin{itemize}
-\item Du système
-\item Des processus utilisateur (entre eux)
+\item du système
+\item des processus utilisateur (entre eux)
 \end{itemize}
 \item Délimitation des espaces mémoire de chaque processus
 \begin{itemize}
-\item Espace d’adressage propre à chaque travail
+\item Espace d’adressage propre à chaque processus
+\begin{itemize}
 \item Fourchette d’adresses mémoire légales
 \item Table de transcodage propre à chaque processus
 \end{itemize}
+\item Stockage dans le PSW de chaque processus (PCB)
+\item Chargé à chaque changement de contexte
+\end{itemize}
 \item Masquage du reste de la mémoire
+\begin{itemize}
+\item Levée d'une interruption d'accès mémoire incorrect par la MMU
+\end{itemize}
+
 \end{itemize}
 \end{frame}
 
-
-\begin{frame}
- \frametitle{Définition d’un espace d’adressage logique}
- Méthode de base (premiers systèmes à mémoire linéaire)
- \includegraphics[width=.6\textwidth]{../illustration/protect_memoire_base.pdf}
-\end{frame}
-
-\begin{frame}
- \frametitle{Définition d’un espace d’adressage logique}
- \framesubtitle{Implémentation du mécanisme de contrôle d'accès à la mémoire}
- \includegraphics[width=\textwidth]{../illustration/protect_memoire_base_implementation.pdf}
-\end{frame}
-
-\begin{frame}
- \frametitle{Mise en oeuvre de la protection de la mémoire}
- \begin{itemize}
- \item Chargement des registres définissant l'espace d'adressage en mode privilégié
- \begin{itemize}
-\item Base et limite
-\item Table de transcodage
-\end{itemize}
-
- \item Intégration des ces données dans le PSW
- \item Mode moniteur peut accéder à toute la mémoire
- \begin{itemize}
- \item Chargement des programmes utilisateurs
- \item Suppression de processus
- \item Modification des espaces d’adressage
- \end{itemize}
- \end{itemize}
-\end{frame}
+%
+%\begin{frame}
+% \frametitle{Définition d’un espace d’adressage logique}
+% Méthode de base (premiers systèmes à mémoire linéaire)
+% \includegraphics[width=.6\textwidth]{../illustration/protect_memoire_base.pdf}
+%\end{frame}
+%
+%\begin{frame}
+% \frametitle{Définition d’un espace d’adressage logique}
+% \framesubtitle{Implémentation du mécanisme de contrôle d'accès à la mémoire}
+% \includegraphics[width=\textwidth]{../illustration/protect_memoire_base_implementation.pdf}
+%\end{frame}
+%
+%\begin{frame}
+% \frametitle{Mise en oeuvre de la protection de la mémoire}
+% \begin{itemize}
+% \item Chargement des registres définissant l'espace d'adressage en mode privilégié
+% \begin{itemize}
+%\item Base et limite
+%\item Table de transcodage
+%\end{itemize}
+%
+% \item Intégration des ces données dans le PSW
+% \item Mode moniteur peut accéder à toute la mémoire
+% \begin{itemize}
+% \item Chargement des programmes utilisateurs
+% \item Suppression de processus
+% \item Modification des espaces d’adressage
+% \end{itemize}
+% \end{itemize}
+%\end{frame}
 
 
 
@@ -322,7 +330,7 @@ Windows NT, OS/2, Linux : écrits pour le 80386 d’Intel (avec bit de mode)
 \item Protection mémoire
 \item Protection de l’unité centrale
 \end{itemize}
-\item Protection prise en charge par le système 
+\item Protection prise en charge par le système
 \begin{itemize}
 \item Appel système pour réaliser les actions « sensibles »
 \item Limitation des actions réalisables directement en mode utilisateur
@@ -333,14 +341,14 @@ Windows NT, OS/2, Linux : écrits pour le 80386 d’Intel (avec bit de mode)
 
 
 \section{Coopération inter processus}
-\subsection{Synchronisation de tâches}
+\subsection{Synchronisation de processus}
 
 \begin{frame}
-\frametitle{Synchronisation de tâches}
+\frametitle{Synchronisation de processus}
 \begin{itemize}
 \item Problème :
 \begin{itemize}
-\item Une tâche A, arrivée à un point X de son exécution, doit attendre qu'une tâche B ait atteint ou dépassé un point Y de son exécution pour reprendre son travail
+\item Un processus A, arrivé à un point X de son exécution, doit attendre qu'un processus B ait atteint ou dépassé un point Y de son exécution pour reprendre son travail
 \end{itemize}
 \item Solutions :
 \begin{itemize}
@@ -375,18 +383,18 @@ Windows NT, OS/2, Linux : écrits pour le 80386 d’Intel (avec bit de mode)
 \begin{itemize}
 \item Utilisation de mécanismes de synchronisation :
 \begin{itemize}
-\item Par une tâche pour signaler un événement aux autres tâches
+\item Par un processus pour signaler un événement aux autres processus
 \end{itemize}
-\item Doivent permettre 
+\item Doivent permettre
 \begin{itemize}
-\item l'auto-suspension d'une tâche 
-\item l'activation d'une tâche suspendue
+\item l'auto-suspension d'un processus
+\item l'activation d'un processus suspendu
 \end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Synchronisation de tâches}
+\frametitle{Synchronisation de processus}
 \begin{itemize}
 \item Processus coopérants
 \item Partage de données
@@ -488,7 +496,7 @@ Windows NT, OS/2, Linux : écrits pour le 80386 d’Intel (avec bit de mode)
 \hline
 Producteur 1 & Producteur 2 \\
 \hline
-  $count++$ & $count++$ \\ 
+  $count++$ & $count++$ \\
   $tampon[in] = item$ & $tampon[in] = item$ \\
   $in = (in + 1) \% TAILLE\_TAMPON$ & $in = (in + 1) \% TAILLE\_TAMPON$ \\
 \hline
@@ -500,7 +508,7 @@ Producteur 1 & Producteur 2 \\
 \frametitle{Problème de la section critique}
 \begin{itemize}
 \item Les données perdent leur cohérence si plusieurs producteurs et/ou consommateur mettent à jour les variables \texttt{in}, \texttt{out}, \texttt{count} et le tableau \texttt{tampon} de manière concurrente
-\item Besoin : 
+\item Besoin :
 \begin{itemize}
 \item Mettre en place des mécanismes permettant d’assurer qu’un seul processus à la fois ne peut manipuler ces variables
 \item Mise à jour atomique de cet ensemble de données
@@ -520,7 +528,7 @@ Producteur 1 & Producteur 2 \\
 \includegraphics[width=.5\textwidth]{../illustration/sc_maj_count.pdf}
 \end{flushright}
 \begin{itemize}
-\item Il s’agit d’une \textbf{section critique} 
+\item Il s’agit d’une \textbf{section critique}
 \end{itemize}
 \end{frame}
 
@@ -539,9 +547,9 @@ Ensemble d'instructions pouvant produire des résultats imprévisibles lorsqu’
 \frametitle{Portée des sections critiques}
 \begin{itemize}
 \item L'exécution simultanée de deux sections critiques appartenant à des \textbf{ensembles différents} et ne partageant pas de variable ne pose pas de problème
-\item Détermination des sections critiques : 
+\item Détermination des sections critiques :
 \begin{itemize}
-\item Liée à l’utilisation de variables partagées, mais l'inverse n'est pas systématiquement vrai 
+\item Liée à l’utilisation de variables partagées, mais l'inverse n'est pas systématiquement vrai
 \item Doivent être détectées et protégées par les concepteurs des programmes
 \end{itemize}
 \end{itemize}
@@ -609,7 +617,7 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \begin{itemize}
 \item Risque de \textbf{famine} :
 \begin{itemize}
-\item Si un processus peut attendre indéfiniment pour entrer dans sa section critique alors que les autres exécutent normalement les leurs 
+\item Si un processus peut attendre indéfiniment pour entrer dans sa section critique alors que les autres exécutent normalement les leurs
 \end{itemize}
 \item Solution \textbf{équitable} si :
 \begin{itemize}
@@ -633,7 +641,7 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \begin{frame}
 \frametitle{Contraintes à satisfaire :}
 \begin{itemize}
-\item \textbf{Exclusion mutuelle} : 
+\item \textbf{Exclusion mutuelle} :
 \begin{itemize}
 \item Une section critique ne peut être exécutée que si aucune autre section critique du même ensemble n'est en cours d'exécution
 \item Dans le cas contraire, il devra attendre que l'autre processus termine sa section critique
@@ -646,7 +654,7 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \begin{itemize}
 \item \textbf{Déroulement} :
 \begin{itemize}
-\item Le choix de la prochaine tâche pouvant entrer dans sa section critique ne peut se faire que parmi les tâches qui n’exécutent pas déjà leur section critique.
+\item Le choix du prochain processus pouvant entrer dans sa section critique ne peut se faire que parmi les processus qui n’exécutent pas déjà leur section critique.
 \item Ce choix ne peut pas être repoussé indéfiniment
 \end{itemize}
 \end{itemize}
@@ -983,7 +991,7 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \end{itemize}
 \end{itemize}
 \begin{center}
-\includegraphics[width=3cm]{../illustration/singes.png} 
+\includegraphics[width=3cm]{../illustration/singes.png}
 \end{center}
 \end{frame}
 
@@ -994,7 +1002,7 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \begin{itemize}
 \item Désactivation des interruptions
 \item \textit{Section critique}
-\item Activation des interruptions 
+\item Activation des interruptions
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -1192,7 +1200,7 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \begin{frame}
 \frametitle{Problème de l’attente active}
 \begin{itemize}
-\item Attente active (\textit{spinlock}) : 
+\item Attente active (\textit{spinlock}) :
 \begin{itemize}
 \item Répétition incessante du test d'entrée en section critique
 \end{itemize}
@@ -1253,7 +1261,7 @@ Fonctions nécessaires :
 \frametitle{Support dans Unix}
 \begin{itemize}
 \item Supporté par tous les Unix récents
-\item Ne constitue pas le mode de synchronisation traditionnel 
+\item Ne constitue pas le mode de synchronisation traditionnel
 \begin{itemize}
 \item Verrous et tubes
 \end{itemize}
@@ -1274,10 +1282,10 @@ Situation dans laquelle deux processus ou plus peuvent attendre indéfiniment un
 \end{block}
 \begin{exampleblock}{Exemple d'interblocage}
 \begin{tabular}{ccc}
- & p$_0$ & p$_1$ \\ 
-T1 : & P(S) & P(Q) \\ 
-T2 : & P(Q) & P(S) \\ 
-\end{tabular} 
+ & p$_0$ & p$_1$ \\
+T1 : & P(S) & P(Q) \\
+T2 : & P(Q) & P(S) \\
+\end{tabular}
 \end{exampleblock}
 \end{frame}
 
@@ -1394,7 +1402,7 @@ Extraction d’un élément :
 \item <2-> 2$^{eme}$ problème
 \begin{itemize}
 \item Quand il est prêt, un rédacteur effectue ses modifications dès que possible
-\item Risque de \textbf{famine} pour les \textbf{lecteurs} 
+\item Risque de \textbf{famine} pour les \textbf{lecteurs}
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -1490,9 +1498,9 @@ Pour manger, un philosophe doit prendre successivement deux fourchettes
 \begin{itemize}
 \item Plusieurs processus en concurrence
 \item Pour accéder à un nombre limité de ressources
-\item Interblocage : 
+\item Interblocage :
 \begin{itemize}
-\item Tâche en attente d’une ressource bloquée par une autre tâche en attente elle aussi
+\item Processus en attente d’une ressource bloquée par un autre processus en attente elle aussi
 \item Attente mutuelle - Étreinte fatale ou dead lock
 \item Dégradation des performances
 \end{itemize}
@@ -1529,7 +1537,7 @@ Pour manger, un philosophe doit prendre successivement deux fourchettes
 \begin{itemize}
 \item Ressource utilisable exclusivement par un processus et un seul
 \begin{itemize}
-\item Lorsque la ressource est utilisée par une tâche, elle n’est plus disponible pour les autres
+\item Lorsque la ressource est utilisée par un processus, elle n’est plus disponible pour les autres
 \item Attente de libération
 \end{itemize}
 \item Son partage donnerait des résultats incohérents
@@ -1754,7 +1762,7 @@ Deux méthodes :
 \item Nombre de ressources allouées
 \item Temps de calcul passé / restant
 \item Interactif ou non
-\item Priorité de la tâche
+\item Priorité du processus
 \item Occupation mémoire
 \end{itemize}
 \item <3->Variable en fonction de la destination du système
@@ -1959,7 +1967,7 @@ Deux méthodes :
 \item Pas d’accès exclusif nécessaire
 \item Jamais d’attente sur une ressource partageable
 \end{itemize}
-\item Solution : 
+\item Solution :
 \begin{itemize}
 \item Rendre un maximum de ressources partageables
 \end{itemize}
@@ -1970,7 +1978,7 @@ Deux méthodes :
 \frametitle{Limiter les besoins d’exclusion mutuelle}
 \begin{itemize}
 \item Sérialiser les requêtes portant sur une ressource
-\item Par exemple : 
+\item Par exemple :
 \begin{itemize}
 \item Utilisation d’un spool d’impression pour les imprimantes
 \item Traitement en série des demandes d’impression par un démon
@@ -2086,9 +2094,9 @@ Déroulement d'une demande de ressource :
 \begin{itemize}\item Allocation des ressources au processus\end{itemize}
 \item <2->Si la ressource n'est pas disponible
 \begin{itemize}
-\item <3->Si elle est allouée à d’autres processus bloqués : 
+\item <3->Si elle est allouée à d’autres processus bloqués :
 \begin{itemize}\item \textbf{préemption} des ressources\end{itemize}
-\item <4->Sinon : 
+\item <4->Sinon :
 \begin{itemize}\item \textbf{mise en attente} du processus demandeur\end{itemize}
 \end{itemize}
 \end{itemize}
@@ -2151,13 +2159,13 @@ Déroulement d'une demande de ressource :
 \begin{frame}
 \frametitle{Éviter l’attente circulaire}
 \begin{columns}
-\column{0.5\textwidth} 
+\column{0.5\textwidth}
 État sain et fiable :
 \begin{itemize}
 \item Pas de cycle
 \end{itemize}
 \includegraphics[width=5cm]{../illustration/ga_pas_cycle.pdf}
-\column{0.5\textwidth} 
+\column{0.5\textwidth}
 État sain, mais pas fiable :
 \begin{itemize}
 \item Refus de la requête
@@ -2194,7 +2202,7 @@ Processus & \multicolumn{4}{c|}{Ressources attribuées} & \multicolumn{4}{c|}{Re
  & R1 & R2 & R3 & R4 & R1 & R2 & R3 & R4 \\
 \hline
 P1   &3&0&1&1&1&1&0&0 \\
-P2   &0&1&0&0&0&1&1&2\\ 
+P2   &0&1&0&0&0&1&1&2\\
 P3   &1&1&1&0&3&1&0&0\\
 P4   &1&1&0&1&0&0&1&0\\
 P5   &0&0&0&0&2&1&1&0\\
@@ -2220,7 +2228,7 @@ Quantité restante & 1 & 1 & 1 & 0 \\
 \framesubtitle{Exemple}
 L'algorithme suivant détermine si un état est sûr :
 \begin{itemize}
-\item <1->Trouver dans le tableau de droite une ligne L dont les ressources demandées sont toutes inférieures aux dispo 
+\item <1->Trouver dans le tableau de droite une ligne L dont les ressources demandées sont toutes inférieures aux dispo
 \begin{itemize}
 \item Si L n'existe pas $\rightarrow$ l'état n'est plus sain $\rightarrow$ interblocage.
 \end{itemize}
@@ -2427,7 +2435,7 @@ Unix, Windows NT
 \item <1-> Variables d'état
 \begin{itemize}
 \item Variables classiques, sans aucun support spécifique de synchronisation
-\end{itemize} 
+\end{itemize}
 \item <1-> Procédures internes
 \begin{itemize}
 \item Fonctions classiques, non synchronisées
@@ -2890,7 +2898,7 @@ Sémaphores apparues dans Java 1.5
 \item Utilisation d’un segment existant
 \item \verbatiminput{include/shmget.c}
 \end{itemize}
-\item Commandes \texttt{shmat} / \texttt{shmdt} : 
+\item Commandes \texttt{shmat} / \texttt{shmdt} :
 \begin{itemize}
 \item Attachement/détachement d’un segment de mémoire partagé à l'espace d'adressage d'un processus
 \end{itemize}
@@ -3138,7 +3146,7 @@ Les deux commandes s’exécutent indépendamment sauf :
 \begin{itemize}
 \item Nommage explicite des processus entre eux au sein du programme
 \item Impact du changement du nom d’un processus sur les autres processus
-\item Grande dépendance entre les processus communicants 
+\item Grande dépendance entre les processus communicants
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -3251,7 +3259,7 @@ Les deux commandes s’exécutent indépendamment sauf :
 \begin{itemize}
 \item Message envoyés placés dans une file d’attente :
 \begin{itemize}
-\item Capacité nulle : 
+\item Capacité nulle :
 \begin{itemize}
 \item Aucun message en attente
 \item Émission bloquante
@@ -3296,10 +3304,10 @@ Les deux commandes s’exécutent indépendamment sauf :
 \frametitle{Exemple : Mach}
 \begin{itemize}
 \item Système d’exploitation à micro noyau basé sur les messages
-\item Gestion de processus multi-threads (tâches)
+\item Gestion de processus multi-threads
 \item Micro-noyau
 \begin{itemize}
-\item Dialogue entre tâches et serveurs
+\item Dialogue entre processus utilisateur et serveurs
 \item Pas de partage d’espace d’adressage
 \item Conçu pour les environnements distribués
 \end{itemize}
@@ -3314,10 +3322,10 @@ Les deux commandes s’exécutent indépendamment sauf :
 \item Appels systèmes
 \item Boîtes aux lettres (ports)
 \end{itemize}
-\item Pour chaque tâche, deux BAL spéciales :
+\item Pour chaque processus, deux BAL spéciales :
 \begin{itemize}
-\item \textbf{Kernel} : Utilisée par le noyau pour communiquer avec la tâche
-\item \textbf{Notify} : Notification d’avènement à la tâche par le noyau
+\item \textbf{Kernel} : Utilisée par le noyau pour communiquer avec le processus utilisateur
+\item \textbf{Notify} : Notification d’avènement au processus utilisateur par le noyau
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -3337,7 +3345,7 @@ Les deux commandes s’exécutent indépendamment sauf :
 \item Performances (transfert de message)
 \begin{itemize}
 \item Pas de duplication des messages en mémoire
-\item Transfert de l’espace d’adressage contenant le message d’une tâche à l’autre
+\item Transfert de l’espace d’adressage contenant le message d’un processus à l’autre
 \end{itemize}
 \end{itemize}
 \end{frame}
