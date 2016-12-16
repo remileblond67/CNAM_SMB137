@@ -1,4 +1,4 @@
-// Ajout d ’un élément
+// Ajout d’un élément
 // dans le tampon,
 // attendre quand 
 // il est plein

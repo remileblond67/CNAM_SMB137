@@ -10,336 +10,7 @@
  \frametitle{Plan}
  \tableofcontents
 \end{frame}
-
-%-------------------------------------------------------------------
-\section{Protection matérielle}
-%-------------------------------------------------------------------
-
-\subsection{Accès au matériel}
-
-\begin{frame}
-\frametitle{Accès au matériel}
-\begin{itemize}
-\item Aux origines :
-\begin{itemize}
-\item Systèmes informatiques exploités par des programmeurs
-\item Mono-utilisateur
-\item Contrôle total de l’ordinateur pour un travail
-\end{itemize}
-\item Évolution :
-\begin{itemize}
-\item Exécution simultanée de plusieurs travaux
-\begin{itemize}
-\item Partage des ressources (mémoire, E/S... )
-\item Risque de propagation des erreurs
-\end{itemize}
-\end{itemize}
-\item Nécessité de contrôler l'accès aux ressources
-\begin{itemize}
-\item Accès au matériel via le SE
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
- \frametitle{Dangers de l’accès direct au matériel}
- \begin{itemize}
- \item Blocage de ressources
-\begin{itemize}
-\item Famine
-\end{itemize}
-\item Modification du programme ou des données
-\begin{itemize}
-\item D’un autre processus
-\item Du système d’exploitation lui même
-\end{itemize}
-\item Risque pour la stabilité du système
-\begin{itemize}
-\item Restriction et contrôle des travaux par le SE
-\end{itemize}
- \end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Protection matérielle}
-\begin{itemize}
-\item La protection globale du système se base sur les mécanismes matériels suivants :
-\begin{itemize}
-\item Mode double
-\item Protection des E/S
-\item Protection de la mémoire
-\item Protection processeur
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-\subsection{Le mode double}
-
-\begin{frame}
- \frametitle{Le mode double}
- \begin{itemize}
- \item Finalités :
-\begin{itemize}
-\item Distinguer les privilèges des processus système de ceux des processus utilisateur
-\end{itemize}
-\item Solution :
-\begin{itemize}
-\item Réserver à des programmes de confiance (noyau du système) les actions potentielement dangereuses
-\end{itemize}
-\item Deux modes :
-\begin{itemize}
-\item Mode moniteur : accès à toutes les instructions
-\item Mode utilisateur : accès limité
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
- \frametitle{Implémentation du mode double}
- \begin{itemize}
- \item Intégré au sein du processeur
- \item Contrôlé par un registre spécial :
-\begin{itemize}
-\item Bit de mode (dans PSW)
-\begin{itemize}
-\item 0 : moniteur
-\item 1 : utilisateur
-\end{itemize}
-\item Identification de la nature des tâches exécutées
-\end{itemize}
-\item Instructions accessibles uniquement au mode moniteur
-\begin{itemize}
-\item \textbf{Instructions privilégiées}
-\end{itemize}
- \end{itemize}
-\end{frame}
-
-
-\begin{frame}
- \frametitle{Implémentation du mode double}
- \begin{itemize}
- \item Le processeur démarre en mode moniteur
- \item Premier processus : mode privilégié
- \begin{itemize}
- \item Accès à l'ensemble du jeu d'instruction
- \item Modification de mode irréversible (instruction privilégiée)
- \end{itemize}
- \item Abaissement du niveau d'exécution : sens unique
-  \begin{itemize}
- \item Les processus utilisateur ne peuvent plus quitter le mode utilisateur
- \item Impossible d'aquérir un niveau d'éxecution supérieur
- \item Pour le processus et sa descendance
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
- \frametitle{Appels systèmes}
- \begin{itemize}
- \item Permettre à un processus utilisateur de \emph{déléguer au système} des tâches réservées au mode moniteur
- \item Interruption :
- \begin{itemize}
-\item perte de la CPU pour le processus demandeur
-\end{itemize}
- \item Déroulement
-\begin{itemize}
-\item Appel système
-\item Analyse de la demande par un processus système
-\item Réalisation de la demande (mode moniteur)
-\item Retour au processus utilisateur
- \end{itemize}
- \end{itemize}
-\end{frame}
-
-\begin{frame}
- \frametitle{Exemples d’utilisation}
- \begin{itemize}
- \item L'OS doit s'appuyer sur un support matériel
- \item MS-DOS sans gestion du mode double
-\begin{itemize}
-\item Écrit pour le 8088 d’Intel $\rightarrow$ pas de bit de mode
-\item Impossible de restreindre les processus utilisateur
-\item Possibilité pour chaque processus d’anéantir le système
-\end{itemize}
-\end{itemize}
-
-\begin{exampleblock}{Exemples d'OS exploitant le mode double}
-Windows NT, OS/2, Linux : écrits pour le 80386 d’Intel (avec bit de mode)
-\end{exampleblock}
-\end{frame}
-
-\begin{frame}
-\frametitle{Les anneaux de protection du processeur}
-\begin{itemize}
-\item \textit{Protection rings}
-\item 4 cercles sur 386 et suivants : 0, 1, 2, and 3
-
-  \includegraphics[height=3cm]{../illustration/cpu-ring-model.png}
-
-\item Seuls les cercles 0 (Kernel) et 3 (User) généralement utilisés
-\begin{itemize}
-\item Ring 1 parfois utilisé dans le cadre de la virtualisation
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\subsection{Protection des E/S}
-
-\begin{frame}
- \frametitle{Protection des E/S}
- \begin{itemize}
- \item Les E/S permettent de réaliser des actions critiques :
- \begin{itemize}
-\item Accès aux données
-\item Communication...
-\end{itemize}
- \item Une E/S illégale peut déstabiliser l’ensemble du système
-\begin{itemize}
-\item Toutes les instructions d’E/S sont privilégiées
-\item E/S via le système d’exploitation
-\begin{itemize}
-\item Appel système
-\item Interruption
-\item Traitement par un processus en mode moniteur
-\end{itemize}
-\end{itemize}
-\item Éviter qu’un processus utilisateur puisse s’exécuter en mode moniteur
- \end{itemize}
-\end{frame}
-
-
-\begin{frame}
- \frametitle{Traitement d’une E/S}
- \includegraphics[width=\textwidth]{../illustration/ES_mode_double.pdf}
-\end{frame}
-
-
-\subsection{Protection de la mémoire}
-
-\begin{frame}
-  \frametitle{Protection de la mémoire}
-  \begin{itemize}
-\item Cloisement des processus
-  \item Protection des données :
-\begin{itemize}
-\item du système d’exploitation :
-\begin{itemize}
-\item Vecteur d’interruption
-\item Routines de traitement des interruptions
-\item ...
-\end{itemize}
-\item des autres processus
-\end{itemize}
-\item Risque de prise de contrôle en mode moniteur par un processus utilisateur
-  \end{itemize}
- \end{frame}
-
-\begin{frame}
- \frametitle{Protection de la mémoire}
- \begin{itemize}
- \item Nécessaire pour assurer la fiabilité :
-\begin{itemize}
-\item du système
-\item des processus utilisateur (entre eux)
-\end{itemize}
-\item Délimitation des espaces mémoire de chaque processus
-\begin{itemize}
-\item Espace d’adressage propre à chaque processus
-\begin{itemize}
-\item Fourchette d’adresses mémoire légales
-\item Table de transcodage propre à chaque processus
-\end{itemize}
-\item Stockage dans le PSW de chaque processus (PCB)
-\item Chargé à chaque changement de contexte
-\end{itemize}
-\item Masquage du reste de la mémoire
-\begin{itemize}
-\item Levée d'une interruption d'accès mémoire incorrect par la MMU
-\end{itemize}
-
-\end{itemize}
-\end{frame}
-
-%
-%\begin{frame}
-% \frametitle{Définition d’un espace d’adressage logique}
-% Méthode de base (premiers systèmes à mémoire linéaire)
-% \includegraphics[width=.6\textwidth]{../illustration/protect_memoire_base.pdf}
-%\end{frame}
-%
-%\begin{frame}
-% \frametitle{Définition d’un espace d’adressage logique}
-% \framesubtitle{Implémentation du mécanisme de contrôle d'accès à la mémoire}
-% \includegraphics[width=\textwidth]{../illustration/protect_memoire_base_implementation.pdf}
-%\end{frame}
-%
-%\begin{frame}
-% \frametitle{Mise en oeuvre de la protection de la mémoire}
-% \begin{itemize}
-% \item Chargement des registres définissant l'espace d'adressage en mode privilégié
-% \begin{itemize}
-%\item Base et limite
-%\item Table de transcodage
-%\end{itemize}
-%
-% \item Intégration des ces données dans le PSW
-% \item Mode moniteur peut accéder à toute la mémoire
-% \begin{itemize}
-% \item Chargement des programmes utilisateurs
-% \item Suppression de processus
-% \item Modification des espaces d’adressage
-% \end{itemize}
-% \end{itemize}
-%\end{frame}
-
-
-
-\subsection{Protection processeur}
-
-\begin{frame}
- \frametitle{Protection de l’unité centrale}
- \begin{itemize}
- \item Éviter qu’un travail ne monopolise l’UC
-\begin{itemize}
-\item Le système doit pouvoir reprendre la main
-\end{itemize}
-\item Utilisation d’une minuterie
-\item Compteur
-\begin{itemize}
-\item Dans le PSW
-\item Initialisé par le SE
-\item Décrémenté à chaque top d’horloge
-\item Interruption de l’UC si compteur = 0
-\end{itemize}
- \end{itemize}
-\end{frame}
-
-
-\begin{frame}
- \frametitle{Nécessité d'une protection globale du système}
- \begin{itemize}
- \item La protection forme un tout :
-\begin{itemize}
-\item Mode double
-\item Protection des E/S
-\item Protection mémoire
-\item Protection de l’unité centrale
-\end{itemize}
-\item Protection prise en charge par le système
-\begin{itemize}
-\item Appel système pour réaliser les actions « sensibles »
-\item Limitation des actions réalisables directement en mode utilisateur
-\end{itemize}
- \end{itemize}
-\end{frame}
-
-
-
+ 
 \section{Coopération inter processus}
 \subsection{Synchronisation de processus}
 
@@ -433,11 +104,11 @@ Windows NT, OS/2, Linux : écrits pour le 80386 d’Intel (avec bit de mode)
 \begin{frame}
 \frametitle{Exemple : Producteur consommateur}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}{Producteur}
 \begin{scriptsize}\verbatiminput{include/producteur.c}\end{scriptsize}
 \end{block}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}{Consommateur}
 \begin{scriptsize}
 \verbatiminput{include/consommateur.c}
@@ -491,23 +162,32 @@ Windows NT, OS/2, Linux : écrits pour le 80386 d’Intel (avec bit de mode)
 
 \begin{frame}
 \frametitle{Mise à jour des variables}
-\begin{center}
-\begin{tabular}{|c|c|c|}
-\hline
-Producteur 1 & Producteur 2 \\
-\hline
-  $count++$ & $count++$ \\
-  $tampon[in] = item$ & $tampon[in] = item$ \\
-  $in = (in + 1) \% TAILLE\_TAMPON$ & $in = (in + 1) \% TAILLE\_TAMPON$ \\
-\hline
-\end{tabular}
-\end{center}
+
+\begin{columns}
+\column{0.45\textwidth}
+\begin{block}{Producteur 1}
+\begin{itemize}
+\item $count++$
+\item $tampon[in] = item$
+\item $in = (in + 1) \% TAILLE\_TAMPON$
+\end{itemize}
+\end{block}
+
+\column{0.45\textwidth}
+\begin{block}{Producteur 2}
+\begin{itemize}
+\item $count++$
+\item $tampon[in] = item$
+\item $in = (in + 1) \% TAILLE\_TAMPON$
+\end{itemize}
+\end{block}
+\end{columns}
 \end{frame}
 
 \begin{frame}
 \frametitle{Problème de la section critique}
 \begin{itemize}
-\item Les données perdent leur cohérence si plusieurs producteurs et/ou consommateur mettent à jour les variables \texttt{in}, \texttt{out}, \texttt{count} et le tableau \texttt{tampon} de manière concurrente
+\item Les données perdent leur cohérence si plusieurs producteurs et/ou consommateurs mettent à jour les variables \texttt{in}, \texttt{out}, \texttt{count} et le tableau \texttt{tampon} de manière concurrente
 \item Besoin :
 \begin{itemize}
 \item Mettre en place des mécanismes permettant d’assurer qu’un seul processus à la fois ne peut manipuler ces variables
@@ -580,7 +260,7 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \begin{frame}
 \frametitle{Risques liés aux sections critiques}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \textbf{Processus 1} :
 \begin{itemize}
 \item Entrée sect. critique 1
@@ -591,7 +271,7 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \item Sortie sect. critique 2
 \item Sortie sect. critique 1
 \end{itemize}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \textbf{Processus 2} :
 \begin{itemize}
 \item Entrée sect. critique 2
@@ -743,7 +423,7 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \frametitle{1$^{ere}$ solution logicielle}
 \framesubtitle{Avantages / inconvénients}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}{Avantages}
 \begin{itemize}
 \item Satisfait la condition d’exclusion mutuelle
@@ -753,7 +433,7 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 
 \end{itemize}
 \end{block}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}{Inconvénients}
 \begin{itemize}
 \item Ne satisfait pas la condition de déroulement
@@ -832,14 +512,14 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \frametitle{2$^{eme}$ solution logicielle}
 \framesubtitle{Avantages / inconvénients}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}{Avantages}
 \begin{itemize}
 \item Exclusion mutuelle
 \item Déroulement
 \end{itemize}
 \end{block}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}{Inconvénients}
 \begin{itemize}
 \item Attente non bornée
@@ -856,8 +536,8 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \item Une entrée par Thread concurrent
 \item Positionné, pour chaque Thread :
 \begin{itemize}
-\item A \texttt{Vrai} dans le protocole d’entrée en section critique
-\item A \texttt{Faux} dans le protocole de sortie
+\item À \texttt{Vrai} dans le protocole d’entrée en section critique
+\item À \texttt{Faux} dans le protocole de sortie
 \end{itemize}
 \item Attente \texttt{Faux} pour l’autre Thread pour exécuter la section critique
 \end{itemize}
@@ -908,13 +588,13 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \framesubtitle{Avantages / inconvénients}
 
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}{Avantages}
 \begin{itemize}
 \item N’impose pas une stricte alternance entre les deux Threads
 \end{itemize}
 \end{block}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}{Inconvénients}
 \begin{itemize}
 \item Contrainte d'attente bornée non vérifiée
@@ -944,7 +624,7 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \framesubtitle{Avantages / inconvénients}
 
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}{Avantages}
 \begin{itemize}
 \item N’impose pas une stricte alternance entre les deux Threads
@@ -956,7 +636,7 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \end{itemize}
 \end{itemize}
 \end{block}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}{Inconvénients}
 \begin{itemize}
 \item Applicable à deux Threads uniquement
@@ -969,7 +649,8 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \frametitle{5$^{eme}$ solution logicielle : Algorithme de Lamport}
 \begin{itemize}
 \item Crée en 1978
-\item Chaque processus voulant entrer en section critique reçoit un numéro d'ordre. Le processus qui a le plus petit numéro peut entrer en section critique
+\item Chaque processus voulant entrer en section critique reçoit un numéro d'ordre.
+\item Le processus qui a le plus petit numéro peut entrer en section critique
 \item Dans le cas où plusieurs processus ont reçu les mêmes numéros, on utilise un ordre total sur les noms des processus pour résoudre le conflit
 \end{itemize}
 \end{frame}
@@ -1110,12 +791,12 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \begin{frame}
 \frametitle{Les sémaphores}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{itemize}
 \item[P] : \textbf{Proberen} (tester)\\ \texttt{wait()}, \texttt{get()}, \texttt{acquire()}
 \end{itemize}
 \verbatiminput{include/p.c}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{itemize}
 \item[V] : \textbf{Verhogen} (incrémenter)\\ \texttt{signal()}, \texttt{release()}
 \end{itemize}
@@ -1131,7 +812,7 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \begin{frame}
 \frametitle{Autres appellations}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{itemize}
 \item[P] (sémaphore)
 \begin{itemize}
@@ -1141,7 +822,7 @@ Ensemble d'instructions qui permet à un processus ayant terminé sa section cri
 \item \texttt{get(sémaphore)}
 \end{itemize}
 \end{itemize}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{itemize}
 \item[V] (sémaphore)
 \begin{itemize}
@@ -1226,12 +907,12 @@ Fonctions nécessaires :
 \begin{frame}
 \frametitle{Définition des sémaphores sans attente active}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{itemize}
 \item[P] : \textbf{Proberen} (tester)\\ \texttt{wait()}, \texttt{get()}
 \end{itemize}
 \begin{small}\verbatiminput{include/p_aa.c}\end{small}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{itemize}
 \item[V] : \textbf{Verhogen} (incrémenter)\\ \texttt{signal()}, \texttt{release()}
 \end{itemize}
@@ -1357,10 +1038,10 @@ Utilisation d’une file d’attente LIFO avec plus de processus entrant que sor
 \begin{frame}
 \frametitle{Problème du tampon borné}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 Ajout d’un élément :
 \begin{scriptsize}\verbatiminput{include/tb_ajout.c}\end{scriptsize}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 Extraction d’un élément :
 \begin{scriptsize}\verbatiminput{include/tb_retire.c}\end{scriptsize}
 \end{columns}
@@ -1428,9 +1109,9 @@ Extraction d’un élément :
 \begin{frame}
 \frametitle{Problème des lecteurs/rédacteurs}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{scriptsize}\verbatiminput{include/tb_debutLecture.java}\end{scriptsize}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{scriptsize}\verbatiminput{include/tb_finLecture.java}\end{scriptsize}
 \end{columns}
 \end{frame}
@@ -1439,7 +1120,7 @@ Extraction d’un élément :
 \begin{frame}
 \frametitle{Problème du dîner des philosophes}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{itemize}
 \item 5 philosophes
 \item 5 fourchettes
@@ -1449,7 +1130,7 @@ Extraction d’un élément :
 \item Manger
 \end{itemize}
 \end{itemize}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \includegraphics[width=5cm]{../illustration/diner_philosophes.pdf}
 \end{columns}
 \begin{center}
@@ -1717,14 +1398,14 @@ Pour manger, un philosophe doit prendre successivement deux fourchettes
 \frametitle{Terminaison de processus}
 Deux méthodes :
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}<1->{Arrêter tous les processus en interblocage}
 \begin{itemize}
 \item Pertes élevées
 \item perte d’informations, de résultats qu’il faudra, au mieux, de nouveau calculer
 \end{itemize}
 \end{block}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}<2->{Arrêter les processus un par un}
 \begin{itemize}
 \item Lancement de l’algorithme de détection des interblocages après chaque arrêt
@@ -2008,14 +1689,14 @@ Tri du fichier
 Impression
 \end{itemize}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}<1->{Méthode 1}
 \begin{itemize}
 \item Demande bande, disque et imprimante
 \item Bloque l’imprimante pendant tout le traitement, même s’il ne l’utilise qu’à la fin
 \end{itemize}
 \end{block}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}<2->{Méthode 2}
 \begin{itemize}
 \item Demande bande et disque
@@ -2159,13 +1840,13 @@ Déroulement d'une demande de ressource :
 \begin{frame}
 \frametitle{Éviter l’attente circulaire}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 État sain et fiable :
 \begin{itemize}
 \item Pas de cycle
 \end{itemize}
 \includegraphics[width=5cm]{../illustration/ga_pas_cycle.pdf}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 État sain, mais pas fiable :
 \begin{itemize}
 \item Refus de la requête
@@ -2476,7 +2157,7 @@ Unix, Windows NT
 \frametitle{Outils de synchronisation Java}
 \framesubtitle{Principe général du langage}
 \begin{itemize}
-\item <1-> Sémaphores non privilégiées
+\item <1-> Utilisation des sémaphores non encouragée
 \begin{itemize}
 \item Pas proposées initialement
 \item Apparues dans la version 1.5
@@ -2491,7 +2172,7 @@ Unix, Windows NT
 \end{itemize}
 \end{itemize}
 \begin{flushright}
-\includegraphics[width=1cm]{../illustration/java.png}
+\includegraphics[width=1.2cm]{../illustration/java.png}
 \end{flushright}
 \end{frame}
 
@@ -3068,16 +2749,11 @@ Les deux commandes s’exécutent indépendamment sauf :
 \end{frame}
 
 \begin{frame}
-\frametitle{Objet file de messages}
-\includegraphics[width=.9\textwidth]{../illustration/file_messages.pdf}
-\end{frame}
-
-\begin{frame}
 \frametitle{Communication directe symétrique}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \texttt{send}(B, Message)
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \texttt{receive}(A, message)
 \end{columns}
 \includegraphics[width=.9\textwidth]{../illustration/message_comm_directe.pdf}
@@ -3090,9 +2766,9 @@ Les deux commandes s’exécutent indépendamment sauf :
 \begin{frame}
 \frametitle{Communication directe asymétrique}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \texttt{send}(B, Message)
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{itemize}
 \item \texttt{receive}(id, message)
 \item id = A
@@ -3293,8 +2969,9 @@ Les deux commandes s’exécutent indépendamment sauf :
 \end{itemize}
 \item Utilisé par de nombreux systèmes
 \begin{itemize}
-\item XNU, noyau de Darwin, base de Mac OS X ($\ne$ micro-noyau)
 \item Hurd (micro-noyau) de GNU - remplacé par L4 depuis 2004
+\item MkLinux, développé par Apple en 1996
+\item XNU, noyau de Darwin, base de Mac OS X ($\ne$ micro-noyau)
 \end{itemize}
 
 \end{itemize}

@@ -972,7 +972,7 @@ Plusieurs mécanismes :
 \begin{frame}
 \frametitle{Segmentation}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}{Avantages}
 \begin{itemize}
 \item Facilite l'allocation de mémoire (plus petits)
@@ -983,7 +983,7 @@ Plusieurs mécanismes :
 \item Protection des segments entre eux
 \end{itemize}
 \end{block}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}{Inconvénients}
 \begin{itemize}
 \item Chaque segment doit être une portion de mémoire contiguë
@@ -1093,7 +1093,7 @@ Plusieurs mécanismes :
 \begin{frame}
 \frametitle{}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}{Avantages}
 \begin{itemize}
 \item Permet l'allocation / libération dynamique de mémoire
@@ -1102,7 +1102,7 @@ Plusieurs mécanismes :
 \item Partage de données possible
 \end{itemize}
 \end{block}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}{Inconvénients}
 \begin{itemize}
 \item Fragmentation interne (dernière page)
@@ -2839,7 +2839,6 @@ Allocation \textbf{proportionnelle}
 \end{frame}
 
 
-
 %---------------------------------------------------
 \subsection{Les périphériques de stockage secondaire}
 %---------------------------------------------------
@@ -3273,6 +3272,8 @@ TLC & 1 000 cycles par cellule \\
 \end{frame}
 
 
+
+
 %-----------------------------------------------
 \subsection{Concept de fichier}
 %-----------------------------------------------
@@ -3472,7 +3473,7 @@ Métadonnées les plus courantes :
 \begin{frame}
 \frametitle{Gestion avancé des structures des fichiers}
 \begin{columns}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}{Avantages}
 \begin{itemize}
 \item Support avancé
@@ -3480,7 +3481,7 @@ Métadonnées les plus courantes :
 \item Optimisation des performances
 \end{itemize}
 \end{block}
-\column{0.5\textwidth}
+\column{0.45\textwidth}
 \begin{block}{Inconvénients}
 \begin{itemize}
 \item Complexification de l'OS
@@ -4093,6 +4094,32 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \end{frame}
 
 \begin{frame}
+\frametitle{La commande MMAP d'Unix}
+\begin{itemize}
+  \item Norme POSIX
+  \item Projection en mémoire des fichiers ou périphériques
+\end{itemize}
+
+\begin{exampleblock}{Syntaxe de la commande mmap}
+    \texttt{mmap(addr, length, prot, flags, fd, offset)}
+    
+    \begin{itemize}
+      \item Adresse de départ en mémoire virtuelle
+      \item Taille de la projection
+      \item Protection (\texttt{PROT\_EXEC, PROT\_READ, PROT\_WRITE, PROT\_NONE})
+      \item Drapeau (\texttt{MAP\_SHARED, MAP\_PRIVATE, MAP\_POPULATE})
+      \item Descripteur de fichier
+      \item Position dans ce fichier
+   \end{itemize}
+
+\end{exampleblock}
+
+
+
+\end{frame}
+
+
+\begin{frame}
 \frametitle{Copie sur changement}
 \begin{itemize}
 \item Chargement image en mémoire physique depuis le système de fichier
@@ -4116,8 +4143,9 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \end{frame}
 
 
+%----------------------------------------------------------------
 \subsection{Structuration des systèmes de fichier}
-
+%----------------------------------------------------------------
 \begin{frame}
 \frametitle{Structure d'un système de fichier}
 \begin{itemize}
@@ -4509,6 +4537,219 @@ Structure la plus \textbf{simple}, tous les fichiers résident dans le même ré
 \end{frame}
 
 
+\begin{frame}
+\frametitle{Système de stockage}
+\begin{itemize}
+\item Grande différence de temps d’accès :
+\begin{itemize}
+\item Registres
+\item Mémoire principale
+\item Disque électronique
+\item Disque magnétique
+\item Bande magnétique
+\end{itemize}
+\item Grande différence de coût
+\begin{itemize}
+\item Registre très cher
+\item Bande magnétique très bon marché
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Intérêt de la mémoire cache}
+\begin{itemize}
+\item Système mémoire :
+\begin{itemize}
+\item Compromis entre performances et coût
+\item Mémoire volatile ou permanente
+\end{itemize}
+\item Mémoire cache
+\begin{itemize}
+\item Mémoire rapide
+\item Tampon entre niveau de stockage
+\item Réduit les différences de performance entre composants
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Hiérarchie de stockage}
+\includegraphics[width=\textwidth]{../illustration/hierarchie_stockage.pdf}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Le cache processeur}
+\begin{itemize}
+\item Deux niveaux de cache :
+\begin{itemize}
+\item Cache interne L1
+\begin{itemize}
+\item Implanté dans le processeur et géré par lui
+\item Même fréquence de fonctionnement
+\item Souvent séparation données/instructions
+\end{itemize}
+\item Cache L2
+\begin{itemize}
+\item Extérieur au processeur
+\item Souvent implanté dans le même boîtier
+\end{itemize}
+\end{itemize}
+\item Énorme influence sur les performances
+\begin{itemize}
+\item Première génération de Celeron, sans cache L2 $\rightarrow$ 40\% moins performant
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Mise en mémoire cache}
+\begin{itemize}
+\item Indépendante du programme en cours d'exécution
+\item Tampon
+\begin{itemize}
+\item Stockage des données de référence susceptibles d’être réutilisées
+\item Entre deux niveaux de la hiérarchie de stockage
+\item Faible capacité
+\end{itemize}
+\item Gestion du cache
+\begin{itemize}
+\item Amélioration des performances
+\item Pris en charge par le matériel ou le système
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Mise en mémoire cache}
+\includegraphics[width=.9\textwidth]{../illustration/cache_lecture_en_avance.pdf}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Mise en mémoire cache}
+\includegraphics[width=.9\textwidth]{../illustration/cache_lecture_en_avance2.pdf}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Cohérence et consistance}
+\begin{itemize}
+\item Une même donnée peut être dupliquée à différents niveaux
+\item Pas de problème si un seul processus
+\begin{itemize}
+\item Utilisation de la valeur du niveau le plus haut
+\end{itemize}
+\item Accès concurrents
+\begin{itemize}
+\item Doit utiliser la valeur actuelle
+\item Problème de la cohérence de cache
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Cohérence de cache}
+\begin{itemize}
+\item Architecture multiprocesseur
+\begin{itemize}
+\item Données dupliquées dans les registres
+\end{itemize}
+\item Systèmes distribués
+\begin{itemize}
+\item Duplications des données entre ordinateurs
+\item Propagation des mises à jour
+\end{itemize}
+\item Nécessité de maîtriser l’accès aux données
+\begin{itemize}
+\item Passage obligé par le système
+\item Centralisation
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+\subsection{Journalisation des systèmes de fichiers}
+
+\begin{frame}
+\frametitle{Utilisation de caches}
+\begin{itemize}
+\item En cas de \textbf{panne système}
+\begin{itemize}
+\item perte des informations des caches
+\item incohérence de certaines données (fichiers - répertoires)
+\end{itemize}
+\item Contrôle de cohérence
+\begin{itemize}
+\item vérifiée par contrôleur de cohérence
+\item lors du montage du système de fichier
+\item comparaison de la structure de répertoire avec les blocs stockés sur disque
+\end{itemize}
+\item Réparation si besoin (et si possible)
+\begin{itemize}
+\item peut être long
+\item pénalise le délai de reprise après incident
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{La journalisation}
+\begin{itemize}
+\item Un système de fichier classique \textbf{enregistre} chaque fichier \textbf{directement} à son \textbf{emplacement final}
+\item Risque de \textbf{corruption} en cas d'enregistrement partiel (panne)
+\item Au redémarrage, le système devra examiner tout le disque pour rechercher les éventuelles erreurs (et les corriger)
+\begin{itemize}
+\item Long et pénalisant pour le délai de reprise
+\item Manque de fiabilité
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{La journalisation}
+Un système de fichier \textbf{journalisé} fonctionne par \textbf{transaction}
+\begin{itemize}
+\item Écriture d'un fichier faite à un \textbf{emplacement temporaire} (le \textbf{journal})
+\item L'écriture n'est pas validée tant que le fichier n'est pas écrit complètement
+\item Elle est \textbf{validée en une fois} (atomiquement)
+\item Si la transaction n'est pas complète, les modifications ne sont pas prises en compte (\textit{rollback})
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Exemples de SF journalisés}
+\begin{itemize}
+\item \textbf{NTFS}
+\begin{itemize}
+\item New Technology File Sysem (depuis Windows NT)
+\item Fiabilisation des modifications :
+\begin{itemize}
+\item Les processus enregistrent leurs modifications dans un fichier journal
+\item Validé en fin d'opération
+\item Utilisé en cas de panne pour restaurer les informations initiales
+\end{itemize}
+\end{itemize}
+\item \textbf{Ext3}
+\begin{itemize}
+\item Remplace Ext2
+\item Système de fichier par défaut de Linux
+\item Plusieurs niveaux de journalisation, au choix :
+\begin{itemize}
+\item journalisation complète (données et structure)
+\item uniquement les informations relatives à la \textbf{structure} du système de fichiers
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
 %--------------------------------------
 \section{Les entrées sorties}
 %--------------------------------------
@@ -4553,7 +4794,6 @@ Structure la plus \textbf{simple}, tous les fichiers résident dans le même ré
 \end{itemize}
 \end{frame}
 
-\subsection{Matériel d'entrée/sortie}
 
 \begin{frame}
 \frametitle{Matériel d'entrée/sortie}
@@ -5217,221 +5457,6 @@ Chaque inode contient 15 pointeurs :
 \includegraphics[width=.8\textwidth]{../illustration/b-tree.pdf}
 \end{frame}
 
-\section{Optimisation des performances}
-
-\subsection{Hiérarchie de stockage}
-
-\begin{frame}
-\frametitle{Système de stockage}
-\begin{itemize}
-\item Grande différence de temps d’accès :
-\begin{itemize}
-\item Registres
-\item Mémoire principale
-\item Disque électronique
-\item Disque magnétique
-\item Bande magnétique
-\end{itemize}
-\item Grande différence de coût
-\begin{itemize}
-\item Registre très cher
-\item Bande magnétique très bon marché
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Intérêt de la mémoire cache}
-\begin{itemize}
-\item Système mémoire :
-\begin{itemize}
-\item Compromis entre performances et coût
-\item Mémoire volatile ou permanente
-\end{itemize}
-\item Mémoire cache
-\begin{itemize}
-\item Mémoire rapide
-\item Tampon entre niveau de stockage
-\item Réduit les différences de performance entre composants
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Hiérarchie de stockage}
-\includegraphics[width=\textwidth]{../illustration/hierarchie_stockage.pdf}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Le cache processeur}
-\begin{itemize}
-\item Deux niveaux de cache :
-\begin{itemize}
-\item Cache interne L1
-\begin{itemize}
-\item Implanté dans le processeur et géré par lui
-\item Même fréquence de fonctionnement
-\item Souvent séparation données/instructions
-\end{itemize}
-\item Cache L2
-\begin{itemize}
-\item Extérieur au processeur
-\item Souvent implanté dans le même boîtier
-\end{itemize}
-\end{itemize}
-\item Énorme influence sur les performances
-\begin{itemize}
-\item Première génération de Celeron, sans cache L2 $\rightarrow$ 40\% moins performant
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Mise en mémoire cache}
-\begin{itemize}
-\item Indépendante du programme en cours d'exécution
-\item Tampon
-\begin{itemize}
-\item Stockage des données de référence susceptibles d’être réutilisées
-\item Entre deux niveaux de la hiérarchie de stockage
-\item Faible capacité
-\end{itemize}
-\item Gestion du cache
-\begin{itemize}
-\item Amélioration des performances
-\item Pris en charge par le matériel ou le système
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-
-\begin{frame}
-\frametitle{Mise en mémoire cache}
-\includegraphics[width=.9\textwidth]{../illustration/cache_lecture_en_avance.pdf}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Mise en mémoire cache}
-\includegraphics[width=.9\textwidth]{../illustration/cache_lecture_en_avance2.pdf}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Cohérence et consistance}
-\begin{itemize}
-\item Une même donnée peut être dupliquée à différents niveaux
-\item Pas de problème si un seul processus
-\begin{itemize}
-\item Utilisation de la valeur du niveau le plus haut
-\end{itemize}
-\item Accès concurrents
-\begin{itemize}
-\item Doit utiliser la valeur actuelle
-\item Problème de la cohérence de cache
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Cohérence de cache}
-\begin{itemize}
-\item Architecture multiprocesseur
-\begin{itemize}
-\item Données dupliquées dans les registres
-\end{itemize}
-\item Systèmes distribués
-\begin{itemize}
-\item Duplications des données entre ordinateurs
-\item Propagation des mises à jour
-\end{itemize}
-\item Nécessité de maîtriser l’accès aux données
-\begin{itemize}
-\item Passage obligé par le système
-\item Centralisation
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\subsection{Journalisation des systèmes de fichiers}
-
-\begin{frame}
-\frametitle{Utilisation de caches}
-\begin{itemize}
-\item En cas de \textbf{panne système}
-\begin{itemize}
-\item perte des informations des caches
-\item incohérence de certaines données (fichiers - répertoires)
-\end{itemize}
-\item Contrôle de cohérence
-\begin{itemize}
-\item vérifiée par contrôleur de cohérence
-\item lors du montage du système de fichier
-\item comparaison de la structure de répertoire avec les blocs stockés sur disque
-\end{itemize}
-\item Réparation si besoin (et si possible)
-\begin{itemize}
-\item peut être long
-\item pénalise le délai de reprise après incident
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{La journalisation}
-\begin{itemize}
-\item Un système de fichier classique \textbf{enregistre} chaque fichier \textbf{directement} à son \textbf{emplacement final}
-\item Risque de \textbf{corruption} en cas d'enregistrement partiel (panne)
-\item Au redémarrage, le système devra examiner tout le disque pour rechercher les éventuelles erreurs (et les corriger)
-\begin{itemize}
-\item Long et pénalisant pour le délai de reprise
-\item Manque de fiabilité
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{La journalisation}
-Un système de fichier \textbf{journalisé} fonctionne par \textbf{transaction}
-\begin{itemize}
-\item Écriture d'un fichier faite à un \textbf{emplacement temporaire} (le \textbf{journal})
-\item L'écriture n'est pas validée tant que le fichier n'est pas écrit complètement
-\item Elle est \textbf{validée en une fois} (atomiquement)
-\item Si la transaction n'est pas complète, les modifications ne sont pas prises en compte (\textit{rollback})
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Exemples de SF journalisés}
-\begin{itemize}
-\item \textbf{NTFS}
-\begin{itemize}
-\item New Technology File Sysem (depuis Windows NT)
-\item Fiabilisation des modifications :
-\begin{itemize}
-\item Les processus enregistrent leurs modifications dans un fichier journal
-\item Validé en fin d'opération
-\item Utilisé en cas de panne pour restaurer les informations initiales
-\end{itemize}
-\end{itemize}
-\item \textbf{Ext3}
-\begin{itemize}
-\item Remplace Ext2
-\item Système de fichier par défaut de Linux
-\item Plusieurs niveaux de journalisation, au choix :
-\begin{itemize}
-\item journalisation complète (données et structure)
-\item uniquement les informations relatives à la \textbf{structure} du système de fichiers
-\end{itemize}
-\end{itemize}
-\end{itemize}
-\end{frame}
-
 
 %------------------------------------------
 \subsection{Ordonancement des E/S}
@@ -5715,6 +5740,332 @@ Trois raisons pour utiliser des tampons :
 \item Informations parfois plus détaillées (SCSI, journaux SMART...~)
 \end{itemize}
 \end{itemize}
+\end{frame}
+
+
+%-------------------------------------------------------------------
+\section{Protection matérielle}
+%-------------------------------------------------------------------
+
+\begin{frame}
+\frametitle{Accès au matériel}
+\begin{itemize}
+\item Aux origines :
+\begin{itemize}
+\item Systèmes informatiques exploités par des programmeurs
+\item Mono-utilisateur
+\item Contrôle total de l’ordinateur pour un travail
+\end{itemize}
+\item Évolution :
+\begin{itemize}
+\item Exécution simultanée de plusieurs travaux
+\begin{itemize}
+\item Partage des ressources (mémoire, E/S... )
+\item Risque de propagation des erreurs
+\end{itemize}
+\end{itemize}
+\item Nécessité de contrôler l'accès aux ressources
+\begin{itemize}
+\item Accès au matériel via le SE
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Dangers de l’accès direct au matériel}
+ \begin{itemize}
+ \item Blocage de ressources
+\begin{itemize}
+\item Famine
+\end{itemize}
+\item Modification du programme ou des données
+\begin{itemize}
+\item D’un autre processus
+\item Du système d’exploitation lui même
+\end{itemize}
+\item Risque pour la stabilité du système
+\begin{itemize}
+\item Restriction et contrôle des travaux par le SE
+\end{itemize}
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Protection matérielle}
+\begin{itemize}
+\item La protection globale du système se base sur les mécanismes matériels suivants :
+\begin{itemize}
+\item Mode double
+\item Protection des E/S
+\item Protection de la mémoire
+\item Protection processeur
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\subsection{Le mode double}
+
+\begin{frame}
+ \frametitle{Le mode double}
+ \begin{itemize}
+ \item Finalités :
+\begin{itemize}
+\item Distinguer les privilèges des processus système de ceux des processus utilisateur
+\end{itemize}
+\item Solution :
+\begin{itemize}
+\item Réserver à des programmes de confiance (noyau du système) les actions potentielement dangereuses
+\end{itemize}
+\item Deux modes :
+\begin{itemize}
+\item Mode moniteur : accès à toutes les instructions
+\item Mode utilisateur : accès limité
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Implémentation du mode double}
+ \begin{itemize}
+ \item Intégré au sein du processeur
+ \item Contrôlé par un registre spécial :
+\begin{itemize}
+\item Bit de mode (dans PSW)
+\begin{itemize}
+\item 0 : moniteur
+\item 1 : utilisateur
+\end{itemize}
+\item Identification de la nature des tâches exécutées
+\end{itemize}
+\item Instructions accessibles uniquement au mode moniteur
+\begin{itemize}
+\item \textbf{Instructions privilégiées}
+\end{itemize}
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Implémentation du mode double}
+ \begin{itemize}
+ \item Le processeur démarre en mode moniteur
+ \item Premier processus : mode privilégié
+ \begin{itemize}
+ \item Accès à l'ensemble du jeu d'instruction
+ \item Modification de mode irréversible (instruction privilégiée)
+ \end{itemize}
+ \item Abaissement du niveau d'exécution : sens unique
+  \begin{itemize}
+ \item Les processus utilisateur ne peuvent plus quitter le mode utilisateur
+ \item Impossible d'aquérir un niveau d'éxecution supérieur
+ \item Pour le processus et sa descendance
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Appels systèmes}
+ \begin{itemize}
+ \item Permettre à un processus utilisateur de \emph{déléguer au système} des tâches réservées au mode moniteur
+ \item Interruption :
+ \begin{itemize}
+\item perte de la CPU pour le processus demandeur
+\end{itemize}
+ \item Déroulement
+\begin{itemize}
+\item Appel système
+\item Analyse de la demande par un processus système
+\item Réalisation de la demande (mode moniteur)
+\item Retour au processus utilisateur
+ \end{itemize}
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+ \frametitle{Exemples d’utilisation}
+ \begin{itemize}
+ \item L'OS doit s'appuyer sur un support matériel
+ \item MS-DOS sans gestion du mode double
+\begin{itemize}
+\item Écrit pour le 8088 d’Intel $\rightarrow$ pas de bit de mode
+\item Impossible de restreindre les processus utilisateur
+\item Possibilité pour chaque processus d’anéantir le système
+\end{itemize}
+\end{itemize}
+
+\begin{exampleblock}{Exemples d'OS exploitant le mode double}
+Windows NT, OS/2, Linux : écrits pour le 80386 d’Intel (avec bit de mode)
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{Les anneaux de protection du processeur}
+\begin{itemize}
+\item \textit{Protection rings}
+\item 4 cercles sur 386 et suivants : 0, 1, 2, and 3
+
+  \includegraphics[height=3cm]{../illustration/cpu-ring-model.png}
+
+\item Seuls les cercles 0 (Kernel) et 3 (User) généralement utilisés
+\begin{itemize}
+\item Ring 1 parfois utilisé dans le cadre de la virtualisation
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\subsection{Protection des E/S}
+
+\begin{frame}
+ \frametitle{Protection des E/S}
+ \begin{itemize}
+ \item Les E/S permettent de réaliser des actions critiques :
+ \begin{itemize}
+\item Accès aux données
+\item Communication...
+\end{itemize}
+ \item Une E/S illégale peut déstabiliser l’ensemble du système
+\begin{itemize}
+\item Toutes les instructions d’E/S sont privilégiées
+\item E/S via le système d’exploitation
+\begin{itemize}
+\item Appel système
+\item Interruption
+\item Traitement par un processus en mode moniteur
+\end{itemize}
+\end{itemize}
+\item Éviter qu’un processus utilisateur puisse s’exécuter en mode moniteur
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Traitement d’une E/S}
+ \includegraphics[width=\textwidth]{../illustration/ES_mode_double.pdf}
+\end{frame}
+
+
+\subsection{Protection de la mémoire}
+
+\begin{frame}
+  \frametitle{Protection de la mémoire}
+  \begin{itemize}
+\item Cloisement des processus
+  \item Protection des données :
+\begin{itemize}
+\item du système d’exploitation :
+\begin{itemize}
+\item Vecteur d’interruption
+\item Routines de traitement des interruptions
+\item ...
+\end{itemize}
+\item des autres processus
+\end{itemize}
+\item Risque de prise de contrôle en mode moniteur par un processus utilisateur
+  \end{itemize}
+ \end{frame}
+
+\begin{frame}
+ \frametitle{Protection de la mémoire}
+ \begin{itemize}
+ \item Nécessaire pour assurer la fiabilité :
+\begin{itemize}
+\item du système
+\item des processus utilisateur (entre eux)
+\end{itemize}
+\item Délimitation des espaces mémoire de chaque processus
+\begin{itemize}
+\item Espace d’adressage propre à chaque processus
+\begin{itemize}
+\item Fourchette d’adresses mémoire légales
+\item Table de transcodage propre à chaque processus
+\end{itemize}
+\item Stockage dans le PSW de chaque processus (PCB)
+\item Chargé à chaque changement de contexte
+\end{itemize}
+\item Masquage du reste de la mémoire
+\begin{itemize}
+\item Levée d'une interruption d'accès mémoire incorrect par la MMU
+\end{itemize}
+
+\end{itemize}
+\end{frame}
+
+%
+%\begin{frame}
+% \frametitle{Définition d’un espace d’adressage logique}
+% Méthode de base (premiers systèmes à mémoire linéaire)
+% \includegraphics[width=.6\textwidth]{../illustration/protect_memoire_base.pdf}
+%\end{frame}
+%
+%\begin{frame}
+% \frametitle{Définition d’un espace d’adressage logique}
+% \framesubtitle{Implémentation du mécanisme de contrôle d'accès à la mémoire}
+% \includegraphics[width=\textwidth]{../illustration/protect_memoire_base_implementation.pdf}
+%\end{frame}
+%
+%\begin{frame}
+% \frametitle{Mise en oeuvre de la protection de la mémoire}
+% \begin{itemize}
+% \item Chargement des registres définissant l'espace d'adressage en mode privilégié
+% \begin{itemize}
+%\item Base et limite
+%\item Table de transcodage
+%\end{itemize}
+%
+% \item Intégration des ces données dans le PSW
+% \item Mode moniteur peut accéder à toute la mémoire
+% \begin{itemize}
+% \item Chargement des programmes utilisateurs
+% \item Suppression de processus
+% \item Modification des espaces d’adressage
+% \end{itemize}
+% \end{itemize}
+%\end{frame}
+
+
+
+\subsection{Protection processeur}
+
+\begin{frame}
+ \frametitle{Protection de l’unité centrale}
+ \begin{itemize}
+ \item Éviter qu’un travail ne monopolise l’UC
+\begin{itemize}
+\item Le système doit pouvoir reprendre la main
+\end{itemize}
+\item Utilisation d’une minuterie
+\item Compteur
+\begin{itemize}
+\item Dans le PSW
+\item Initialisé par le SE
+\item Décrémenté à chaque top d’horloge
+\item Interruption de l’UC si compteur = 0
+\end{itemize}
+ \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+ \frametitle{Nécessité d'une protection globale du système}
+ \begin{itemize}
+ \item La protection forme un tout :
+\begin{itemize}
+\item Mode double
+\item Protection des E/S
+\item Protection mémoire
+\item Protection de l’unité centrale
+\end{itemize}
+\item Protection prise en charge par le système
+\begin{itemize}
+\item Appel système pour réaliser les actions « sensibles »
+\item Limitation des actions réalisables directement en mode utilisateur
+\end{itemize}
+ \end{itemize}
 \end{frame}
 
 \frame[allowframebreaks]
