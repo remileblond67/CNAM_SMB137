@@ -1230,10 +1230,19 @@ Pour manger, un philosophe doit prendre successivement deux fourchettes
 \begin{frame}
 \frametitle{Action sur "détention et attente"}
 \begin{itemize}
+\item Première solution :
+\begin{itemize}
 \item Chaque processus ne peut progresser que s’il obtient des ressources,
 \item Il requière ses ressources dynamiquement, par demandes successives au cours de son exécution,
 \item Il attend donc les ressources de sa dernière requête avant de poursuivre son déroulement.
 \end{itemize}
+\item Autre solution :
+\begin{itemize}
+\item Timeout sur la demande de ressource supplémentaire
+\item Évite la détention et attente infinie 
+\end{itemize}
+\end{itemize}
+
 \end{frame}
 
 \subsection{Action sur "pas de préemption"}
@@ -1632,7 +1641,7 @@ Deux méthodes :
 \item Éviter la conjonction des conditions nécessaires à la survenue d’un interblocage :
 \begin{itemize}
 \item Exclusion mutuelle
-\item Occupation et attente
+\item Détention et attente
 \item Pas de préemption
 \item Attente circulaire
 \end{itemize}
@@ -1669,7 +1678,7 @@ Deux méthodes :
 \end{frame}
 
 \begin{frame}
-\frametitle{Éviter l’occupation et attente}
+\frametitle{Éviter la détention et attente}
 \begin{itemize}
 \item S’assurer qu’un processus qui demande une ressource non partageable n’en détient pas une autre
 \item Possibilités :
@@ -1681,7 +1690,7 @@ Deux méthodes :
 \end{frame}
 
 \begin{frame}
-\frametitle{Éviter l’occupation et attente}
+\frametitle{Éviter la détention et attente}
 \begin{itemize}
 \item Exemple :
 Copie de données d’une bande vers un disque
@@ -1708,7 +1717,7 @@ Impression
 \end{frame}
 
 \begin{frame}
-\frametitle{Éviter l’occupation et attente}
+\frametitle{Éviter la détention et attente}
 \begin{block}{Inconvénients}
 \begin{itemize}
 \item Utilisation des ressources peu efficace
@@ -1725,7 +1734,7 @@ Impression
 \end{frame}
 
 \begin{frame}
-\frametitle{Éviter l’occupation et attente}
+\frametitle{Éviter la détention et attente}
 \begin{block}{Solution}
 \begin{itemize}
 \item Identifier des classes de ressource
@@ -1999,7 +2008,7 @@ Unix, Windows NT
 \begin{itemize}
 \item Pas de mécanisme de protection des interblocages dans la JVM
 \item Responsabilité du programmeur
-\item Suppression des instructions pouvant engendrer des situation d’interblocage :
+\item Suppression des instructions pouvant engendrer des situations d’interblocage :
 \begin{itemize}
 \item \texttt{suspend}(), \texttt{resume}()
 \end{itemize}
