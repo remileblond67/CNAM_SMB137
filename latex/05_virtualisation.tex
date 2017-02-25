@@ -102,8 +102,8 @@
 
 \item <3>Début 2000 : explosion des solutions de virtualisation professionnelles sur x86
 \begin{itemize}
-\item commerciales : VmWare en tête, VirtualPC, Virtual Server 
-\item libres : Xen, KVM, QEMU, Bochs, Linux-VServer, Virtual Box
+\item commerciales : VmWare, Hyper-V, VirtualPC, Virtual Server 
+\item libres : Xen-Server, KVM, QEMU, Bochs, Linux-VServer, Virtual Box
 \end{itemize}
 \end{itemize}
 
@@ -126,7 +126,7 @@
 
 \item <3>Support d'applications :
 \begin{itemize}
-\item JVM Java, CLR .Net
+\item JVM Java, CLR .Net, Microsoft AppV, VmWare ThinApp
 \end{itemize}
 
 \end{itemize}
@@ -247,7 +247,7 @@
 \frametitle{Implémentation de l'hyperviseur}
 \begin{itemize}
 \item Placé entre le matériel et le système d'exploitation
-\item Utilisé pour les émulations de bas niveau
+\item Utilisé pour les émulations entre niveaux
 \item Implémentation :
 \begin{itemize}
 \item soit gère directement toutes les ressources (type 1)
@@ -398,7 +398,7 @@
 \item Niveau d'abstraction nettement plus élevé
 \end{itemize}
 \end{itemize}
-\begin{exampleblock}{Exemples} 
+\begin{exampleblock}{Exemple} 
 \begin{itemize}
 \item Prise en charge de programmes Windows sur MacOsX ou Linux sur PC x86
 \end{itemize}
