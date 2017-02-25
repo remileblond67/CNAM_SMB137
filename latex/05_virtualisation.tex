@@ -10,7 +10,7 @@
 \begin{frame}
  \frametitle{Plan}
  \tableofcontents
-\end{frame} 
+\end{frame}
 
 \section{Qu'est-ce que la virtualisation ?}
 
@@ -207,7 +207,7 @@
 \item reprise automatique sur incident
 
 \end{itemize}
-\item <3>Facilite les tests 
+\item <3>Facilite les tests
 \begin{itemize}
   \item Simulation d'architectures complexes et hétérogènes
   \item Facilité de mise en œuvre
@@ -327,7 +327,7 @@
 		  \item perte de performance (overhead)
 	  \end{itemize}
   \end{itemize}
-  
+
 \begin{exampleblock}{Exemples}
   \begin{itemize}
   \item VMware Server (ex GSX), Workstation, Fusion
@@ -351,7 +351,7 @@
 \end{frame}
 
 
-\subsection{L'émulateur}	
+\subsection{L'émulateur}
 
 \begin{frame}
 \frametitle{L’émulation du processeur}
@@ -407,7 +407,7 @@
 
 \begin{frame}
 \frametitle{Émulation d'un système hôte}
-\begin{exampleblock}{Wine} 
+\begin{exampleblock}{Wine}
 \begin{itemize}
 \item Implémentation de l'API Win32
 \begin{itemize}
@@ -416,7 +416,7 @@
 
 \item Deux possibilités :
 \begin{itemize}
-\item Utilisation des DLL Windows 
+\item Utilisation des DLL Windows
 \item Ré-écriture à partir des spécifications externes (logiciel libre)
 \end{itemize}
 \item Excellentes performances
@@ -438,7 +438,7 @@
 \begin{itemize}
 \item <1> Solutions matérielles :
 \begin{itemize}
-\item Intégration au processeur : 
+\item Intégration au processeur :
 \begin{itemize}
 \item instructions spécifiques, niveaux de privilèges
 
@@ -489,7 +489,7 @@
   \item programmes utilisateur en Ring 3
   \item seul l'OS hôte à accès au Ring 0
 \end{itemize}
-  \item <2->Technologie de partition processeur 
+  \item <2->Technologie de partition processeur
 \begin{itemize}
   \item technologie de « décalage »
   \item géré par le BIOS
@@ -534,7 +534,7 @@
 
 \begin{frame}
 \frametitle{Le cloisonnement}
-\framesubtitle{Exemple d'Unix : \texttt{chroot}} 
+\framesubtitle{Exemple d'Unix : \texttt{chroot}}
 \begin{itemize}
 \item Isolement d'applications dans des contextes cloisonnés
 \begin{itemize}
@@ -556,7 +556,7 @@
 
 \begin{frame}
 \frametitle{Le cloisement}
-\framesubtitle{Exemple de Linux VServer} 
+\framesubtitle{Exemple de Linux VServer}
 \begin{columns}
 \column{0.7\textwidth}
 \includegraphics[width=3cm]{../illustration/VServer.png}
@@ -676,7 +676,7 @@
 \begin{itemize}
 \item système d'exploitation complet (Debian Lenny 64 bits)
 \item partitionnement de disque dur avec LVM2
-\item outil de sauvegarde 
+\item outil de sauvegarde
 \item support du clustering avec migration à chaud des VM
 \item outil Web d'administration et de surveillance
 \end{itemize}
@@ -704,7 +704,7 @@ VDI : Virtual Desktop Infrastructure :
 \begin{frame}
 \frametitle{Virtualisation d'application}
 \begin{itemize}
-\item Emulation de plateforme : 
+\item Emulation de plateforme :
 \begin{itemize}
 \item Wine : émulation d'application Windows sur Linux
 \item JVM, CLR : machine virtuelle Java/.Net
@@ -727,7 +727,7 @@ VDI : Virtual Desktop Infrastructure :
 \frametitle{Conteneur d'application : Docker}
 \begin{figure}[htbp]
    \centering
-   \includegraphics[height=1cm]{../illustration/docker-logo.png} 
+   \includegraphics[height=1cm]{../illustration/docker-logo.png}
    \caption{Logo de Docker}
    \label{fig:example}
 \end{figure}
@@ -774,7 +774,7 @@ $\rightarrow$
 \item Lancer un système Debian avec une commande interactive (shell) :
 
 \texttt{docker run -ti debian}
-\item Lancer un système Debian avec redirection du répertoire \texttt{/root} : 
+\item Lancer un système Debian avec redirection du répertoire \texttt{/root} :
 
 \texttt{docker run -ti -v /Users/remi/debian/:/root debian}
 \item Lancer un système Debian en service, avec redirection du port 80 sur 8080 :
@@ -843,7 +843,7 @@ $\rightarrow$
 
 \begin{frame}
   \frametitle{Les différents niveaux de prise en charge \cite{intro-cloud}}
-  \includegraphics[height=7cm]{../illustration/niveaux-cloud.png}       
+  \includegraphics[height=7cm]{../illustration/niveaux-cloud.png}
 \end{frame}
 
 \begin{frame}
@@ -854,7 +854,7 @@ $\rightarrow$
 \item Niveau d'abstraction : l'application
 \end{itemize}
 \begin{exampleblock}{Exemples de fournisseurs}
-Google Docs, Office 365, Sales Force, Adobe Creative Cloud, Apple iCloud, DropBox, ... 
+Google Docs, Office 365, Sales Force, Adobe Creative Cloud, Apple iCloud, DropBox, ...
 \end{exampleblock}
 \end{frame}
 
@@ -862,7 +862,7 @@ Google Docs, Office 365, Sales Force, Adobe Creative Cloud, Apple iCloud, DropBo
 \frametitle{PaaS : Platform as a Service}
 \begin{itemize}
 \item Mise à disposition d'une plateforme sur laquelle des développeurs peuvent déployer des applications
-\item Exemples : 
+\item Exemples :
 \begin{itemize}
 \item Serveur d'application (J2EE...), serveur Web, API...
 \item Serveur de base de données (SQL, NoSQL... )
@@ -877,7 +877,7 @@ Google App Engine (serveurs Google ou AppScale), Microsoft Azure...
 \begin{frame}
 \frametitle{IaaS : Infrastructure as a Service}
 \begin{itemize}
-\item L'entreprise gère : 
+\item L'entreprise gère :
 \begin{itemize}
 \item les systèmes d'exploitation des serveurs
 \item les logiciels applicatifs (exécutables, paramétrages, l'intégration SOA, les bases de données)
@@ -914,7 +914,7 @@ Cloud Power, Desktone, Infoserv, Provectio, DotRiver...
   \item NASA, IBM, Dell, HP, Cisco, NTT, Redhat, Canonical...
   \end{itemize}
   \end{itemize}
-  \includegraphics[height=3cm]{../illustration/logo-openstack.png}       
+  \includegraphics[height=3cm]{../illustration/logo-openstack.png}
 \end{frame}
 
 \begin{frame}
@@ -936,6 +936,54 @@ Cloud Power, Desktone, Infoserv, Provectio, DotRiver...
 \end{itemize}
 
   \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Infrastructure convergée}
+\begin{itemize}
+  \item Approche \textbf{intégrée}
+  \begin{itemize}
+    \item combine serveurs, stockage, équipements réseaux
+    \item parfois logiciels
+  \end{itemize}
+  \item livrées \textbf{prêtes à l’emploi}
+  \begin{itemize}
+    \item préconfigurées et pré-validées en usine
+  \end{itemize}
+  \item Exploitation simplifiée
+  \begin{itemize}
+    \item console d’administration unifiée
+    \item fournisseur unique
+  \end{itemize}
+\end{itemize}
+
+\begin{exampleblock}{Exemples de solutions}
+  \begin{itemize}
+    \item Cisco, Dell, HP, IBM, Intel, Microsoft, NetApp, Oracle et VMware
+    \item Bull Bullion
+    \item Appliances Oracle (virtualisation, base de données, analytique...)
+  \end{itemize}
+\end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Hyperconvergence - Infrastructure hyperconvergée}
+  Stockage distribué :
+  \begin{itemize}
+    \item exploitation des disques de chaque noeud (et non NAS/SAN externe)
+    \item chaque noeud (serveur) = élément de « compute » et de stockage
+    \item Console unique d'administration / gestion des ressources
+  \end{itemize}
+
+  Appliances pré-configurées et prêtes à l'emploi.
+
+  \begin{exampleblock}{Exemples de solutions}
+    \begin{itemize}
+      \item VMware EVO:RAIL
+      \item Solution dédiées à certains logiciels (Hadoop, par exemple)
+    \end{itemize}
+  \end{exampleblock}
 \end{frame}
 
 \frame[allowframebreaks]

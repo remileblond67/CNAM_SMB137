@@ -15,3 +15,7 @@ exam/*
 *.tex~
 .latex
 .DS_Store
+
+*.fdb_latexmk
+
+*.fls
