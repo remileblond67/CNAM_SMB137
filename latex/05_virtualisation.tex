@@ -102,7 +102,7 @@
 
 \item <3>Début 2000 : explosion des solutions de virtualisation professionnelles sur x86
 \begin{itemize}
-\item commerciales : VmWare, Hyper-V, VirtualPC, Virtual Server 
+\item commerciales : VmWare, Hyper-V, VirtualPC, Virtual Server
 \item libres : Xen-Server, KVM, QEMU, Bochs, Linux-VServer, Virtual Box
 \end{itemize}
 \end{itemize}
@@ -387,6 +387,15 @@
 \item Roseta, d'Apple
 \end{itemize}
 \end{exampleblock}
+Solution légère : nivellement du CPUID \cite{wp-cpuid}
+\begin{itemize}
+\item CPUI : vecteur binaire des capacités du processeur (x86)
+\item Besoin : virtualiser sur différentes générations de CPU
+\item Solution : niveller les CPUID (par le bas)
+\begin{itemize}
+  \item Exemple : Enhanced vMotion Compatibility (EVC) d'ESX
+\end{itemize}
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -398,7 +407,7 @@
 \item Niveau d'abstraction nettement plus élevé
 \end{itemize}
 \end{itemize}
-\begin{exampleblock}{Exemple} 
+\begin{exampleblock}{Exemple}
 \begin{itemize}
 \item Prise en charge de programmes Windows sur MacOsX ou Linux sur PC x86
 \end{itemize}
@@ -683,6 +692,73 @@
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Infrastructure convergée}
+  \begin{itemize}
+    \item Approche \textbf{intégrée}
+    \begin{itemize}
+      \item combine serveurs, stockage, équipements réseaux
+      \item parfois logiciels
+      \item "DataCenter in a box"
+    \end{itemize}
+    \item livrées \textbf{prêtes à l’emploi}
+    \begin{itemize}
+      \item préconfigurées et pré-validées en usine
+      \item ensemble optimisé
+      \item maintenance unique
+    \end{itemize}
+    \item Exploitation simplifiée
+    \begin{itemize}
+      \item console d’administration unifiée
+      \item fournisseur unique
+    \end{itemize}
+  \end{itemize}
+
+  \begin{exampleblock}{Exemples de solutions}
+    \begin{itemize}
+      \item Cisco, Dell, HP, IBM, Intel, Microsoft, NetApp, Oracle et VMware
+      \item Appliances Oracle (virtualisation, base de données, analytique...)
+    \end{itemize}
+  \end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Hyperconvergence - Infrastructure hyperconvergée}
+  \begin{itemize}
+    \item Stockage distribué :
+    \begin{itemize}
+      \item exploitation des disques de chaque noeud (et non NAS/SAN externe)
+      \item chaque noeud (serveur) = élément de « compute » et de stockage
+      \item Console unique d'administration / gestion des ressources
+    \end{itemize}
+    \item Système de fichier distribué
+    \begin{itemize}
+      \item Prise en charge de l'optimisation et de la duplication des données entre noeuds
+      \begin{itemize}
+        \item GFS - Google File System
+        \item AFS - Andrew File System (Nutanix)
+        \item HDFS - Hadoop Distributed File System...
+      \end{itemize}
+
+    \end{itemize}
+    \item Nativement scalable (Modèle "Google") :
+    \begin{itemize}
+      \item Conçu pour supporter de très importantes montées en charge
+      \item Supprime les traditionnels points de contention sur le stockage
+      \item Investissement progressif
+    \end{itemize}
+  \end{itemize}
+
+
+  \begin{exampleblock}{Exemples de solutions}
+    \begin{itemize}
+      \item VMware EVO:RAIL
+      \item Solution dédiées à certains logiciels (Hadoop, par exemple)
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
 \subsection{Virtualisation du poste client (VDI)}
 
 \begin{frame}{Virtualisation du poste client}
@@ -938,53 +1014,6 @@ Cloud Power, Desktone, Infoserv, Provectio, DotRiver...
   \end{itemize}
 \end{frame}
 
-\begin{frame}
-\frametitle{Infrastructure convergée}
-\begin{itemize}
-  \item Approche \textbf{intégrée}
-  \begin{itemize}
-    \item combine serveurs, stockage, équipements réseaux
-    \item parfois logiciels
-  \end{itemize}
-  \item livrées \textbf{prêtes à l’emploi}
-  \begin{itemize}
-    \item préconfigurées et pré-validées en usine
-  \end{itemize}
-  \item Exploitation simplifiée
-  \begin{itemize}
-    \item console d’administration unifiée
-    \item fournisseur unique
-  \end{itemize}
-\end{itemize}
-
-\begin{exampleblock}{Exemples de solutions}
-  \begin{itemize}
-    \item Cisco, Dell, HP, IBM, Intel, Microsoft, NetApp, Oracle et VMware
-    \item Bull Bullion
-    \item Appliances Oracle (virtualisation, base de données, analytique...)
-  \end{itemize}
-\end{exampleblock}
-
-\end{frame}
-
-\begin{frame}
-  \frametitle{Hyperconvergence - Infrastructure hyperconvergée}
-  Stockage distribué :
-  \begin{itemize}
-    \item exploitation des disques de chaque noeud (et non NAS/SAN externe)
-    \item chaque noeud (serveur) = élément de « compute » et de stockage
-    \item Console unique d'administration / gestion des ressources
-  \end{itemize}
-
-  Appliances pré-configurées et prêtes à l'emploi.
-
-  \begin{exampleblock}{Exemples de solutions}
-    \begin{itemize}
-      \item VMware EVO:RAIL
-      \item Solution dédiées à certains logiciels (Hadoop, par exemple)
-    \end{itemize}
-  \end{exampleblock}
-\end{frame}
 
 \frame[allowframebreaks]
 {

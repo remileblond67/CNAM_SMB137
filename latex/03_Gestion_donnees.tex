@@ -3039,9 +3039,12 @@ MLC &  3 000 à 10 000 cycles par cellule \\
 TLC & 1 000 cycles par cellule \\
 \end{tabular}
 \end{center}
-\label{default}
+\label{}
 \end{table}
-\textit{Disques SSD de production $\rightarrow$ mémoire SLC.}
+DWPD (drive writes per day) : nombre de réécritures complètes du SSD quotidienne supporté pendant la durée de la garantie constructeur
+\begin{itemize}
+  \item Souvent plus de 3 ou 5, même pour les TLC (2017)
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -4102,7 +4105,7 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 
 \begin{exampleblock}{Syntaxe de la commande mmap}
     \texttt{mmap(addr, length, prot, flags, fd, offset)}
-    
+
     \begin{itemize}
       \item Adresse de départ en mémoire virtuelle
       \item Taille de la projection

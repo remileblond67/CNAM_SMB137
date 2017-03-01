@@ -3,7 +3,7 @@ CNAM SMB137
 
 Contenu
 --
-Supports de cours CNAM SMB137 "systèmes informatiques et applications concurrentes", assuré Rémi LEBLOND dans le cadre du "Conservatoire national des arts et métiers" (CNAM) à Strasbourg.
+Supports de cours CNAM SMB137 "systèmes informatiques et applications concurrentes", assuré Rémi LEBLOND dans le cadre du "Conservatoire national des arts et métiers" (CNAM) "Grand-Est" à Strasbourg.
 
 ![Logo du CNAM](./illustration/leCnam.png)
 
