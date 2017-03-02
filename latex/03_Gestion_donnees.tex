@@ -3153,6 +3153,7 @@ DWPD (drive writes per day) : nombre de réécritures complètes du SSD quotidie
 \begin{tabular}{c|l}
 \textbf{RAID 0} & Entrelacement (Striping) \\
 \textbf{RAID 1} & Miroir (Mirroring, shadowing, duplexing) \\
+\textbf{RAID 10} & RAID 1+0 \\
 \textbf{RAID 3} & Disk array with bit-interleaved data \\
 \textbf{RAID 4} & Disk array with block-interleaved data \\
 \textbf{RAID 5} & Disk array with block-interleaved distributed parity \\
@@ -3198,6 +3199,33 @@ DWPD (drive writes per day) : nombre de réécritures complètes du SSD quotidie
 \includegraphics[height=4cm]{../illustration/RAID1.pdf}
 \end{columns}
 \end{frame}
+
+\begin{frame}
+\frametitle{RAID 1+0}
+\begin{columns}
+  \column{.5\textwidth}
+  \begin{itemize}
+    \item Volume agrégé par bande fiable
+    \begin{itemize}
+      \item grappes répliquées
+    \end{itemize}
+    \item 4 disques minimum
+    \begin{itemize}
+      \item 2 éléments et 2 grappes
+    \end{itemize}
+    \item Grande fiabilité - reconstruction performante
+    \begin{itemize}
+      \item impact limité à la grappe
+    \end{itemize}
+  \end{itemize}
+  \column{.5\textwidth}
+  \includegraphics[height=4cm]{../illustration/RAID10.png}
+\end{columns}
+
+
+\end{frame}
+
+
 
 
 \begin{frame}
