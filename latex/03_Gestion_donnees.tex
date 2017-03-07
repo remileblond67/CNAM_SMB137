@@ -3297,12 +3297,42 @@ DWPD (drive writes per day) : nombre de réécritures complètes du SSD quotidie
 \textbf{Raid 3} & \begin{small}Optimisation de la capacité\end{small} & \begin{small}Performances\end{small} \\
  & \begin{small}Tolérance aux pannes\end{small} & \begin{small}(disque de parité)\end{small} \\
 \hline
-\textbf{Raid 5} & \begin{small}Souplesse\end{small} & \begin{small}Coût de reconstruction\end{small} \\
- & \begin{small}Performance\end{small} & \\
+\textbf{Raid 5} & \begin{small}Souplesse, performance\end{small} & \begin{small}Coût de reconstruction\end{small} \\
+ \hline
+\textbf{Raid 1+0} & \begin{small}Souplesse\end{small} & \begin{small}Perte de capacité de 50\%\end{small} \\
+ & \begin{small}Coût de reconstruction et temps de reprise sur panne (simple et limité à la grappe concernée)\end{small} & \\
 \end{tabular}
 \end{frame}
 
+\begin{frame}
+  \frametitle{SAN, NAS et DAS}
+  \begin{itemize}
+    \item \textbf{DAS} (Direct Attached Storage) : disque en attachement direct
+    \begin{itemize}
+      \item via des câbles dédiés
+      \item protocoles ATA, SATA, eSATA, SCSI, SAS et Fibre Channel
+    \end{itemize}
+    \item \textbf{SAN} (Storage Area Network) : réseau de stockage
+    \begin{itemize}
+      \item Réseau dédié à la mutualisation de ressources de stockage
+      \item accès bas niveau aux disques (protocoles proches de celui des disques internes - ATA, SCSI)
+      \item Protocoles SCSI, Fibre Channel, iSCSI, ATA over Ethernet (AoE) ou HyperSCSI
+    \end{itemize}
+    \item \textbf{NAS} (Network Attached Storage) : serveur de stockage en réseau
+    \begin{itemize}
+      \item relié au réseau de l'entreprise (non dédié)
+      \item peut s'intégrer à un SAN (point d'entrée)
+      \item protocoles Common Internet File System (CIFS) / Server Message Block (SMB), Network File System (NFS), Apple Filing Protocol (AFP), File Transfer Protocol (FTP), WebDAV...
+    \end{itemize}
+  \end{itemize}
+\end{frame}
 
+\begin{frame}
+  \frametitle{SAN, NAS et DAS \cite{wp-san}}
+  \begin{center}
+    \includegraphics[height=6cm]{../illustration/DAS_NAS_SAN.png}
+  \end{center}
+\end{frame}
 
 
 %-----------------------------------------------
