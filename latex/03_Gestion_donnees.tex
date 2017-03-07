@@ -3315,12 +3315,13 @@ DWPD (drive writes per day) : nombre de réécritures complètes du SSD quotidie
     \item \textbf{SAN} (Storage Area Network) : réseau de stockage
     \begin{itemize}
       \item Réseau dédié à la mutualisation de ressources de stockage
-      \item accès bas niveau aux disques (protocoles proches de celui des disques internes - ATA, SCSI)
-      \item Protocoles SCSI, Fibre Channel, iSCSI, ATA over Ethernet (AoE) ou HyperSCSI
+      \item accès bas niveau aux disques (protocoles proches de celui des disques internes - ATA, SCSI) - mode bloc
+      \item Protocoles SCSI, Fibre Channel, FCoE, iSCSI, ATA over Ethernet (AoE) ou HyperSCSI
     \end{itemize}
     \item \textbf{NAS} (Network Attached Storage) : serveur de stockage en réseau
     \begin{itemize}
       \item relié au réseau de l'entreprise (non dédié)
+      \item volumes de stockage partagés
       \item peut s'intégrer à un SAN (point d'entrée)
       \item protocoles Common Internet File System (CIFS) / Server Message Block (SMB), Network File System (NFS), Apple Filing Protocol (AFP), File Transfer Protocol (FTP), WebDAV...
     \end{itemize}
