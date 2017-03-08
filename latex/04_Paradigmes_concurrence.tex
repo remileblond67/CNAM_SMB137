@@ -961,7 +961,7 @@ Fonctions nécessaires :
 \begin{block}{Interblocage (\textit{deadlock}, étreinte fatale)}
 Situation dans laquelle deux processus ou plus peuvent attendre indéfiniment un événement qui ne peut être produit que par des processus en attente
 \end{block}
-\begin{exampleblock}{Exemple d'interblocage}
+\begin{exampleblock}{Exemple d'inter blocage}
 \begin{tabular}{ccc}
  & p$_0$ & p$_1$ \\
 T1 : & P(S) & P(Q) \\
@@ -971,7 +971,7 @@ T2 : & P(Q) & P(S) \\
 \end{frame}
 
 \begin{frame}
-\frametitle{Exemple d'interblocage}
+\frametitle{Exemple d'inter blocage}
 \begin{itemize}
 \item Extrait de la législature du Kansas (1900) :
 \begin{itemize}
@@ -1155,7 +1155,7 @@ Pour manger, un philosophe doit prendre successivement deux fourchettes
 
 \begin{frame}
 \frametitle{Problème du dîner des philosophes}
-\framesubtitle{Propositions de solutions pour éviter les interblocages}
+\framesubtitle{Propositions de solutions pour éviter les inter blocages}
 \begin{itemize}
 \item <1-> N’accepter que quatre philosophes autour de la table
 \item <2-> Ajouter une fourchette
@@ -1172,7 +1172,7 @@ Pour manger, un philosophe doit prendre successivement deux fourchettes
 \end{itemize}
 \end{frame}
 
-\section{Lutte contre les interblocages}
+\section{Lutte contre les inter blocages}
 
 \begin{frame}
 \frametitle{Interblocage : définition}
@@ -1190,7 +1190,7 @@ Pour manger, un philosophe doit prendre successivement deux fourchettes
 
 \subsection{Conditions nécessaires}
 \begin{frame}
-\frametitle{Conditions nécessaires à un interblocage}
+\frametitle{Conditions nécessaires à un inter blocage}
 \begin{itemize}
 \item Conjonction de quatre circonstances :
 \begin{itemize}
@@ -1304,36 +1304,36 @@ Pour manger, un philosophe doit prendre successivement deux fourchettes
 \end{frame}
 
 \begin{frame}
-\frametitle{Cycle et interblocage}
+\frametitle{Cycle et inter blocage}
 \begin{itemize}
 \item Si chaque ressource est unique :
 \begin{itemize}
-\item Processus en interblocage
+\item Processus en inter blocage
 \item Condition nécessaire et suffisante
 \end{itemize}
 \item Si chaque ressource possède plusieurs instances :
 \begin{itemize}
-\item Pas forcement d’interblocage
+\item Pas forcement d’inter blocage
 \item Condition nécessaire mais pas suffisante
 \end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Exemple de cycle sans interblocage}
+\frametitle{Exemple de cycle sans inter blocage}
 \includegraphics[width=.8\textwidth]{../illustration/graphe_alloc_ressource_cycle_sans_ib.pdf}
 \end{frame}
 
 \begin{frame}
-\frametitle{Méthodes de lutte contre l’interblocage}
+\frametitle{Méthodes de lutte contre l’inter blocage}
 \begin{itemize}
 \item \textbf{Détection guérison}
 \begin{itemize}
-\item Mécanismes d’identification et de sortie d’un état d’interblocage
+\item Mécanismes d’identification et de sortie d’un état d’inter blocage
 \end{itemize}
 \item \textbf{Protocole de prévention}
 \begin{itemize}
-\item Évite l’entrée en interblocage
+\item Évite l’entrée en inter blocage
 \begin{itemize}
 \item \textbf{Prévention statique} : étude conditions d’apparition
 \item \textbf{Prévention dynamique} : allocation de ressources
@@ -1341,7 +1341,7 @@ Pour manger, un philosophe doit prendre successivement deux fourchettes
 \end{itemize}
 \item \textbf{Ignorer le problème}
 \begin{itemize}
-\item Prétendre que le système n’entre jamais en interblocage
+\item Prétendre que le système n’entre jamais en inter blocage
 \includegraphics[width=2cm]{../illustration/autruche.jpg}
 \end{itemize}
 \end{itemize}
@@ -1350,24 +1350,24 @@ Pour manger, un philosophe doit prendre successivement deux fourchettes
 \begin{frame}
 \frametitle{Principes de la \textbf{détection guérison}}
 \begin{itemize}
-\item <1-> [détection] Algorithme de détection des interblocages
+\item <1-> [détection] Algorithme de détection des inter blocages
 \begin{itemize}
 \item Ausculte régulièrement le système
-\item Identifie les situations d’interblocage
+\item Identifie les situations d’inter blocage
 \begin{itemize}
 \item blocages + attentes circulaires
 \end{itemize}
 \end{itemize}
-\item <2-> [guérison] Algorithme pour mettre fin aux interblocages détectés
+\item <2-> [guérison] Algorithme pour mettre fin aux inter blocages détectés
 \begin{itemize}
-\item Supprime au moins une des conditions nécessaires à l’interblocage
+\item Supprime au moins une des conditions nécessaires à l’inter blocage
 \item Recherche de la solution la moins coûteuse
 \end{itemize}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Détection guérison : détection d’interblocage}
+\frametitle{Détection guérison : détection d’inter blocage}
 \begin{itemize}
 \item Utilisation d’un \textbf{graphe d’attente} :
 \begin{itemize}
@@ -1387,14 +1387,14 @@ Pour manger, un philosophe doit prendre successivement deux fourchettes
 \end{frame}
 
 \begin{frame}
-\frametitle{Correction d’interblocage}
+\frametitle{Correction d’inter blocage}
 \begin{itemize}
-\item Plusieurs alternatives en cas de détection d’interblocage :
+\item Plusieurs alternatives en cas de détection d’inter blocage :
 \begin{itemize}
 \item Informer un opérateur pour correction manuelle
 \item Corriger automatiquement le problème
 \end{itemize}
-\item Correction d’interblocage :
+\item Correction d’inter blocage :
 \begin{itemize}
 \item Arrêt d’un ou plusieurs processus
 \item Réquisition de ressources
@@ -1408,7 +1408,7 @@ Pour manger, un philosophe doit prendre successivement deux fourchettes
 Deux méthodes :
 \begin{columns}
 \column{0.45\textwidth}
-\begin{block}<1->{Arrêter tous les processus en interblocage}
+\begin{block}<1->{Arrêter tous les processus en inter blocage}
 \begin{itemize}
 \item Pertes élevées
 \item perte d’informations, de résultats qu’il faudra, au mieux, de nouveau calculer
@@ -1417,8 +1417,8 @@ Deux méthodes :
 \column{0.45\textwidth}
 \begin{block}<2->{Arrêter les processus un par un}
 \begin{itemize}
-\item Lancement de l’algorithme de détection des interblocages après chaque arrêt
-\item jusqu’à la disparition de l’interblocage
+\item Lancement de l’algorithme de détection des inter blocages après chaque arrêt
+\item jusqu’à la disparition de l’inter blocage
 \item Coûteux en temps de calcul
 \end{itemize}
 \end{block}
@@ -1462,7 +1462,7 @@ Deux méthodes :
 \begin{frame}
 \frametitle{Préemption de ressources}
 \begin{itemize}
-\item <1->Préemption de ressources et allocation à d’autres processus jusqu’à disparition de l’interblocage
+\item <1->Préemption de ressources et allocation à d’autres processus jusqu’à disparition de l’inter blocage
 \item <2->Problèmes :
 \begin{itemize}
 \item Choix de la ressource à réquisitionner (victime)
@@ -1531,12 +1531,12 @@ Deux méthodes :
 \begin{itemize}
 \item <1-> \textbf{État sain}
 \begin{itemize}
-\item Le système n'est pas en interblocage à ou n'est pas sur la voie de l'être
-\item Risque potentiel de conduire le système vers un interblocage
+\item Le système n'est pas en inter blocage à ou n'est pas sur la voie de l'être
+\item Risque potentiel de conduire le système vers un inter blocage
 \end{itemize}
 \item <2-> \textbf{État fiable}
 \begin{itemize}
-\item Aucun risque de conduire le système vers un interblocage
+\item Aucun risque de conduire le système vers un inter blocage
 \end{itemize}
 \item <3-> Un système fiable est forcement sain
 \end{itemize}
@@ -1554,7 +1554,7 @@ Deux méthodes :
 \begin{frame}
 \frametitle{Protocole de prévention statique}
 \begin{itemize}
-\item Politique d’allocation de ressources permettant d’éviter l’interblocage :
+\item Politique d’allocation de ressources permettant d’éviter l’inter blocage :
 \begin{itemize}
 \item Tout processus doit demander les ressources dont il à besoin en une fois, au début de son exécution
 \item Il les recevra en bloc, même s’il ne les utilise pas immédiatement
@@ -1570,8 +1570,8 @@ Deux méthodes :
 \item But :
 \begin{itemize}
 \item Identifier les processus à risque
-\item Les bloquer avant qu’ils ne provoquent un interblocage
-\item Ne les débloquer que lorsqu’il n’y a plus de risque d’interblocage
+\item Les bloquer avant qu’ils ne provoquent un inter blocage
+\item Ne les débloquer que lorsqu’il n’y a plus de risque d’inter blocage
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -1585,14 +1585,14 @@ Deux méthodes :
 \item Annonce explicite et contractuelle
 \item Évaluation de la possibilité de répondre à toutes les demandes futures, même maximales
 \end{itemize}
-\item <2-> S’il y a risque d’interblocage, le système bloque le processus demandeur
+\item <2-> S’il y a risque d’inter blocage, le système bloque le processus demandeur
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Protocole de prévention dynamique}
 \begin{itemize}
-\item L'allocateur oblige le système à \textbf{rester} dans des \textbf{états fiables}, à partir desquels le système ne peut jamais évoluer vers un interblocage
+\item L'allocateur oblige le système à \textbf{rester} dans des \textbf{états fiables}, à partir desquels le système ne peut jamais évoluer vers un inter blocage
 \item Possibilité de \textbf{refus de service}, même si l'allocateur dispose des ressources pour satisfaire la demande instantanée.
 \end{itemize}
 \end{frame}
@@ -1636,9 +1636,9 @@ Deux méthodes :
 \end{frame}
 
 \begin{frame}
-\frametitle{Principes de la prévention d’interblocage}
+\frametitle{Principes de la prévention d’inter blocage}
 \begin{itemize}
-\item Éviter la conjonction des conditions nécessaires à la survenue d’un interblocage :
+\item Éviter la conjonction des conditions nécessaires à la survenue d’un inter blocage :
 \begin{itemize}
 \item Exclusion mutuelle
 \item Détention et attente
@@ -1755,7 +1755,7 @@ Exemple :
 \begin{frame}
 \frametitle{Permettre la préemption}
 \begin{itemize}
-\item Les processus en interblocage ne peuvent pas rendre les ressources qu’ils possèdent
+\item Les processus en inter blocage ne peuvent pas rendre les ressources qu’ils possèdent
 \item On ne peut pas retirer d'autorité une ressource allouée
 \end{itemize}
 \begin{block}{Solution}
@@ -1920,7 +1920,7 @@ L'algorithme suivant détermine si un état est sûr :
 \begin{itemize}
 \item <1->Trouver dans le tableau de droite une ligne L dont les ressources demandées sont toutes inférieures aux dispo
 \begin{itemize}
-\item Si L n'existe pas $\rightarrow$ l'état n'est plus sain $\rightarrow$ interblocage.
+\item Si L n'existe pas $\rightarrow$ l'état n'est plus sain $\rightarrow$ inter blocage.
 \end{itemize}
 
 \item <2->Supposer que le processus associé à L obtient les ressources et se termine
@@ -1974,12 +1974,12 @@ Dans bien des systèmes, ce besoin évolue dynamiquement.
 \begin{frame}
 \frametitle{Ignorer le problème : Principe}
 \begin{itemize}
-\item Considérer qu’il n’y a jamais d’interblocage dans le système :
+\item Considérer qu’il n’y a jamais d’inter blocage dans le système :
 \begin{itemize}
 \item Coûts de prévention et de lutte plus coûteux que le blocage occasionnel du système
 \item Responsabiliser des programmeurs
 \end{itemize}
-\item L’interblocage n’est pas la seule source de blocage du système
+\item L’inter blocage n’est pas la seule source de blocage du système
 \begin{itemize}
 \item Utilisation des mêmes techniques de déblocage
 \end{itemize}
@@ -2006,9 +2006,9 @@ Unix, Windows NT
 \frametitle{Ignorer le problème}
 \framesubtitle{Exemple de Java}
 \begin{itemize}
-\item Pas de mécanisme de protection des interblocages dans la JVM
+\item Pas de mécanisme de protection des inter blocages dans la JVM
 \item Responsabilité du programmeur
-\item Suppression des instructions pouvant engendrer des situations d’interblocage :
+\item Suppression des instructions pouvant engendrer des situations d’inter blocage :
 \begin{itemize}
 \item \texttt{suspend}(), \texttt{resume}()
 \end{itemize}
@@ -2067,7 +2067,7 @@ Unix, Windows NT
 \item objet encapsulant des fonctions externes
 \item une seule peut s’exécuter à un moment donné
 \end{itemize}
-\item <3-> Évite beaucoup des interblocages possibles avec les sémaphores
+\item <3-> Évite beaucoup des inter blocages possibles avec les sémaphores
 \begin{itemize}
 \item Diminue les risques d'erreur de programmation
 \item Code plus lisible
@@ -2091,7 +2091,7 @@ Unix, Windows NT
 \item <3-> Un thread externe ne devrait pas pouvoir se bloquer dans une méthode externe
 \begin{itemize}
 \item Conserve le verrou
-\item Risque d'interblocage
+\item Risque d'inter blocage
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -2156,7 +2156,7 @@ Unix, Windows NT
 \begin{scriptsize}\verbatiminput{include/philo_moniteur.java}\end{scriptsize}
 \end{multicols}
 \begin{center}
-Évite l’interblocage, pas la famine
+Évite l’inter blocage, pas la famine
 \end{center}
 \end{frame}
 
@@ -2208,7 +2208,7 @@ Unix, Windows NT
 \frametitle{Résolution du problème du tampon borné}
 \begin{scriptsize}\verbatiminput{include/tb_synchro.java}\end{scriptsize}
 \begin{center}
-{\LARGE Mène à l'interblocage}
+{\LARGE Mène à l'inter blocage}
 \end{center}
 \end{frame}
 
@@ -2227,7 +2227,7 @@ Unix, Windows NT
 \item Ne suppriment pas l’attente active
 \item Verrouillage de l’ensemble de l’objet pendant l’attente active
 \end{itemize}
-\item Solution menant à un interblocage
+\item Solution menant à un inter blocage
 \begin{itemize}
 \item Détention et attente sur le verrou d'objet
 \end{itemize}
@@ -2513,7 +2513,7 @@ Sémaphores apparues dans Java 1.5
 \item Accès concurrent aux données partagées
 \begin{itemize}
 \item Risque d’incohérence
-\item Risque d’interblocage
+\item Risque d’inter blocage
 \end{itemize}
 \item Nécessité de coordination
 \end{itemize}
@@ -2970,7 +2970,7 @@ Les deux commandes s’exécutent indépendamment sauf :
 \item Ecrit en C
 \item Orienté objet
 \end{itemize}
-\item Une des premières implémentations réussies des micro-noyaux
+\item Une des premières implémentations réussies des micronoyaux
 \begin{itemize}
 \item Portable
 \item Temps réel
@@ -2978,9 +2978,9 @@ Les deux commandes s’exécutent indépendamment sauf :
 \end{itemize}
 \item Utilisé par de nombreux systèmes
 \begin{itemize}
-\item Hurd (micro-noyau) de GNU - remplacé par L4 depuis 2004
+\item Hurd (micronoyau) de GNU - remplacé par L4 depuis 2004
 \item MkLinux, développé par Apple en 1996
-\item XNU, noyau de Darwin, base de Mac OS X ($\ne$ micro-noyau)
+\item XNU, noyau de Darwin, base de Mac OS X ($\ne$ micronoyau)
 \end{itemize}
 
 \end{itemize}

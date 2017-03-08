@@ -274,7 +274,7 @@
 \begin{itemize}
 \item pas de support spécifique
 \begin{itemize}
-\item paravirtualisation
+\item para virtualisation
 \end{itemize}
 \item instructions de virtualisation matérielle (AMD-V et Intel-VT)
 \begin{itemize}
@@ -586,10 +586,10 @@ Solution légère : nivellement du CPUID \cite{wp-cpuid}
 
 
 
-\subsection{La paravirtualisation}
+\subsection{La para virtualisation}
 
 \begin{frame}
-\frametitle{La paravirtualisation}
+\frametitle{La para virtualisation}
 \begin{itemize}
 \item Plus bas niveau que l'isolation
 \item S’appuie sur une \emph{couche hyperviseur}
@@ -600,7 +600,7 @@ Solution légère : nivellement du CPUID \cite{wp-cpuid}
 \end{itemize}
 \item <2>Nécessite une adaptation des systèmes invités
 \begin{itemize}
-\item OS modifié pour la paravirtualisation
+\item OS modifié pour la para virtualisation
 \item interfaces spéciales $\rightarrow$ drivers
 \item adaptation du système hôte et des systèmes invités
 \end{itemize}
@@ -608,7 +608,7 @@ Solution légère : nivellement du CPUID \cite{wp-cpuid}
 \end{frame}
 
 \begin{frame}
-\frametitle{La paravirtualisation}
+\frametitle{La para virtualisation}
 \framesubtitle{Exemple de KVM / Virtio}
 \begin{itemize}
 \item Virtual Input-Output
@@ -678,7 +678,7 @@ Solution légère : nivellement du CPUID \cite{wp-cpuid}
 \item Virtualisation "bare metal"
 \begin{itemize}
 \item containers Linux (OpenVZ)
-\item paravirtalisation (KVM / Virtio)
+\item para virtalisation (KVM / Virtio)
 \item virtualisation complète (KVM\note{Kernel-based Virtual Machine} sur Intel-VT ou AMD-V)
 \end{itemize}
 \item Inclut :
