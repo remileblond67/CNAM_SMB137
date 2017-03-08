@@ -762,12 +762,13 @@ Middleware pour la synchronisation et la communication.
 \item Réellement multi-tâches
 \item Tolérance aux pannes
 \item Souplesse, évolutivité
+\item Scalabilité
 \end{itemize}
 \end{block}
 \column{.45\textwidth}
 \begin{block}{Inconvénients}
 \begin{itemize}
-\item Délais de propagation
+\item Délais de propagation des modifications de données
 \item Équilibrage de charge entre les ordinateurs connectés
 \item Complexité
 \begin{itemize}
@@ -784,7 +785,7 @@ Middleware pour la synchronisation et la communication.
 \item \textit{High-Performance Computing}
 \item <2->x 1000 tous les 11 ans :
 \begin{itemize}
-\item 1964 $\rightarrow$ mégaFLOPS : Control Data 6600
+\item 1964 $\rightarrow$ mégaFLOPS\note{Nombre d'opérations en virgule flottante pas seconde} : Control Data 6600
 \item 1985 $\rightarrow$ gigaFLOPS : Cray-2
 \item 1997 $\rightarrow$ téraFLOPS : ASCI Red
 \item 2008 $\rightarrow$ pétaFLOPS : Roadrunner
@@ -2100,7 +2101,7 @@ Cas d'un programme écrit en langage C
 Un langage d'assemblage ou "langage assembleur" est, en programmation informatique, un langage de bas niveau qui représente le langage machine sous une forme lisible par un humain.
 \end{definition}
 \begin{itemize}
-\item Combinaisons de bits $\rightarrow$ symboles « mnémoniques »
+\item Combinaisons de bits $\rightarrow$ symboles " mnémoniques "
 \item Origines : \begin{itemize}
 \item Programmes de l'EDSAC (1949) - traduction manuelle
 \item Premier assembleur écrit par Nathaniel Rochester pour l'IBM-701 (premier IBM commercialisé) en 1954
@@ -2373,7 +2374,7 @@ En informatique, le terme \emph{bootstrapping} décrit les techniques nécessair
 \end{frame}
 
 \begin{frame}
-\frametitle{Pile d'exécution («la pile», «call stack»)}
+\frametitle{Pile d'exécution ("la pile", "call stack")}
 \begin{block}{Finalités de la pile d'exécution}
 Enregistrer des informations sur les fonctions actives
 \begin{itemize}
@@ -2385,7 +2386,7 @@ Enregistrer des informations sur les fonctions actives
 \end{frame}
 
 \begin{frame}
-\frametitle{Pile d'exécution («la pile», «call stack»)}
+\frametitle{Pile d'exécution ("la pile", "call stack")}
 \begin{itemize}
 \item Structure de pile :
 \begin{itemize}
@@ -2395,10 +2396,13 @@ Enregistrer des informations sur les fonctions actives
 
 \item <2->Manipulée par les langages d'assemblage
 \item <2->Contenu de la pile cachée aux langages de haut niveau
-\begin{tabbing}
-Implémentation \= mise en œuvre par le compilateur \\
-\> contrainte par l'architecture matérielle \\ \>(CPU, mémoire... )
-\end{tabbing}
+\begin{itemize}
+  \item Implémentation :
+  \begin{itemize}
+    \item mise en œuvre par le compilateur
+    \item contrainte par l'architecture matérielle (CPU, mémoire... )
+  \end{itemize}
+\end{itemize}
 \end{itemize}
 \end{frame}
 
