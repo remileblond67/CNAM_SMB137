@@ -8,14 +8,14 @@
 \frame[plain]{\titlepage}
 
 \begin{frame}
- \frametitle{Plan} 
+ \frametitle{Plan}
  \tableofcontents
-\end{frame} 
+\end{frame}
 
 
-%------------------------------------------------------------------- 
+%-------------------------------------------------------------------
 \section{Système d’exploitation}
-%------------------------------------------------------------------- 
+%-------------------------------------------------------------------
 
 \subsection{Finalités - machine virtuelle}
 \begin{frame}
@@ -44,8 +44,6 @@ Interface entre le matériel est les applications destinées aux utilisateurs fi
 \end{figure}
 \end{columns}
 \end{frame}
-
-
 
 
 \begin{frame}
@@ -183,7 +181,7 @@ Dépend du niveau d'abstraction où se place ce travail :
  \item<5> Dans le cadre de l'utilisation du \textbf{langage machine}
  \begin{itemize}
  \item Architecture processeur, conventions de l'espace d'adressage de l'OS, interruption, mode d'exécution...
- \end{itemize} 
+ \end{itemize}
  \end{itemize}
 \end{frame}
 
@@ -205,18 +203,16 @@ Niveau 0 & Couche circuits logiques & Action directe sur le matériel (signaux �
 \end{frame}
 
 
-
-
-
 \begin{frame}{L'API du système}
 API : \textit{Application Programming Interface}
 \begin{itemize}
 \item Ensemble des fonctions fournies par l'OS
 \item Clairement définies, immuables
-\item Programme "bien écrit" :
+\item Programme portable :
 \begin{itemize}
 \item n'utilise que les API du système
 \item possibilité de fonctionner sur toutes les machines sur lesquelles le système est installé et fonctionne
+\item \textit{Exemple : API POSIX d'Unix}
 \end{itemize}
 \end{itemize}
 \begin{block}<2>{Du point de vue du programmeur}
@@ -309,7 +305,7 @@ Exemple : MS-DOS 1.0 $\rightarrow$ 8ko, 2.0 $\rightarrow$ 24 ko, 3.0 $\rightarro
 \begin{frame}
 \frametitle{Structure monolithique}
 \begin{columns}
-\column{.5\textwidth}
+\column{.45\textwidth}
 \begin{block}{Avantages}
 \begin{itemize}
 \item Structure simple
@@ -317,7 +313,7 @@ Exemple : MS-DOS 1.0 $\rightarrow$ 8ko, 2.0 $\rightarrow$ 24 ko, 3.0 $\rightarro
 \item Partage de données facilité
 \end{itemize}
 \end{block}
-\column{.5\textwidth}
+\column{.45\textwidth}
 \begin{block}{Inconvénients}
 \begin{itemize}
 \item Difficile à maintenir
@@ -335,7 +331,7 @@ Exemple : MS-DOS 1.0 $\rightarrow$ 8ko, 2.0 $\rightarrow$ 24 ko, 3.0 $\rightarro
 \frametitle{Structure à couches}
 Décomposition en couches successives :
 \begin{itemize}
-\item Couche la plus basse (0) : 
+\item Couche la plus basse (0) :
 \begin{itemize}
 \item matériel
 \end{itemize}
@@ -365,7 +361,7 @@ Décomposition en couches successives :
 \begin{frame}
 \frametitle{Structure à couches}
 \begin{columns}
-\column{.5\textwidth}
+\column{.45\textwidth}
 \begin{block}{Avantages}
 \begin{itemize}
 \item Élève progressivement le niveau d’abstraction
@@ -374,7 +370,7 @@ Décomposition en couches successives :
 \item Augmente la sécurité
 \end{itemize}
 \end{block}
-\column{.5\textwidth}
+\column{.45\textwidth}
 \begin{block}{Inconvénients}
 \begin{itemize}
 \item Nécessite une conception fine de la structure au préalable
@@ -417,7 +413,7 @@ Windows NT
 \begin{frame}
 \frametitle{Structure client-serveur}
 \begin{columns}
-\column{.5\textwidth}
+\column{.45\textwidth}
 \begin{block}{Avantages}
 \begin{itemize}
 \item Évolutivité, facilité de maintenance
@@ -425,7 +421,7 @@ Windows NT
 \item Stabilité, sécurité
 \end{itemize}
 \end{block}
-\column{.5\textwidth}
+\column{.45\textwidth}
 \begin{block}{Inconvénients}
 \begin{itemize}
 \item Perte de performance (communications)
@@ -458,11 +454,17 @@ Windows NT
 \begin{itemize}
 \item BeOs, Minix, Hurd - Mach, QNX
 
-\item MacOs X : Darwin basé sur l'implémentation BSD (FreeBSD) du micronoyau Mach
-\begin{itemize}
-\item Serveur FreeBSD sur micronoyau Mach
-\item Fusion des deux éléments
-\end{itemize}
+\item MacOs X : basé sur un noyau Darwin
+\begin{columns}
+  \column{.1\textwidth}
+    \includegraphics[width=1cm]{../illustration/Darwin_logo.png}
+  \column{.9\textwidth}
+  \begin{itemize}
+    \item Dérivé de NeXTSEP
+    \item Fusion de FreeBSD et du micronoyau Mach 3.0
+    \item Noyau hybride - API orientée objet "I/O Kit"
+  \end{itemize}
+\end{columns}
 \end{itemize}
 
 
@@ -473,7 +475,7 @@ Windows NT
 \begin{frame}
 \frametitle{Structure à micronoyau}
 \begin{columns}
-\column{.5\textwidth}
+\column{.45\textwidth}
 \begin{block}{Avantages}
 \begin{itemize}
 \item Modularité
@@ -492,7 +494,7 @@ Windows NT
 \end{itemize}
 \end{itemize}
 \end{block}
-\column{.5\textwidth}
+\column{.45\textwidth}
 \begin{block}{Inconvénients}
 \begin{itemize}
 \item Complexité
@@ -560,7 +562,7 @@ Windows NT
 \item Entité d'affectation du processeur
 \begin{itemize}
 \item En dehors des traitements d'interruptions et des périodes de transition, le processeur est alloué à un processus
-\item Les processus peuvent prendre deux états : 
+\item Les processus peuvent prendre deux états :
 \begin{itemize}
 \item ils sont \textbf{actifs} (en exécution ou prêt à l'être)
 \item ou \textbf{bloqués} (en attente d'un événement)
@@ -682,7 +684,7 @@ Windows NT
 \begin{block}{Cas de terminaison}
 \begin{itemize}
 \item Exécution de la dernière instruction
-\item Appel système 
+\item Appel système
 \begin{itemize}
 \item depuis le processus lui-même
 \item depuis un autre processus (souvent le père)
@@ -825,7 +827,7 @@ En fin de compte, retour=15330, a=5
 \begin{frame}
 \frametitle{La primitive \texttt{wait()}}
 \begin{itemize}
-\item<1> Utilisée par un processus père 
+\item<1> Utilisée par un processus père
 \item<1> Récupère des informations d’un de ses fils venant de se terminer
 \begin{itemize}
 \item ``pid'' du processus fils venant de se terminer (le premier)
@@ -887,7 +889,7 @@ En fin de compte, pid=15330, a=5
 \item Syntaxe :
 \begin{itemize}
 \item \texttt{waitpid(int pid, int *status, int option)}
-\item l'option est 0 en général, ou WNOHANG. ce code est une version non bloquante de wait. 
+\item l'option est 0 en général, ou WNOHANG. ce code est une version non bloquante de wait.
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -904,13 +906,13 @@ En fin de compte, pid=15330, a=5
 \item ne doit pas perturber les autre processus
 \item ne doit pas être impacté par les autres processus
 \end{itemize}
-\item Protection de l'espace d'adressage 
+\item Protection de l'espace d'adressage
 \begin{itemize}
 \item vis à vis des autres processus
 \item contre ses propres débordements
 \end{itemize}
 
-\item Espace d'adressage dédié 
+\item Espace d'adressage dédié
 \begin{itemize}
 \item cloisonnement de l'espace mémoire
 \item adressage local
@@ -989,7 +991,7 @@ En fin de compte, pid=15330, a=5
 \begin{frame}
  \frametitle{Exécution - runtime}
  \framesubtitle{Ordonnancement à court terme}
- 
+
  \begin{center}
  \includegraphics[height=3cm]{../illustration/cycle_court_terme.pdf}
  \end{center}
@@ -1013,7 +1015,7 @@ En fin de compte, pid=15330, a=5
 \end{itemize}
 \item Latence du dispatcheur
 	\begin{itemize}
-\item temps pris par le dispatcheur pour stopper un processus et (re)lancer un autre 
+\item temps pris par le dispatcheur pour stopper un processus et (re)lancer un autre
 \end{itemize}
 
  \end{itemize}
@@ -1027,7 +1029,7 @@ En fin de compte, pid=15330, a=5
  \begin{itemize}
  \item La plus élevée possible
  \end{itemize}
- \item Débit 
+ \item Débit
  \begin{itemize}
  \item Nombre de processus terminés par seconde
  \end{itemize}
@@ -1143,7 +1145,7 @@ En fin de compte, pid=15330, a=5
  \item Difficulté d’estimation
  \begin{itemize}
  \item indications de l’utilisateur
- \item moyenne exponentielle des durées cycles précédents 
+ \item moyenne exponentielle des durées cycles précédents
  \end{itemize}
  \end{itemize}
 
@@ -1165,7 +1167,7 @@ En fin de compte, pid=15330, a=5
  \item externes (type travail, contrat, politique... )
  \end{itemize} \end{itemize}
 
- 
+
  \item Processus traités par ordre de priorité suivant FCFS
  \begin{itemize} \item préemptif ou non  \end{itemize}
  \item Famine (blocage infini) $\rightarrow$ vieillissement
@@ -1266,7 +1268,7 @@ En fin de compte, pid=15330, a=5
 \begin{frame}
  \frametitle{Ordonnancement multi processeurs}
  \begin{itemize}
-  \item Partage de charge entre les processeurs 
+  \item Partage de charge entre les processeurs
   \item File d’attente commune
   \item Deux approches :
   \begin{itemize}
@@ -1427,14 +1429,14 @@ En fin de compte, pid=15330, a=5
 \begin{frame}
  \frametitle{Les deux types de threads}
  \begin{columns}
- \column{.5\textwidth}
+ \column{.45\textwidth}
  \begin{block}{Thread utilisateur}
  \begin{itemize}
  \item Utilisé dans les programmes utilisateur
  \item Manipulé au niveau utilisateur
  \end{itemize}
  \end{block}
- \column{.5\textwidth}
+ \column{.45\textwidth}
  \begin{block}{Thread système/noyau}
  \begin{itemize}
  \item Implémentés par le système
@@ -1523,7 +1525,7 @@ En fin de compte, pid=15330, a=5
  \begin{itemize}
  \item Thread non remontés au système
  \item La machine virtuelle gère tous les détails de l'API des threads
- \item Pour le système : 
+ \item Pour le système :
  \begin{itemize}
  \item un processus / un flot d’exécution
  \item Le système ordonnance le processus de la JVM
