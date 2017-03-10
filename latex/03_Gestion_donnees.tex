@@ -1143,9 +1143,9 @@ Principe :
 \begin{frame}
 \frametitle{La segmentation paginée - exemple}
 \begin{columns}
-\column{.5\textwidth}
+\column{.45\textwidth}
 \includegraphics[height=0.8\textheight]{../illustration/memoire_segment_paginee_exemple.pdf}
-\column{.5\textwidth}
+\column{.45\textwidth}
 \begin{table}[htdp]
 \caption{Table des segments}
 \begin{center}
@@ -3022,14 +3022,11 @@ Deux types de mémoire NAND :
 \item MLC et TLC moins coûteux à produire
 \begin{itemize}
 \item SSD bas de gamme
+\item dégrade les performances, surtout en écriture
+\item réduit grandement la durée de vie des cellules.
+\end{itemize}
 \end{itemize}
 
-\item Mais dégrade les performances, surtout en écriture
-\item Réduit grandement la durée de vie des cellules.
-\end{itemize}
-
-\begin{table}[htdp]
-\caption{Nombre de cycles écriture/effacement des différents types de mémoire NAND}
 \begin{center}
 \begin{tabular}{c|c}
 Type de mémoire & Durée de vie \\
@@ -3039,43 +3036,38 @@ MLC &  3 000 à 10 000 cycles par cellule \\
 TLC & 1 000 cycles par cellule \\
 \end{tabular}
 \end{center}
-\label{}
-\end{table}
-DWPD (drive writes per day) : nombre de réécritures complètes du SSD quotidienne supporté pendant la durée de la garantie constructeur
-\begin{itemize}
-  \item Souvent plus de 3 ou 5, même pour les TLC (2017)
-\end{itemize}
+
+\begin{exampleblock}{DWPD (drive writes per day)\footnote{souvent plus de 3 ou 5, même pour les TLC (2017)}}
+  Cycles de réécritures complètes du SSD quotidienne / durée de la garantie constructeur
+\end{exampleblock}
 \end{frame}
 
 \begin{frame}
 \frametitle{À venir... technologie 3D XPoint ("CrossPoint") \cite{XPoint}}
-\begin{itemize}
-\item Collaboration entre Intel et Micron Technology
-\item Amélioration des performances de la SSD (annoncée)
-\begin{itemize}
-\item Vitesse :
-\begin{itemize}
-\item 1000 fois plus rapide\footnote{Que la mémoire NAND}
-\item Latence de l'ordre de la nanoseconde\footnote{Microseconde pour les SSD, milliseconde pour un HDD}
-\end{itemize}
+\begin{columns}
+  \column{.7\textwidth}
+  \begin{itemize}
+    \item Collaboration entre Intel et Micron Technology
+    \item Amélioration spectaculaire des performances de la SSD
+    \begin{itemize}
+      \item Performance d'accès :
+      \begin{itemize}
+        \item 1000 fois plus rapide que la mémoire NAND
+        \item Latence de l'ordre de la nanoseconde (microseconde pour les SSD, milliseconde pour un HDD)
+      \end{itemize}
 
-\item Durée de vie : 1000 fois plus endurante
-\item Capacité : 10 fois plus dense
-\end{itemize}
-\item Transistors $\rightarrow$  points de croisement (empilement)
-\end{itemize}
-\item Supporté par les générations 2017 des processeurs Intel
-\begin{itemize}
-  \item Nom commercial : mémoire "Optane"
-  \item D'abord detiné à servir de cache (prix encore élevé)
-\end{itemize}
-\begin{figure}[htbp]
-\begin{center}
-\includegraphics[height=2.5cm]{../illustration/XPoint.jpg}
-\label{default}
-\end{center}
-\end{figure}
-
+      \item Capacité : 10 fois plus dense que la NAND
+      \item Durée de vie : 1000 fois plus endurante
+    \end{itemize}
+    \item Transistors $\rightarrow$  points de croisement (empilement)
+    \item Supporté par les processeurs Intel 2017
+    \begin{itemize}
+      \item Nom commercial : mémoire "Optane"
+    \end{itemize}
+  \end{itemize}
+  \column{.3\textwidth}
+  \includegraphics[height=2cm]{../illustration/XPoint.jpg}
+\end{columns}
 \end{frame}
 
 \begin{frame}
@@ -3189,7 +3181,7 @@ DWPD (drive writes per day) : nombre de réécritures complètes du SSD quotidie
 \begin{frame}
 \frametitle{RAID 1}
 \begin{columns}
-\column{.5\textwidth}
+\column{.45\textwidth}
 \begin{itemize}
 \item \textbf{Miroir}
 \item Recopie des données à l'identique sur deux disques
@@ -3199,7 +3191,7 @@ DWPD (drive writes per day) : nombre de réécritures complètes du SSD quotidie
 \item Amélioration des \textbf{performances en lecture}
 \item Gaspillage de la moitié de l’espace disque
 \end{itemize}
-\column{.5\textwidth}
+\column{.45\textwidth}
 \includegraphics[height=4cm]{../illustration/RAID1.pdf}
 \end{columns}
 \end{frame}
@@ -3207,7 +3199,7 @@ DWPD (drive writes per day) : nombre de réécritures complètes du SSD quotidie
 \begin{frame}
 \frametitle{RAID 1+0}
 \begin{columns}
-  \column{.5\textwidth}
+  \column{.45\textwidth}
   \begin{itemize}
     \item Volume agrégé par bande fiable
     \begin{itemize}
@@ -3222,7 +3214,7 @@ DWPD (drive writes per day) : nombre de réécritures complètes du SSD quotidie
       \item impact limité à la grappe
     \end{itemize}
   \end{itemize}
-  \column{.5\textwidth}
+  \column{.45\textwidth}
   \includegraphics[height=4cm]{../illustration/RAID10.png}
 \end{columns}
 
@@ -3235,7 +3227,7 @@ DWPD (drive writes per day) : nombre de réécritures complètes du SSD quotidie
 \begin{frame}
 \frametitle{RAID 3}
 \begin{columns}
-\column{.5\textwidth}
+\column{.45\textwidth}
 \begin{itemize}
 \item Disques identiques
 \item \textbf{Parité bit à bit}
@@ -3244,7 +3236,7 @@ DWPD (drive writes per day) : nombre de réécritures complètes du SSD quotidie
 \item Sécurité
 \item Utilisation des 2/3 de l’espace disque
 \end{itemize}
-\column{.5\textwidth}
+\column{.45\textwidth}
 \includegraphics[height=4cm]{../illustration/RAID3.pdf}
 \end{columns}
 \end{frame}
@@ -3253,7 +3245,7 @@ DWPD (drive writes per day) : nombre de réécritures complètes du SSD quotidie
 \begin{frame}
 \frametitle{RAID 5}
 \begin{columns}
-\column{.5\textwidth}
+\column{.45\textwidth}
 \begin{itemize}
 \item N disques (au moins 3)
 \item Parité répartie sur l’ensemble des disques
@@ -3263,7 +3255,7 @@ DWPD (drive writes per day) : nombre de réécritures complètes du SSD quotidie
 \item Utilisation des (n-1)/n de l’espace disque
 \item Performances
 \end{itemize}
-\column{.5\textwidth}
+\column{.45\textwidth}
 \includegraphics[height=4cm]{../illustration/RAID5.png}
 \end{columns}
 \end{frame}
