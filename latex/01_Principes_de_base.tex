@@ -110,8 +110,11 @@ Quatre éléments : \= Le magasin \= $\rightarrow$ la mémoire \\
 \begin{itemize}
 \item Tables d'ajustement des tirs d'artillerie
 \item \textit{18 000 tubes, 30 tonnes, 1 500 relais, 6 000 commutateurs, 160 m$^2$, 140 KW}
-\item Fin guerre : exploitation scientifique
-\item Base de travail scientifique (John VON NEUMANN)
+\item Fin guerre :
+\begin{itemize}
+\item exploitation scientifique
+\item base de travail scientifique (John VON NEUMANN)
+\end{itemize}
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -290,8 +293,8 @@ Un programme correspond à une séquence d'instructions décrivant la façon don
 \begin{itemize}
 \item Intégration de plusieurs transistors sur un même circuit
 \begin{itemize}
-\item Miniaturisation
-\item Augmentation de la puissance
+\item miniaturisation
+\item augmentation de la puissance
 \end{itemize}
 \item Chute des prix
 \item Taux d'intégration en constante augmentation
@@ -408,7 +411,7 @@ Perte de cycles CPU
 \item Pas d'interaction directe utilisateur/système
 \item Monoprogrammation
 \begin{itemize}
-\item Processeurs souvent inactif
+\item processeurs souvent inactif
 \end{itemize}
 \item Temps de réponse augmenté
 \end{itemize}
@@ -1056,8 +1059,8 @@ Tous les processeurs communs sont des machines à programme enregistré de Von N
 \begin{itemize}
 \item <1-> Constat :
 \begin{itemize}
-\item Importante évolution de la forme et des performances
-\item Très faible évolution de la conception de base
+\item importante évolution de la forme et des performances
+\item très faible évolution de la conception de base
 \end{itemize}
 \item <2-> Limites physiques : taille critique des circuits
 \begin{itemize}
@@ -1066,8 +1069,8 @@ Tous les processeurs communs sont des machines à programme enregistré de Von N
 \end{itemize}
 \item <3-> Successeurs encore à l'étude
 \begin{itemize}
-\item Ordinateur quantique : pas encore fonctionnel
-\item Palliatif : architectures parallèles
+\item ordinateur quantique : pas encore fonctionnel
+\item palliatif : architectures parallèles
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -1205,21 +1208,26 @@ Prise en compte des instructions en cinq étapes :
 
 \begin{frame}
 \frametitle{Alternative : architecture Harvard \cite{wp-harvard}}
-\begin{itemize}
-\item Mise en œuvre par l'Université de Harvard pour le Mark I (1944)
-\item Différences avec l'architecture Von Neumann :
-\begin{itemize}
-\item Spécialisation de la mémoire entre données et instructions
-\item Transferts simultané, en parallèle
-\item Gain de performance, mais plus grande complexité
-\end{itemize}
-\end{itemize}
+\begin{columns}
+  \column{.7\textwidth}
+  \begin{itemize}
+  \item Mise en œuvre par l'Université de Harvard pour le Mark I (1944)
+  \item Différences avec l'architecture Von Neumann :
+  \begin{itemize}
+  \item Spécialisation de la mémoire entre données et instructions
+  \item Transferts simultanés, en parallèle
+  \item Gain de performance, mais plus grande complexité
+  \end{itemize}
+  \end{itemize}
+  \column{.3\textwidth}
+  \includegraphics[height=3cm]{../illustration/Architecture_Harvard.png}
+\end{columns}
+
 \begin{exampleblock}{Mise en œuvre}
 \begin{itemize}
 \item processeurs numériques de signal (DSP) ;
 \item microcontrôleurs (PIC de Microchip, AVR d'Atmel).
 \end{itemize}
-
 \end{exampleblock}
 
 \end{frame}
@@ -1327,7 +1335,7 @@ Prise en charge par le programme d’amorçage :
 \end{itemize}
 \item Chargement du système d’exploitation
 \begin{itemize}
-\item Exécution des premiers processus (initialisation)
+\item exécution des premiers processus (initialisation)
 \end{itemize}
 \item Attente d’un évènement...
 \end{itemize}
@@ -1341,14 +1349,14 @@ Prise en charge par le programme d’amorçage :
 \item Prise en charge par le programme d'amorçage
 \item BIOS : Basic Input Output System \cite{wp-bios}
 \begin{itemize}
-\item Mis en place pour les premiers PC
-\item Limité (accès mémoire, partiellement 16 bits, pas d'accès réseau...) et difficilement portable
-\item Inadapté aux architectures 64 bits et aux besoins de télégestion
+\item mis en place pour les premiers PC
+\item limité (accès mémoire, partiellement 16 bits, pas d'accès réseau...) et difficilement portable
+\item inadapté aux architectures 64 bits et aux besoins de télégestion
 \end{itemize}
 
 \item UEFI : Unified Extensible Firmware Interface \cite{wp-uefi} - Intel
 \begin{itemize}
-\item Interface micrologicielle extensible unifiée (modulaire et interaction possible avec l'OS)
+\item onterface micrologicielle extensible unifiée (modulaire et interaction possible avec l'OS)
 \item fonctionnalités réseau intégrées en standard
 \item écrit en C, plus portable et maintenable :  Itanium (IA-64), x86 (32bits et 64bits) et ARM
 \end{itemize}
@@ -1437,14 +1445,14 @@ Signalés par une interruption :
  \begin{itemize}
  \item Partie importante de l’architecture d’un ordinateur
 \begin{itemize}
-\item Doivent être traitées très rapidement
+\item doivent être traitées très rapidement
 \end{itemize}
 \item Nombre prédéfini d’interruptions possibles
 \begin{itemize}
 \item Table de pointeurs vers des routines de traitement
 \begin{itemize}
-\item Vecteur d’interruption
-\item Généralement stockée au tout début de la mémoire de l'ordinateur, en $0000:0000$
+\item vecteur d’interruption
+\item généralement stockée au tout début de la mémoire de l'ordinateur, en $0000:0000$
 \end{itemize}
 \item Pas de routine intermédiaire
 \end{itemize}
@@ -1522,13 +1530,13 @@ Sur les premiers systèmes :
 
 
 \begin{frame}{Les différents niveaux de bus}
-\includegraphics[width=\textwidth]{../illustration/NiveauxBus.pdf}
+\includegraphics[width=.9\textwidth]{../illustration/NiveauxBus.pdf}
 \end{frame}
 
 
 \begin{frame}{ARM : bus CoreLink CCN-504}
 Bande passante de 1 To/s \cite{xbits}
-\includegraphics[width=\textwidth]{../illustration/arm504.jpg}
+\includegraphics[width=.8\textwidth]{../illustration/arm504.jpg}
 \end{frame}
 
 \begin{frame}
@@ -1793,12 +1801,12 @@ Bande passante de 1 To/s \cite{xbits}
 \begin{itemize}
 \item Processeur dédié au suivi des E/S :
 \begin{itemize}
-\item Communication directe du contrôleur avec la mémoire sans interruption de l’UC
-\item Traitement de l’information par blocs (non par mot)
+\item communication directe du contrôleur avec la mémoire sans interruption de l’UC
+\item traitement de l’information par blocs (non par mot)
 \end{itemize}
 \item Utilisé par les périphériques rapides
 \begin{itemize}
-\item Processeur disponibles pour les calculs
+\item processeur disponibles pour les calculs
 \end{itemize}
 \end{itemize}
 \end{itemize}
@@ -1886,8 +1894,8 @@ Deux méthodes de prise en charge :
 \begin{itemize}
 \item \textbf{Traduction} :
 \begin{itemize}
-\item Remplacer chaque instruction de $L_1$ par une séquence d'instructions de $L_0$
-\item Le programme obtenu est alors entièrement composé d'instructions du $L_0$
+\item Remplace chaque instruction de $L_1$ par une séquence d'instructions de $L_0$
+\item Programme obtenu entièrement composé d'instructions du $L_0$
 \end{itemize}
 
 \item \textbf{Interprétation} :
@@ -2073,7 +2081,7 @@ L'optimisation du code par les compilateurs est plus simple pour les processeurs
 \item Mise en mémoire d’un exécutable
 \item Débogueur
 \begin{itemize}
-\item Facilite le test des programmes
+\item facilite le test des programmes
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -2086,13 +2094,13 @@ Cas d'un programme écrit en langage C
 \item \textbf{Compilé} en assembleur
 \item \textbf{Assemblé} en module objet (langage machine)
 \begin{itemize}
-\item Peuvent faire partie de bibliothèques
-\item Appel aux bibliothèques : point de branchement
+\item peuvent faire partie de bibliothèques
+\item appel aux bibliothèques : point de branchement
 \end{itemize}
 \item \textbf{Lié} en image binaire
 \begin{itemize}
-\item Édition de liens statique
-\item Édition de liens dynamique
+\item édition de liens statique
+\item édition de liens dynamique
 \end{itemize}
 \item \textbf{Chargé} en mémoire pour exécution
 \end{itemize}
