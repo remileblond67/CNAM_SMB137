@@ -2900,6 +2900,29 @@ Périphérique « mécanique »
 \includegraphics[height=6cm]{../illustration/disque_dur.jpg}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Evolution des disques magnétiques}
+  \begin{exampleblock}{Premier disque dur commercialisé}
+    \begin{columns}
+      \column{.7\textwidth}
+      \begin{itemize}
+        \item RAMAC 305 d'IBM - lancé en 1956
+        \item \textbf{5 Mo} - 50 plateaux de 24 pouces - 1200 tours/minute - 8,8 Ko/s
+        \item 50 000 \$ - 1000 exemplaires vendus - 1 tonne
+      \end{itemize}
+      \column{.3\textwidth}
+        \includegraphics[height=3cm]{../illustration/ramac-305.jpg}
+    \end{columns}
+  \end{exampleblock}
+  \begin{exampleblock}{Premier disque dur de 1Go}
+    \begin{itemize}
+      \item Commercialisé par IBM en 1980
+      \item Taille d'un réfrigérateur
+      \item 250 kg
+      \item 40 000 \$
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
 
 \begin{frame}
 \frametitle{Performances des disques magnétiques}
@@ -4194,7 +4217,6 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 
 \begin{exampleblock}{Syntaxe de la commande mmap}
     \texttt{mmap(addr, length, prot, flags, fd, offset)}
-
     \begin{itemize}
       \item Adresse de départ en mémoire virtuelle
       \item Taille de la projection
@@ -4203,11 +4225,7 @@ Autres & 0 & 0 & 0 & \textit{0} \\
       \item Descripteur de fichier
       \item Position dans ce fichier
    \end{itemize}
-
 \end{exampleblock}
-
-
-
 \end{frame}
 
 
@@ -5192,7 +5210,7 @@ Un système de fichier \textbf{journalisé} fonctionne par \textbf{transaction}
 \end{frame}
 
 \begin{frame}
-\frametitle{ Disque magnétiques}
+\frametitle{Disque magnétiques}
 \begin{itemize}
 \item Tableau de blocs logiques (généralement 512 octets) adressables directement
 \item Num. bloc logique $\Longrightarrow$ num. bloc physique

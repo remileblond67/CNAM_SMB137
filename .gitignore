@@ -8,6 +8,7 @@
 *.bbl
 *.vrb
 latex/*.pdf
+latex/*.pdfpc
 exam/*
 .syncdb
 *.blg
