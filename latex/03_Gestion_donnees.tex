@@ -21,15 +21,16 @@
 2 idées de l’architecture Von Neumann :
 \begin{itemize}
 	\item Programme enregistré :
-	\begin{itemize}
-	\item Toute instruction doit se trouver en mémoire pour pouvoir être exécutée
-	\end{itemize}
+  	\begin{itemize}
+  	\item Toute instruction doit se trouver en mémoire pour pouvoir être exécutée
+  	\end{itemize}
 	\item Mémoire adressable :
-	\begin{itemize}
-	\item L’unité centrale ne désigne jamais une valeur, mais l’adresse de la mémoire centrale dans laquelle celle-ci est stockée.
-	\end{itemize}
+	 \begin{itemize}
+   \item Toute donnée doit se trouver en mémoire pour pouvoir être manipulée par le processeur
+	 \item L’unité centrale ne désigne jamais une valeur, mais l’adresse de la mémoire centrale dans laquelle celle-ci est stockée.
+	 \end{itemize}
 \end{itemize}
- \end{frame}
+\end{frame}
 
 \begin{frame}
 \frametitle{Mémoire principale}
@@ -186,7 +187,6 @@ Au sein d'un mot, les octets sont numérotés :
 \includegraphics[width=\textwidth]{../illustration/little_big_endian.pdf}
 \end{exampleblock}
 \end{frame}
-
 
 \begin{frame}
 \frametitle{Ordonnancement des octets}
@@ -2907,8 +2907,8 @@ Périphérique « mécanique »
       \column{.7\textwidth}
       \begin{itemize}
         \item RAMAC 305 d'IBM - lancé en 1956
-        \item \textbf{5 Mo} - 50 plateaux de 24 pouces - 1200 tours/minute - 8,8 Ko/s
-        \item 50 000 \$ - 1000 exemplaires vendus - 1 tonne
+        \item \textbf{5 Mo} - 50 plateaux de 24 pouces - 1~200 tours/minute - 8,8 Ko/s
+        \item 50~000~\$ - 1~000 exemplaires vendus - 1 tonne
       \end{itemize}
       \column{.3\textwidth}
         \includegraphics[height=3cm]{../illustration/ramac-305.jpg}
@@ -2919,7 +2919,7 @@ Périphérique « mécanique »
       \item Commercialisé par IBM en 1980
       \item Taille d'un réfrigérateur
       \item 250 kg
-      \item 40 000 \$
+      \item 40~000~\$
     \end{itemize}
   \end{exampleblock}
 \end{frame}
@@ -3060,8 +3060,8 @@ TLC & 1 000 cycles par cellule \\
 \end{tabular}
 \end{center}
 
-\begin{exampleblock}{DWPD (drive writes per day)\footnote{souvent plus de 3 ou 5, même pour les TLC (2017)}}
-  Cycles de réécritures complètes du SSD quotidienne / durée de la garantie constructeur
+\begin{exampleblock}{DWPD (drive writes per day)}
+  Cycles de réécritures complètes du SSD quotidienne / durée de la garantie constructeur\footnote{souvent plus de 3 ou 5, même pour les TLC (2017)}
 \end{exampleblock}
 \end{frame}
 
