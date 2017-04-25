@@ -6,7 +6,6 @@
 \begin{document}
 \frame[plain]{\titlepage}
 
-
 \begin{frame}
  \frametitle{Plan}
  \tableofcontents
@@ -148,7 +147,7 @@ Avec des cellules de 8 bits (un octet) :
 \item machines 32 bits $\rightarrow$ mots de 4 octets
 \item machines 64 bits $\rightarrow$ mots de 8 octets
 \end{itemize}
-\item La plupart des instructions manipule des mots entiers (addition, par exemple)
+\item Les instructions manipulent généralement des mots entiers (addition, par exemple)
 \end{itemize}
 \end{frame}
 
@@ -409,25 +408,19 @@ La gestion de la mémoire a trois objets :
 \begin{itemize}
 \item <1>Réalisée lors du décodage de l’instruction courante
 \begin{itemize}
-\item Fournit l’adresse logique de l’objet recherché en mémoire
-\item Traduction adresse logique $\rightarrow$ adresse physique
-\item La CPU ne désigne jamais une valeur, mais son index de classement dans l’espace d’adressage logique
+  \item La CPU ne désigne jamais une valeur, mais son index de classement dans l’espace d’adressage logique
 \end{itemize}
-\item <2>Impossible sans l'aide du matériel
+\item <2>Traduction d'adresse
+\begin{itemize}
+\item A partir de l’adresse logique de l’objet recherché en mémoire
+\item Traduction adresse logique $\rightarrow$ adresse physique
+\end{itemize}
+\item <3>Impossible sans l'aide du matériel
 \begin{itemize}
 \item Protection mémoire
 \item Unité de gestion de la mémoire
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Fonction de calcul d'adresse}
-\begin{itemize}
 \item Ne doit pas ralentir les accès à la mémoire
-\item Transformation adresse virtuelle $\rightarrow$ adresse physique : matériel
-\item Lors de l'exécution des instructions (runtime)
+\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -811,10 +804,10 @@ Recherche le plus grand bloc d ’espace mémoire disponible
 \begin{frame}
 \frametitle{Méthode des subdivisions (buddy-system)}
 \begin{itemize}
-\item Introduit par Donald KNUTH en 1973
-\item Encore appelée méthode des frères siamois
-\item Subdivisions successives de la mémoire par dichotomie jusqu'à trouver un emplacement mémoire adapté
-\item Fragment initial de la taille de la mémoire (puissance de 2)
+  \item Introduit par Donald KNUTH en 1973
+  \item Encore appelée méthode des frères siamois
+  \item Subdivisions successives de la mémoire par dichotomie jusqu'à trouver un emplacement mémoire adapté
+  \item Fragment initial de la taille de la mémoire (puissance de 2)
 \end{itemize}
 \includegraphics[width=\textwidth]{../illustration/buddy.pdf}
 \end{frame}
@@ -824,13 +817,14 @@ Recherche le plus grand bloc d ’espace mémoire disponible
 \frametitle{Récupération de mémoire}
 Libération manuelle :
 \begin{itemize}
-\item Appel système (free)
-\item Source d’erreurs
-\item Risque de fuite de mémoire (memory leak)
-\begin{itemize}
-\item Oubli de libération de segments alloués
-\item Segments inutilisables pour les autres processus
-\end{itemize}
+  \item Libération explicite
+  \item Appel système (free)
+  \item Source d’erreurs
+  \begin{itemize}
+    \item risque de fuite de mémoire (memory leak)
+    \item oubli de libération de segments alloués
+    \item segments inutilisables pour les autres processus
+  \end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -838,12 +832,12 @@ Libération manuelle :
 \begin{frame}
 \frametitle{Libération de mémoire}
 \begin{itemize}
-\item Évacuation d'un processus de la mémoire
-\item Libération des blocs utilisés
-\begin{itemize}
-\item Marquage à libre
-\item Fusion avec les blocs libres adjacents
-\end{itemize}
+  \item Évacuation d'un processus de la mémoire
+  \item Libération des blocs utilisés
+  \begin{itemize}
+    \item Marquage à libre
+    \item Fusion avec les blocs libres adjacents
+  \end{itemize}
 \end{itemize}
 \includegraphics[width=\textwidth]{../illustration/memoire_principale_liberation_bloc.pdf}
 \end{frame}
@@ -852,19 +846,18 @@ Libération manuelle :
 \begin{frame}
 \frametitle{Récupération de mémoire}
 \begin{itemize}
-\item Fragmentation externe de la mémoire
-\begin{itemize}
-\item Sature l’espace disponible
-\item Nécessite un compactage régulier
-\item Déplacement des partitions
-\begin{itemize}
-\item Vers de bas de la mémoire
-\item Création bloc libre en haut de mémoire
-\end{itemize}
-\end{itemize}
-
-\item Algorithme coûteux
-\item Nécessite des segments translatables
+  \item Fragmentation externe de la mémoire
+  \begin{itemize}
+    \item sature l’espace disponible
+    \item nécessite un compactage régulier
+    \item déplacement des partitions
+    \begin{itemize}
+      \item vers de bas de la mémoire
+      \item création bloc libre en haut de mémoire
+    \end{itemize}
+  \end{itemize}
+  \item Algorithme coûteux
+  \item Nécessite des segments translatables
 \end{itemize}
 \end{frame}
 
@@ -999,9 +992,9 @@ Plusieurs mécanismes :
 \begin{frame}
 \frametitle{Pagination}
 \begin{itemize}
-\item Permet aux processus et données d'utiliser des adresses non contiguës
-\item Découpage mémoire physique en partitions de taille fixe appelées cases ou cadres
-\item Découpage de la mémoire linéaire des processus en partitions appelées pages
+\item Permet aux processus et données d'utiliser des \textbf{adresses non contiguës}
+\item Découpage mémoire physique en partitions de taille fixe appelées cases ou \textbf{cadres}
+\item Découpage de la mémoire linéaire des processus en partitions appelées \textbf{pages}
 \begin{itemize}
 \item Pages et cases de même taille (4 Ko sur x86)
 \item Correspondance page $\Leftrightarrow$ case
@@ -1307,13 +1300,14 @@ Double problématique :
 \begin{itemize}
 \item Édition de liens statique :
 \begin{itemize}
-\item Liaison de toutes les bibliothèques dans le fichier exécutable $\rightarrow$ exécutable monolithique
+\item Liaison de toutes les bibliothèques dans le fichier exécutable
+\item exécutable monolithique
 \end{itemize}
 \item Édition de liens dynamique :
 \begin{itemize}
 \item Liaison et chargement reportés au plus tard
 \begin{itemize}
-\item Au moment de l'exécution
+\item Au moment de l'exécution (runtime)
 \end{itemize}
 \item Évite duplication des bibliothèques
 \begin{itemize}
@@ -1497,7 +1491,7 @@ Conséquences du chargement de la totalité des programmes en mémoire centrale 
 \begin{itemize}
 \item Mémoire physique
 \begin{itemize}
-\item Ensemble des emplacements RAM physiquement présents dans l'ordinateur
+\item Ensemble des emplacements mémoire physiquement présents dans l'ordinateur
 \end{itemize}
 \item Mémoire virtuelle
 \begin{itemize}
@@ -1715,7 +1709,7 @@ La table des pages externes et les tables de pages secondaires sont gérées com
 \end{frame}
 
 \begin{frame}
-\frametitle{Exemple : « copy on write » sur fork()}
+\frametitle{Exemple : "copy on write" sur fork()}
 \begin{itemize}
 \item Duplication du contexte du processus :
 \begin{itemize}
@@ -1759,15 +1753,14 @@ La table des pages externes et les tables de pages secondaires sont gérées com
 \end{itemize}
 \end{itemize}
 \item Processus demandeur à l'état bloqué pendant le traitement du défaut de page
-
 \end{itemize}
 \end{frame}
 
 
 
 \begin{frame}
-\frametitle{Phases gestion défaut de page}
-\includegraphics[width=\textwidth]{../illustration/traitement_defaut_page.pdf}
+\frametitle{Phases de gestion d'un défaut de page}
+\includegraphics[width=0.9\textwidth]{../illustration/traitement_defaut_page.pdf}
 \end{frame}
 
 
