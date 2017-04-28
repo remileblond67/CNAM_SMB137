@@ -1653,15 +1653,11 @@ Non & Non & RW & \\
 \frametitle{Pagination à deux niveaux}
 \begin{itemize}
 \item La mémoire virtuelle est divisée en \textbf{hyperpages} qui sont elles-mêmes divisées en \textbf{pages}
+\item La table des pages externes et les tables de pages secondaires sont gérées comme les autres pages
 \item Adresse virtuelle :
 \begin{itemize}
 \item Numéro d'hyperpage + numéro de page + déplacement
 \end{itemize}
-\item L'accès à la mémoire est plus lent
-\begin{itemize}
-\item Un accès mémoire supplémentaire
-\end{itemize}
-\item La mémoire virtuelle est toujours linéaire
 \end{itemize}
 \end{frame}
 
@@ -1675,17 +1671,6 @@ Non & Non & RW & \\
 \begin{frame}
 \frametitle{Pagination à deux niveaux}
 \includegraphics[width=\textwidth]{../illustration/memoire_paginee_deux_niveaux_calcul.pdf}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Pagination à deux niveaux}
-La table des pages externes et les tables de pages secondaires sont gérées comme les autres pages :
-\begin{itemize}
-\item Seules les pages effectivement utilisées sont chargées en mémoire principale
-\item De ce fait, la table des pages externes réside toujours en mémoire principale
-\item Seules les tables de pages secondaires effectivement utilisées sont chargées en mémoire principale
-\end{itemize}
 \end{frame}
 
 
@@ -1706,6 +1691,7 @@ La table des pages externes et les tables de pages secondaires sont gérées com
 \end{itemize}
 \end{itemize}
 \end{frame}
+
 
 \begin{frame}
 \frametitle{Exemple : "copy on write" sur fork()}
