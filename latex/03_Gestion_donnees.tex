@@ -1837,16 +1837,16 @@ Non & Non & RW & \\
 \item Temps d’accès effectif (page non modif.) :
 \begin{itemize}
 \item (1-P) x (accès mémoire) + P x (défaut page)
-\item (1-P) x 100 + P x 25 000 000
-\item 100 + 24 999 900 x P
+\item (1-P) x 100 + P x 25~000~000
+\item 100 + 24~999~900 x P
 \end{itemize}
-\item Si $P = \frac{1}{1000}$
+\item Si $P = \frac{1}{1~000}$
 \begin{itemize}
 \item Temps d'accès x 250
 \end{itemize}
 \item Pour variation $\le$ 10 \%
 \begin{itemize}
-\item $P \le \frac{1}{2500000}$
+\item $P \le \frac{1}{2~500~000}$
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -1920,7 +1920,15 @@ Non & Non & RW & \\
 \begin{itemize}
 \item Idée :
 \begin{itemize}
-\item Remplacer la \textbf{page} qui sera \textbf{accédée le plus tard} (ou plus jamais, à l'extrême)
+\item Remplacer la \textbf{page} qui sera \textbf{accédée le plus tard}
+\item Choix idéal :
+\begin{itemize}
+  \item page qui ne sera plus jamais utilisée
+\end{itemize}
+\item Pire des choix :
+\begin{itemize}
+  \item page qui sera utilisée juste après son remplacement
+\end{itemize}
 \end{itemize}
 \item S'appuie sur un \textbf{support matériel} :
 \begin{itemize}
@@ -1958,7 +1966,7 @@ Non & Non & RW & \\
 \begin{itemize}
 \item Grande quantité d'informations
 \begin{itemize}
-\item de l'ordre de 1 000 000 références par seconde
+\item de l'ordre de 1~000~000 références par seconde
 \end{itemize}
 \item Stockage des seuls numéros de page
 \item Stockage des premières références
@@ -2023,7 +2031,7 @@ Non & Non & RW & \\
 \begin{itemize}
 \item Algorithme \textbf{OPT} ou \textbf{MIN} :
 \begin{itemize}
-\item Remplacer la page qui sera utilisée le plus tard possible (ou jamais)
+\item Remplacer la page qui sera utilisée le plus tard possible
 \end{itemize}
 \item Garantit le plus faible taux de défaut de page
 \item Difficile à mettre en œuvre :
@@ -2033,7 +2041,6 @@ Non & Non & RW & \\
 \end{itemize}
 \end{itemize}
 \end{frame}
-
 
 
 \begin{frame}
@@ -2076,7 +2083,10 @@ Non & Non & RW & \\
 \item Résultats mauvais dans le cas d'une page chargée tôt et accédée souvent
 \begin{itemize}
 \item Exemple : Variables souvent utilisées
-\item Augmente le nombre de défaut de page
+\item Génère régulièrement des défaut de page :
+\begin{itemize}
+  \item Allers et retours réguliers entre la mémoire et l'espace de permutation
+\end{itemize}
 \end{itemize}
 \item Anomalie de Belady
 \begin{itemize}
