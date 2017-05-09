@@ -3208,13 +3208,14 @@ TLC & 1 000 cycles par cellule \\
 \end{frame}
 
 \begin{frame}
-\frametitle{RAID 1+0}
+\frametitle{RAID 1+0 (RAID 10)}
 \begin{columns}
   \column{.45\textwidth}
   \begin{itemize}
     \item Volume agrégé par bande fiable
     \begin{itemize}
       \item grappes répliquées
+      \item utilisation de la moitié de l'espace disque
     \end{itemize}
     \item 4 disques minimum
     \begin{itemize}
@@ -3323,7 +3324,7 @@ TLC & 1 000 cycles par cellule \\
 \begin{frame}
   \frametitle{DAS (Direct Attached Storage) : disque en attachement direct}
   \begin{itemize}
-    \item Disques externes, mais relié directement au système
+    \item Disques reliés directement au système
     \item Via des câbles dédiés (cuivre ou fibre optique)
     \begin{exampleblock}{Exemples de protocoles}
       \begin{itemize}
@@ -3340,7 +3341,10 @@ TLC & 1 000 cycles par cellule \\
   \frametitle{SAN (Storage Area Network) : réseau de stockage}
   \begin{itemize}
     \item Réseau dédié à la mutualisation de ressources de stockage
-    \item Accès bas niveau aux disques (protocoles proches de celui des disques internes - ATA, SCSI)
+    \item Accès bas niveau aux disques
+    \begin{itemize}
+      \item protocoles proches de celui des disques internes (ATA, SCSI... )
+    \end{itemize}
     \item Partage en mode bloc
     \begin{exampleblock}{Exemples de protocoles}
       \begin{itemize}
@@ -3352,11 +3356,14 @@ TLC & 1 000 cycles par cellule \\
 \end{frame}
 
 \begin{frame}
-  \frametitle{NAS (Network Attached Storage) : serveur de stockage en réseau)}
+  \frametitle{NAS (Network Attached Storage) : serveur de stockage en réseau}
   \begin{itemize}
     \item Relié au réseau de l'entreprise (non dédié)
     \item Eventuellement intégré à un SAN (point d'entrée)
     \item Volumes de stockage partagés
+    \begin{itemize}
+      \item partage en mode fichier
+    \end{itemize}
     \begin{exampleblock}{Exemples de protocoles}
       \begin{itemize}
         \item Common Internet File System (CIFS) / Server Message Block (SMB)
@@ -3750,7 +3757,11 @@ Fichier séquentiel indexé :
 \begin{itemize}
 \item taille des listes d'accès
 \item définition et maintenance fastidieuses
-\item taille de l'entrée de répertoire (importante et variable en fonction de la liste d'accès)
+\item taille de l'entrée de répertoire
+  \begin{itemize}
+    \item importante
+    \item variable en fonction de la liste d'accès
+  \end{itemize}
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -4034,9 +4045,9 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \frametitle{Sémantique cohérente}
 \begin{itemize}
 \item Caractéristique importante des systèmes de partage de fichier
-\item Précise à quel moment les modifications apportées aux fichiers sont visibles pour les autre processus
+\item Précise à quel moment les modifications apportées aux fichiers sont visibles pour les autres processus
 \end{itemize}
-\begin{exampleblock}{Sémantique cohérente : Exemple d'UNIX}
+\begin{exampleblock}<2>{Sémantique cohérente : Exemple d'UNIX}
 \begin{itemize}
 \item Les modifications apportées à un fichier ouvert sont \textbf{visibles immédiatement} par tous les processus ayant également ouvert ce fichier
 \item Possibilité de partage du pointeur d'emplacement dans le fichier
@@ -4172,15 +4183,14 @@ Autres & 0 & 0 & 0 & \textit{0} \\
 \begin{itemize}
 \item Représentation de parties de fichiers ouverts en mémoire virtuelle
 \begin{itemize}
-  \item Découpage du fichier en page de la mémoire virtuelle
-  \item Fonction cartographique de correspondance fichier-mémoire virtuelle
-  \item Utilisation des mécanismes de la mémoire virtuelle
+  \item Fichier $\rightarrow$ pages de la mémoire virtuelle
+  \item Fonction cartographique de correspondance
 \end{itemize}
-\item Lecture / écriture dans ces espaces mémoire $\Longrightarrow$ modifications du fichier
+\item Mécanismes de la mémoire virtuelle
 \begin{itemize}
-\item Simplification de l'utilisation des fichiers
-\item Optimisation des chargements en mémoire
-\item Mécanisme de cache
+  \item Simplification de l'utilisation des fichiers
+  \item Lecture / écriture dans pages $\Longrightarrow$ accès au fichier
+  \item Optimisation des E/S
 \end{itemize}
 \item Fermeture du fichier :
 \begin{itemize}
