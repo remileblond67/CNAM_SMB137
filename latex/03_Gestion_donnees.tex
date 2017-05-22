@@ -3312,77 +3312,6 @@ TLC & 1 000 cycles par cellule \\
 \end{tabular}
 \end{frame}
 
-\begin{frame}
-  \frametitle{DAS, SAN et NAS}
-  \begin{itemize}
-    \item<1> \textbf{DAS} (Direct Attached Storage) : disque en attachement direct
-    \item<2> \textbf{SAN} (Storage Area Network) : réseau de stockage
-    \item<3> \textbf{NAS} (Network Attached Storage) : serveur de stockage en réseau
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{DAS (Direct Attached Storage) : disque en attachement direct}
-  \begin{itemize}
-    \item Disques reliés directement au système
-    \item Via des câbles dédiés (cuivre ou fibre optique)
-    \begin{exampleblock}{Exemples de protocoles}
-      \begin{itemize}
-        \item ATA, SATA, eSATA
-        \item SCSI
-        \item SAS : Serial Attached SCSI
-        \item Fibre Channel
-      \end{itemize}
-    \end{exampleblock}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{SAN (Storage Area Network) : réseau de stockage}
-  \begin{itemize}
-    \item Réseau dédié à la mutualisation de ressources de stockage
-    \item Accès bas niveau aux disques
-    \begin{itemize}
-      \item protocoles proches de celui des disques internes (ATA, SCSI... )
-    \end{itemize}
-    \item Partage en mode bloc
-    \begin{exampleblock}{Exemples de protocoles}
-      \begin{itemize}
-        \item SCSI, Fibre Channel
-        \item FCoE, iSCSI, ATA over Ethernet (AoE) ou HyperSCSI
-      \end{itemize}
-    \end{exampleblock}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{NAS (Network Attached Storage) : serveur de stockage en réseau}
-  \begin{itemize}
-    \item Relié au réseau de l'entreprise (non dédié)
-    \item Eventuellement intégré à un SAN (point d'entrée)
-    \item Volumes de stockage partagés
-    \begin{itemize}
-      \item partage en mode fichier
-    \end{itemize}
-    \begin{exampleblock}{Exemples de protocoles}
-      \begin{itemize}
-        \item Common Internet File System (CIFS) / Server Message Block (SMB)
-        \item Network File System (NFS)
-        \item Apple Filing Protocol (AFP)
-        \item File Transfer Protocol (FTP)
-        \item WebDAV...
-      \end{itemize}
-    \end{exampleblock}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{DAS, NAS et SAN \cite{wp-san}}
-  \begin{center}
-    \includegraphics[height=6cm]{../illustration/DAS_NAS_SAN.png}
-  \end{center}
-\end{frame}
-
 
 %-----------------------------------------------
 \subsection{Concept de fichier}
@@ -5848,6 +5777,78 @@ Trois raisons pour utiliser des tampons :
 \item Informations parfois plus détaillées (SCSI, journaux SMART...~)
 \end{itemize}
 \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{DAS, SAN et NAS}
+  \begin{itemize}
+    \item<1> \textbf{DAS} (Direct Attached Storage) : disque en attachement direct
+    \item<2> \textbf{SAN} (Storage Area Network) : réseau de stockage
+    \item<3> \textbf{NAS} (Network Attached Storage) : serveur de stockage en réseau
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DAS (Direct Attached Storage) : disque en attachement direct}
+  \begin{itemize}
+    \item Disques reliés directement au système
+    \item Via des câbles dédiés (cuivre ou fibre optique)
+    \begin{exampleblock}{Exemples de protocoles}
+      \begin{itemize}
+        \item ATA, SATA, eSATA
+        \item SCSI
+        \item SAS : Serial Attached SCSI
+        \item Fibre Channel
+      \end{itemize}
+    \end{exampleblock}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{SAN (Storage Area Network) : réseau de stockage}
+  \begin{itemize}
+    \item Réseau dédié à la mutualisation de ressources de stockage
+    \item Accès bas niveau aux disques
+    \begin{itemize}
+      \item protocoles proches de celui des disques internes (ATA, SCSI... )
+    \end{itemize}
+    \item Partage en mode bloc
+    \begin{exampleblock}{Exemples de protocoles}
+      \begin{itemize}
+        \item SCSI, Fibre Channel
+        \item FCoE, iSCSI, ATA over Ethernet (AoE) ou HyperSCSI
+      \end{itemize}
+    \end{exampleblock}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{NAS (Network Attached Storage) : serveur de stockage en réseau}
+  \begin{itemize}
+    \item Relié au réseau de l'entreprise (non dédié)
+    \item Eventuellement intégré à un SAN (point d'entrée)
+    \item Volumes de stockage partagés
+    \begin{itemize}
+      \item partage en mode fichier
+    \end{itemize}
+    \begin{exampleblock}{Exemples de protocoles}
+      \begin{itemize}
+        \item Common Internet File System (CIFS) / Server Message Block (SMB)
+        \item Network File System (NFS)
+        \item Apple Filing Protocol (AFP)
+        \item File Transfer Protocol (FTP)
+        \item WebDAV...
+      \end{itemize}
+    \end{exampleblock}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{DAS, NAS et SAN \cite{wp-san}}
+  \begin{center}
+    \includegraphics[height=6cm]{../illustration/DAS_NAS_SAN.png}
+  \end{center}
 \end{frame}
 
 
